@@ -26,10 +26,11 @@ public class Entity {
     if (direction[3] == true) {
       this.x = x+speed;
     }
+    //System.out.println(this.x+" "+this.y);
   }
   
   public void draw() {
    String url = picture;
-   image(loadImage(url, "png"),x,y,50,50);
+   image(loadImage(url, "png"),x,y,60,60);
   }
 }

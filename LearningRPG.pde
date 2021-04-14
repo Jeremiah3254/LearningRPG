@@ -2,8 +2,8 @@ boolean[] movement = new boolean[4];
 //CarbotMarine.png
 //BossImage.png
 //EnemySprite.png
-Player test = new Player(new int[] {0,10},new int[] {100,100});
-EnemyMob[] Enemies = new EnemyMob[5];
+Player test = new Player(new int[] {0,10},new int[] {100,100},476,255);
+EnemyMob[] Enemies = new EnemyMob[20];
 PImage background;
 
 public void setup() {
@@ -13,19 +13,21 @@ public void setup() {
   size(1042,600);
   background = loadImage("Ground.png", "png");
   for (int i = 0; i<Enemies.length; i++) {
-    Enemies[i] = new EnemyMob("Spider",1,new int[] {0,10},new int[] {100,100},(int) Math.random()*(i*100),(int) Math.random()*(i*100));
+    Enemies[i] = new EnemyMob("Spider",1,new int[] {0,10},new int[] {100,100},(int) random(pixelWidth*2),(int) (int) random(pixelHeight*2));
+    System.out.print((int) random(50));
   }
   //fullScreen();
 }
 
 public void draw() {
   //background(loadImage("Ground2.png"));
-  image(background,0,0,pixelHeight*1.75,pixelWidth);
+  image(background,0,0,pixelWidth,pixelHeight);
   for (EnemyMob Enemy : Enemies) {
-   Enemy.draw(); 
+   Enemy.draw();
+   Enemy.move(movement);
   }
   test.draw();
-  test.move(movement);
+  //test.move(movement);
 }
 
 public void keyReleased() {

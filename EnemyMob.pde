@@ -6,4 +6,5 @@ public class EnemyMob extends Entity {
   super("EnemySprite.png",x,y,lvl,hp,xp,15); 
   this.mobName = mobName;
  }
+ 
 }
