@@ -2,18 +2,28 @@ boolean[] movement = new boolean[4];
 //CarbotMarine.png
 //BossImage.png
 //EnemySprite.png
-Player test = new Player(new int[] {100,100},new int[] {0,10});
+Player test = new Player(new int[] {0,10},new int[] {100,100});
+EnemyMob[] Enemies = new EnemyMob[5];
+PImage background;
 
 public void setup() {
   frameRate(30);
   //1042,600
+  //fullScreen();
   size(1042,600);
+  background = loadImage("Ground.png", "png");
+  for (int i = 0; i<Enemies.length; i++) {
+    Enemies[i] = new EnemyMob("Spider",1,new int[] {0,10},new int[] {100,100},(int) Math.random()*(i*100),(int) Math.random()*(i*100));
+  }
   //fullScreen();
 }
 
 public void draw() {
-  background(loadImage("Ground2.png"));
-  //image(loadImage("Ground.png", "png"),0,0,pixelHeight*1.75,pixelWidth);
+  //background(loadImage("Ground2.png"));
+  image(background,0,0,pixelHeight*1.75,pixelWidth);
+  for (EnemyMob Enemy : Enemies) {
+   Enemy.draw(); 
+  }
   test.draw();
   test.move(movement);
 }
