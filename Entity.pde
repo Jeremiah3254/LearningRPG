@@ -1,4 +1,5 @@
 public class Entity {
+  boolean isAlive = true;
   String picture;
   PVector pos;
   int x,y,lvl,speed;
@@ -33,4 +34,17 @@ public class Entity {
    String url = picture;
    image(loadImage(url, "png"),x,y,60,60);
   }
+  /*
+  public int getX {
+  return x;
+  }
+  
+  public int getY {
+  return y;
+  }
+  
+  public boolean isAlive() {
+  return isAlive;
+  }
+  */
 }
