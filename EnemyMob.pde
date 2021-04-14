@@ -12,5 +12,22 @@ public class EnemyMob extends Entity {
  // Create and Display fighting Class with the images & stats of the given mob.
  }
  
+ public randomMovement() {
+ int direction;
+ direction = (int) random(4);
+ if (direction == 1) {
+      this.y = y-(speed/2); 
+    }
+    if (direction == 2) {
+      this.x = x-(speed/2);
+    }
+    if (direction == 3) {
+      this.y = y+(speed/2);
+    }
+    if (direction == 4) {
+      this.x = x+(speed/2);
+    }
+ }
+ 
  */
 }
