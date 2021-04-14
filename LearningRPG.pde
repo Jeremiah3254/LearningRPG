@@ -23,16 +23,20 @@ public void draw() {
   image(background,0,0,pixelWidth,pixelHeight);
   
   for (EnemyMob Enemy : Enemies) {
+  //(Enemy.getX() < 0 && Enemy.getY() < 0 || Enemy.getY() > pixelHeight) || (Enemy.getX() > pixelWidth && Enemy.getY() < 0 || Enemy.getY() > pixelHeight)
+if ((Enemy.getX() < 0 || Enemy.getX() > pixelWidth && Enemy.getY() < 0 || Enemy.getY() > pixelHeight)) {
   if (Enemy.isAlive() == true) {
    Enemy.move(movement);
+   Enemy.randomMovement();
    Enemy.draw();
+    }
    }
   }
   
   if (Player.isAlive() == true) {
   Player1.draw();
-  }
   //Player1.move(movement);
+  }
 }
 
 public void keyReleased() {
