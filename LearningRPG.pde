@@ -5,13 +5,15 @@ boolean[] movement = new boolean[4];
 Player test = new Player(new int[] {100,100},new int[] {0,10});
 
 public void setup() {
-  size(500,500);
+  frameRate(30);
+  //1042,600
+  size(1042,600);
   //fullScreen();
 }
 
 public void draw() {
-  background(200);
-  
+  background(loadImage("Ground2.png"));
+  //image(loadImage("Ground.png", "png"),0,0,pixelHeight*1.75,pixelWidth);
   test.draw();
   test.move(movement);
 }
