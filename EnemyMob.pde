@@ -6,5 +6,11 @@ public class EnemyMob extends Entity {
   super("EnemySprite.png",x,y,lvl,hp,xp,15); 
   this.mobName = mobName;
  }
+ /*
+ public getCollision(Player test) {
+ if (test.getX() == this.x && test.getY() == this.y) {
+ // Create and Display fighting Class with the images & stats of the given mob.
+ }
  
+ */
 }
