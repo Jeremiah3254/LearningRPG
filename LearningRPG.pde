@@ -3,39 +3,47 @@ boolean[] movement = new boolean[4];
 //BossImage.png
 //EnemySprite.png
 Player Player1 = new Player(new int[] {0,10},new int[] {100,100},476,255);
-EnemyMob[] Enemies = new EnemyMob[20];
+EnemyMob[] Enemies = new EnemyMob[2000];
 PImage background;
 
+
 public void setup() {
-  frameRate(30);
+  frameRate(60);
   //fullScreen();
-  size(1042,600);
+  size(1000,750);
+  System.out.println(width/2);
+  System.out.println(height/2);
   background = loadImage("Ground.png", "png");
   for (int i = 0; i<Enemies.length; i++) {
-    Enemies[i] = new EnemyMob("Spider",1,new int[] {0,10},new int[] {100,100},(int) random(pixelWidth*2),(int) (int) random(pixelHeight*2));
-    System.out.print((int) random(50));
+    Enemies[i] = new EnemyMob("Spider",1,new int[] {0,10},new int[] {100,100},(int) random(-width,width)*10,(int) random(-height,height)*10);
+    //System.out.print((int) random(50));
   }
   //fullScreen();
 }
 
 public void draw() {
   //background(loadImage("Ground2.png"));
-  image(background,0,0,pixelWidth,pixelHeight);
-  
+  //background(200);
+  image(background,0,0,width,height);
+  int x = (width/2)-30;
+  int y = (height/2)-30;
+  translate(x-Player1.getX(),y-Player1.getY());
   for (EnemyMob Enemy : Enemies) {
-  //(Enemy.getX() < 0 && Enemy.getY() < 0 || Enemy.getY() > pixelHeight) || (Enemy.getX() > pixelWidth && Enemy.getY() < 0 || Enemy.getY() > pixelHeight)
-if ((Enemy.getX() < 0 || Enemy.getX() > pixelWidth && Enemy.getY() < 0 || Enemy.getY() > pixelHeight)) {
-  if (Enemy.isAlive() == true) {
-   Enemy.move(movement);
-   Enemy.randomMovement();
-   Enemy.draw();
-    }
-   }
+    int boundsLeft = Player1.getX() - (width/2)-30;
+    int boundsRight = Player1.getX() + (width/2)-30;
+    int boundsTop = Player1.getY() - (height/2)-30;
+    int boundsBottom = Player1.getY() + (height/2)-30;
+      if (Enemy.getX() >= boundsLeft && Enemy.getX() <= boundsRight && Enemy.getY() <= boundsBottom && Enemy.getY() >= boundsTop) {
+        if (Enemy.isAlive() == true) {
+         Enemy.randomMovement();
+         Enemy.draw();
+        }
+     }
   }
   
-  if (Player.isAlive() == true) {
-  Player1.draw();
-  //Player1.move(movement);
+  if (Player1.isAlive() == true) {
+    Player1.move(movement);
+    Player1.draw();
   }
 }
 

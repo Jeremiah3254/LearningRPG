@@ -1,4 +1,5 @@
 public class Entity {
+  //PImage image;// = loadImage(url, "png");
   boolean isAlive = true;
   String picture;
   PVector pos;
@@ -6,6 +7,7 @@ public class Entity {
   int[] hp = new int[2],xp = new int[2];
   public Entity(String picture,int x, int y,int lvl,int[] hp,int[] xp,int speed) {
     this.picture = picture;
+    //this.image = loadImage(this.picture, "png");
     this.x = x;
     this.y = y;
     this.lvl = lvl;
@@ -27,24 +29,23 @@ public class Entity {
     if (direction[3] == true) {
       this.x = x+speed;
     }
-    //System.out.println(this.x+" "+this.y);
   }
   
   public void draw() {
-   String url = picture;
-   image(loadImage(url, "png"),x,y,60,60);
+   //String url = picture;
+   image(loadImage(this.picture, "png"),x,y,60,60);
   }
-  /*
-  public int getX {
+  
+  public int getX() {
   return x;
   }
   
-  public int getY {
+ public int getY() {
   return y;
   }
   
   public boolean isAlive() {
   return isAlive;
-  }
-  */
+ }
+
 }
