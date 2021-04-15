@@ -1,7 +1,8 @@
 public class ButtonUI {
   int x,y,sizeX,sizeY;
-  String picture;
-  public ButtonUI(int x,int y,int sizeX,int sizeY,String picture) {
+  String picture,buttonText;
+  public ButtonUI(String buttonText,int x,int y,int sizeX,int sizeY,String picture) {
+    this.buttonText = buttonText;
     this.x = x;
     this.y = y;
     this.sizeX = sizeX;
@@ -18,6 +19,8 @@ public class ButtonUI {
   }
   
   public void draw() {
-    image(loadImage(this.picture, "png"),x,y,this.sizeX,this.sizeY);    
+    image(loadImage(this.picture, "png"),x,y,this.sizeX,this.sizeY); 
+    textSize(32);
+    text(buttonText, x+sizeX/2, y+sizeY/2);
   }
 }
