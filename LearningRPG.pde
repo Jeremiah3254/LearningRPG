@@ -3,6 +3,7 @@ boolean[] movement = new boolean[4];
 //BossImage.png
 //EnemySprite.png
 Player Player1 = new Player(new int[] {0,10},new int[] {100,100},476,255);
+ButtonUI basicButton = new ButtonUI(0,0,300,300,"defaultUI-1.png");
 EnemyMob[] Enemies = new EnemyMob[2000];
 PImage background;
 
@@ -29,14 +30,16 @@ public void draw() {
   translate(x-Player1.getX(),y-Player1.getY());
   for (EnemyMob Enemy : Enemies) {
     int boundsLeft = Player1.getX() - (width/2)-30;
-    int boundsRight = Player1.getX() + (width/2)-30;
+    int boundsRight = Player1.getX() + (width/2)+30;
     int boundsTop = Player1.getY() - (height/2)-30;
-    int boundsBottom = Player1.getY() + (height/2)-30;
+    int boundsBottom = Player1.getY() + (height/2)+30;
       if (Enemy.getX() >= boundsLeft && Enemy.getX() <= boundsRight && Enemy.getY() <= boundsBottom && Enemy.getY() >= boundsTop) {
         if (Enemy.isAlive() == true) {
           Enemy.randomMovement();
-         //EnemyMob.getCollision(Player1);
-         Enemy.draw();
+          Enemy.draw();
+          if (Enemy.getX() == Player1.getX() && Enemy.getY() == Player1.getY()) {
+           System.out.println("test"); 
+          }
         }
      }
   }
@@ -45,6 +48,13 @@ public void draw() {
     Player1.move(movement);
     Player1.draw();
   }
+  basicButton.draw();
+}
+
+void mouseReleased() {
+ if (ButtonUI.interactClick()) {
+   
+ }
 }
 
 public void keyReleased() {
