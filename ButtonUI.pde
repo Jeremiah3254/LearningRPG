@@ -10,10 +10,11 @@ public class ButtonUI {
   }
   
   public boolean interactClick() {
+    boolean result = false
     if (mouseX >= this.x && mouseX <= this.x+this.sizeX && mouseY >= this.y && mouseY <= this.y+this.sizeY) {
-     return true;
+     result = true;
     }
-    return false;
+    return result;
   }
   
   public void draw() {
