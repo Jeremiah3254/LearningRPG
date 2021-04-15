@@ -17,7 +17,7 @@ public void setup() {
   background = loadImage("Ground.png", "png");
   //Check
   Player1 = new Player(new int[] {0,10},new int[] {100,100},476,255);
-  basicButton = new ButtonUI(0,0,300,300,"defaultUI-1.png");
+  basicButton = new ButtonUI("test123",0,0,300,300,"defaultUI-1.png");
   //Check
   for (int i = 0; i<Enemies.length; i++) {
     Enemies[i] = new EnemyMob("Spider",1,new int[] {0,10},new int[] {100,100},(int) random(-width,width)*10,(int) random(-height,height)*10);
