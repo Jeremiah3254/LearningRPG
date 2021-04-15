@@ -2,8 +2,8 @@ boolean[] movement = new boolean[4];
 //CarbotMarine.png
 //BossImage.png
 //EnemySprite.png
-Player Player1 = new Player(new int[] {0,10},new int[] {100,100},476,255);
-ButtonUI basicButton = new ButtonUI(0,0,300,300,"defaultUI-1.png");
+Player Player1;
+ButtonUI basicButton;
 EnemyMob[] Enemies = new EnemyMob[2000];
 PImage background;
 
@@ -15,6 +15,10 @@ public void setup() {
   System.out.println(width/2);
   System.out.println(height/2);
   background = loadImage("Ground.png", "png");
+  //Check
+  Player1 = new Player(new int[] {0,10},new int[] {100,100},476,255);
+  basicButton = new ButtonUI(0,0,300,300,"defaultUI-1.png");
+  //Check
   for (int i = 0; i<Enemies.length; i++) {
     Enemies[i] = new EnemyMob("Spider",1,new int[] {0,10},new int[] {100,100},(int) random(-width,width)*10,(int) random(-height,height)*10);
   }
