@@ -16,7 +16,6 @@ public void setup() {
   background = loadImage("Ground.png", "png");
   for (int i = 0; i<Enemies.length; i++) {
     Enemies[i] = new EnemyMob("Spider",1,new int[] {0,10},new int[] {100,100},(int) random(-width,width)*10,(int) random(-height,height)*10);
-    //System.out.print((int) random(50));
   }
   //fullScreen();
 }
@@ -35,7 +34,8 @@ public void draw() {
     int boundsBottom = Player1.getY() + (height/2)-30;
       if (Enemy.getX() >= boundsLeft && Enemy.getX() <= boundsRight && Enemy.getY() <= boundsBottom && Enemy.getY() >= boundsTop) {
         if (Enemy.isAlive() == true) {
-         Enemy.randomMovement();
+          Enemy.randomMovement();
+         //EnemyMob.getCollision(Player1);
          Enemy.draw();
         }
      }
