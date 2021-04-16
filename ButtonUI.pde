@@ -1,26 +1,35 @@
+import java.awt.Rectangle;
+
 public class ButtonUI {
-  int x,y,sizeX,sizeY;
-  String picture,buttonText;
-  public ButtonUI(String buttonText,int x,int y,int sizeX,int sizeY,String picture) {
-    this.buttonText = buttonText;
+  public int x, y, w, h;
+  public color c;
+  public String title, text;
+  public Rectangle clickArea;
+  
+  public ButtonUI(int x, int y, int w, int h, String title, color c) {
     this.x = x;
     this.y = y;
-    this.sizeX = sizeX;
-    this.sizeY = sizeY;
-    this.picture = picture;
+    this.w = w;
+    this.h = h;
+    this.title = title;
+    this.c = c;
+    this.clickArea = new Rectangle(x,y,w,h);
   }
   
-  public boolean interactClick() {
-    boolean result = false
-    if (mouseX >= this.x && mouseX <= this.x+this.sizeX && mouseY >= this.y && mouseY <= this.y+this.sizeY) {
-     result = true;
-    }
-    return result;
+  public void setText(String text) {
+    this.text = text;
   }
   
   public void draw() {
-    image(loadImage(this.picture, "png"),x,y,this.sizeX,this.sizeY); 
-    textSize(32);
-    text(buttonText, x+sizeX/2, y+sizeY/2);
+    fill(c);
+    rect(x,y,w,h);
+    
+    fill(0);
+    textAlign(CENTER,CENTER);
+    text(title,x+w/2,y+h/2);
+  }
+  
+  public boolean isClicked(int Px,int Py,int x,int y) {
+    return this.clickArea.contains(mouseX-(x-Px),mouseY-(y-Py));
   }
 }
