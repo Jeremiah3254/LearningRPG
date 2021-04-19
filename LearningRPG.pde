@@ -16,7 +16,6 @@ public void setup() {
   System.out.println(height/2);
   background = loadImage("Ground.png", "png");
   //Check
-  combatUI();
   Player1 = new Player(new int[] {0,10},new int[] {100,100},width/2-30,height/2-30);
   //Check
   for (int i = 0; i<Enemies.length; i++) {
@@ -44,8 +43,9 @@ public void draw() {
         if (Enemy.isAlive() == true) {
           Enemy.randomMovement();
           Enemy.draw();
-          if (Enemy.getX() == Player1.getX() && Enemy.getY() == Player1.getY()) {
+          if (Enemy.getCollision(Player1)) {
            System.out.println("test"); 
+           combatUI(Enemy);
           }
         }
      }
@@ -62,9 +62,9 @@ public void draw() {
   Estat.draw();
 }
 
-public void combatUI() {
-  Pstat = new ButtonUI(0,0,200,100,"Lvl: 1\nXp: 0/100\nHealth: 100/100",#00b300,3);
-  Estat = new ButtonUI(width-200,0,200,100,"Lvl: 1\nXp: 0/100\nHealth: 100/100",#e60000,2);
+public void combatUI(EnemyMob enemy) {
+  Pstat = new ButtonUI(0,0,200,100,"Lvl: "+Player1.getLvl();+\nXp: "+Player1.getCXP();+"/"+Player1.getMXP()+"\nHealth: "+Player1.getCHP()+"/"+Player1.getMHP(),#00b300,3);
+  Estat = new ButtonUI(width-200,0,200,100,"Lvl: "+enemy.getLvl();+\nXp: "+enemy.getCXP();+"/"+enemy.getMXP()+"\nHealth: "+enemy.getCHP()+"/"+enemy.getMHP(),#e60000,2);
   background1 = new ButtonUI(0,0,width/2,height,"",#4dff4d,1);
   background2 = new ButtonUI(width-(width/2),0,width/2,height,"",#ff4d4d,1);
 }
