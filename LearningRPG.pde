@@ -3,7 +3,7 @@ boolean[] movement = new boolean[4];
 //BossImage.png
 //EnemySprite.png
 Player Player1;
-ButtonUI b1,b2;
+ButtonUI Pstat,Estat,background1,background2;
 EnemyMob[] Enemies = new EnemyMob[2000];
 PImage background;
 
@@ -17,7 +17,7 @@ public void setup() {
   background = loadImage("Ground.png", "png");
   //Check
   combatUI();
-  Player1 = new Player(new int[] {0,10},new int[] {100,100},476,255);
+  Player1 = new Player(new int[] {0,10},new int[] {100,100},width/2-30,height/2-30);
   //Check
   for (int i = 0; i<Enemies.length; i++) {
     Enemies[i] = new EnemyMob("Spider",1,new int[] {0,10},new int[] {100,100},(int) random(-width,width)*10,(int) random(-height,height)*10);
@@ -32,13 +32,14 @@ public void draw() {
   int x = (width/2)-30;
   int y = (height/2)-30;
 
-  translate(x-Player1.getX(),y-Player1.getY()); 
+  //translate(x-Player1.getX(),y-Player1.getY()); 
   
   for (EnemyMob Enemy : Enemies) {
     int boundsLeft = Player1.getX() - (width/2)-30;
     int boundsRight = Player1.getX() + (width/2)+30;
     int boundsTop = Player1.getY() - (height/2)-30;
     int boundsBottom = Player1.getY() + (height/2)+30;
+    Enemy.move(movement);
       if (Enemy.getX() >= boundsLeft && Enemy.getX() <= boundsRight && Enemy.getY() <= boundsBottom && Enemy.getY() >= boundsTop) {
         if (Enemy.isAlive() == true) {
           Enemy.randomMovement();
@@ -49,28 +50,33 @@ public void draw() {
         }
      }
   }
-  
+  //b1.move(movement);
+  //b2.move(movement);
   if (Player1.isAlive() == true) {
-    Player1.move(movement);
+    //Player1.move(movement);
     Player1.draw();
   }
-  b1.draw();
-  b2.draw();
+  background1.draw();
+  background2.draw();
+  Pstat.draw();
+  Estat.draw();
 }
 
 public void combatUI() {
-  b1 = new ButtonUI(100,20,100,100,"One",#F0000F);
-  b2 = new ButtonUI(500,130,200,75,"Two",#00CC22);
+  Pstat = new ButtonUI(0,0,200,100,"Lvl: 1\nXp: 0/100\nHealth: 100/100",#00b300,3);
+  Estat = new ButtonUI(width-200,0,200,100,"Lvl: 1\nXp: 0/100\nHealth: 100/100",#e60000,2);
+  background1 = new ButtonUI(0,0,width/2,height,"",#4dff4d,1);
+  background2 = new ButtonUI(width-(width/2),0,width/2,height,"",#ff4d4d,1);
 }
 
 public void mouseReleased() {
   int x = (width/2)-30;
   int y = (height/2)-30;
-  if (b1.isClicked(Player1.getX(),Player1.getY(),x,y)) {
-    println("one clicked");
+  if (Pstat.isClicked()) {
+    println(Pstat.title);
   }
-  if (b2.isClicked(Player1.getX(),Player1.getY(),x,y)) {
-    println(b2.title);
+  if (Estat.isClicked()) {
+    println(Estat.title);
   }
 }
 

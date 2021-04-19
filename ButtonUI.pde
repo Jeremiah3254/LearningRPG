@@ -1,12 +1,13 @@
 import java.awt.Rectangle;
 
 public class ButtonUI {
-  public int x, y, w, h;
+  public int x, y, w, h,align;
   public color c;
   public String title, text;
   public Rectangle clickArea;
   
-  public ButtonUI(int x, int y, int w, int h, String title, color c) {
+  public ButtonUI(int x, int y, int w, int h, String title, color c, int align) {
+    this.align = align;
     this.x = x;
     this.y = y;
     this.w = w;
@@ -25,11 +26,32 @@ public class ButtonUI {
     rect(x,y,w,h);
     
     fill(0);
+    if (this.align == 1) {
     textAlign(CENTER,CENTER);
+    } else if (this.align == 2) {
+    textAlign(CENTER,LEFT);
+    }else if (this.align == 3) {
+    textAlign(CENTER,RIGHT);
+    }
     text(title,x+w/2,y+h/2);
   }
   
-  public boolean isClicked(int Px,int Py,int x,int y) {
-    return this.clickArea.contains(mouseX-(x-Px),mouseY-(y-Py));
+  public void move(boolean[] direction) {
+    if (direction[0] == true) {
+      this.y = y-25; 
+    }
+    if (direction[1] == true) {
+      this.x = x-25;
+    }
+    if (direction[2] == true) {
+      this.y = y+25;
+    }
+    if (direction[3] == true) {
+      this.x = x+25;
+    }
+  }
+  
+  public boolean isClicked() {
+    return this.clickArea.contains(mouseX,mouseY);
   }
 }
