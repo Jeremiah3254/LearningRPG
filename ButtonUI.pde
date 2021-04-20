@@ -29,9 +29,9 @@ public class ButtonUI {
     if (this.align == 1) {
     textAlign(CENTER,CENTER);
     } else if (this.align == 2) {
-    textAlign(LEFT,CENTER);
+    textAlign(CENTER,LEFT);
     }else if (this.align == 3) {
-    textAlign(RIGHT,CENTER);
+    textAlign(CENTER,RIGHT);
     }
     text(title,x+w/2,y+h/2);
   }

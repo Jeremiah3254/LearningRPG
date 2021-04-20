@@ -7,13 +7,12 @@ public class EnemyMob extends Entity {
   this.mobName = mobName;
  }
  
- public boolean getCollision(Player P) {
+ public void getCollision(Player P) {
  if (P.getX() == this.x && P.getY() == this.y) {
-   return true;
+   System.out.println("ouch");
+ // Create and Display fighting Class with the images & stats of the given mob.
  }
- return false;
  }
- 
  
   public void randomMovement() {
    int direction;
