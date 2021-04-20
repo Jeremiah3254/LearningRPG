@@ -1,3 +1,4 @@
+boolean foundEnemy = false;
 boolean[] movement = new boolean[4];
 //CarbotMarine.png
 //BossImage.png
@@ -5,7 +6,7 @@ boolean[] movement = new boolean[4];
 Player Player1;
 ButtonUI Pstat,Estat,background1,background2;
 EnemyMob[] Enemies = new EnemyMob[2000];
-PImage background;
+PImage background,Player,Enemy;
 
 
 public void setup() {
@@ -16,7 +17,6 @@ public void setup() {
   System.out.println(height/2);
   background = loadImage("Ground.png", "png");
   //Check
-  combatUI();
   Player1 = new Player(new int[] {0,10},new int[] {100,100},width/2-30,height/2-30);
   //Check
   for (int i = 0; i<Enemies.length; i++) {
@@ -39,13 +39,17 @@ public void draw() {
     int boundsRight = Player1.getX() + (width/2)+30;
     int boundsTop = Player1.getY() - (height/2)-30;
     int boundsBottom = Player1.getY() + (height/2)+30;
+    if (foundEnemy == false) {
     Enemy.move(movement);
+    }
       if (Enemy.getX() >= boundsLeft && Enemy.getX() <= boundsRight && Enemy.getY() <= boundsBottom && Enemy.getY() >= boundsTop) {
-        if (Enemy.isAlive() == true) {
+        if (Enemy.isAlive() == true && foundEnemy == false) {
           Enemy.randomMovement();
           Enemy.draw();
-          if (Enemy.getX() == Player1.getX() && Enemy.getY() == Player1.getY()) {
+          if (dist(Player1.getX(),Player1.getY(),Enemy.getX(),Enemy.getY()) <= (60 / 2) + (60 / 2)) {
+           foundEnemy = true;
            System.out.println("test"); 
+           combatUI(Enemy);
           }
         }
      }
@@ -56,27 +60,33 @@ public void draw() {
     //Player1.move(movement);
     Player1.draw();
   }
+  if (foundEnemy == true) {
   background1.draw();
   background2.draw();
   Pstat.draw();
   Estat.draw();
+  image(Player,0+25,200,150,150);
+  image(Enemy,width-175,200,150,150);
+  }
 }
 
-public void combatUI() {
-  Pstat = new ButtonUI(0,0,200,100,"Lvl: 1\nXp: 0/100\nHealth: 100/100",#00b300,3);
-  Estat = new ButtonUI(width-200,0,200,100,"Lvl: 1\nXp: 0/100\nHealth: 100/100",#e60000,2);
+public void combatUI(EnemyMob enemy) {
+  Pstat = new ButtonUI(0,0,300,125,"Player "+"Lvl: "+Player1.getLvl()+"\nXp: "+Player1.getCXP()+"/"+Player1.getMXP()+"\nHealth: "+Player1.getCHP()+"/"+Player1.getMHP(),#00b300,3);
+  Estat = new ButtonUI(width-300,0,300,125,"Enemy "+"Lvl: "+enemy.getLvl()+"\nXp: "+enemy.getCXP()+"/"+enemy.getMXP()+"\nHealth: "+enemy.getCHP()+"/"+enemy.getMHP(),#e60000,2);
   background1 = new ButtonUI(0,0,width/2,height,"",#4dff4d,1);
   background2 = new ButtonUI(width-(width/2),0,width/2,height,"",#ff4d4d,1);
+  Player = loadImage(Player1.getImage(), "png");
+  Enemy = loadImage(enemy.getImage(), "png");
 }
 
 public void mouseReleased() {
-  int x = (width/2)-30;
-  int y = (height/2)-30;
+  if (foundEnemy == true) {
   if (Pstat.isClicked()) {
     println(Pstat.title);
   }
   if (Estat.isClicked()) {
     println(Estat.title);
+    }
   }
 }
 

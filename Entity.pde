@@ -44,8 +44,32 @@ public class Entity {
   return y;
   }
   
+  public int getLvl() {
+  return lvl;
+  }
+  
+  public int getCXP() {
+  return xp[0];
+  }
+  
+  public int getMXP() {
+  return xp[1];
+  }
+  
+  public int getCHP() {
+  return hp[0];
+  }
+  
+  public int getMHP(){
+  return hp[1];
+  }
+  
   public boolean isAlive() {
   return isAlive;
+ }
+ 
+ public String getImage() {
+  return picture;
  }
 
 }

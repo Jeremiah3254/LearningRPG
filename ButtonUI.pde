@@ -29,10 +29,11 @@ public class ButtonUI {
     if (this.align == 1) {
     textAlign(CENTER,CENTER);
     } else if (this.align == 2) {
-    textAlign(CENTER,LEFT);
+    textAlign(CENTER,CENTER);
     }else if (this.align == 3) {
-    textAlign(CENTER,RIGHT);
+    textAlign(CENTER,CENTER);
     }
+    textSize(20);
     text(title,x+w/2,y+h/2);
   }
   
