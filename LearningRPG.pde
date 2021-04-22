@@ -59,6 +59,7 @@ public void draw() {
   if (Player1.isAlive() == true) {
     //Player1.move(movement);
     Player1.draw();
+    Player1.levelUp();
   }
   if (foundEnemy == true) {
   background1.draw();
