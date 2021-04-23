@@ -1,10 +1,11 @@
 boolean foundEnemy = false;
+EnemyMob currentEnemy;
 boolean[] movement = new boolean[4];
 //CarbotMarine.png
 //BossImage.png
 //EnemySprite.png
 Player Player1;
-ButtonUI Pstat,Estat,background1,background2;
+ButtonUI Pstat,Estat,background1,background2,bottomBar;
 EnemyMob[] Enemies = new EnemyMob[2000];
 PImage background,Player,Enemy;
 
@@ -17,7 +18,7 @@ public void setup() {
   System.out.println(height/2);
   background = loadImage("Ground.png", "png");
   //Check
-  Player1 = new Player(new int[] {0,10},new int[] {100,100},width/2-30,height/2-30);
+  Player1 = new Player(new int[] {100,10},new int[] {100,100},width/2-30,height/2-30);
   //Check
   for (int i = 0; i<Enemies.length; i++) {
     Enemies[i] = new EnemyMob("Spider",1,new int[] {0,10},new int[] {100,100},(int) random(-width,width)*10,(int) random(-height,height)*10);
@@ -50,6 +51,7 @@ public void draw() {
            foundEnemy = true;
            System.out.println("test"); 
            combatUI(Enemy);
+           currentEnemy = Enemy;
           }
         }
      }
@@ -67,6 +69,7 @@ public void draw() {
   background2.draw();
   Pstat.draw();
   Estat.draw();
+  bottomBar.draw();
   image(Player,0+25,200,150,150);
   image(Enemy,width-175,200,150,150);
   }
@@ -79,12 +82,17 @@ public void combatUI(EnemyMob enemy) {
   background2 = new ButtonUI(width-(width/2),0,width/2,height,"",#ff4d4d,1);
   Player = loadImage("CarbotMarineDR.png" , "png");
   Enemy = loadImage(enemy.getImage(), "png");
+  bottomBar = new ButtonUI(0,(int)(height/1.75),width,height/2,"",#000000,1);
 }
 
 public void mouseReleased() {
   if (foundEnemy == true) {
   if (Pstat.isClicked()) {
     println(Pstat.title);
+    /* kill mobs & close ui
+    foundEnemy = false;
+    currentEnemy.setAlive(false);
+    */
   }
   if (Estat.isClicked()) {
     println(Estat.title);

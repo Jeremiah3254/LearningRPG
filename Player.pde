@@ -9,7 +9,7 @@ public class Player extends Entity {
   
   public void levelUp() {
   if (super.xp[0] >= super.xp[1]) {
-    super.xp[0] = 0;
+    super.xp[0] = super.xp[0] - super.xp[1];
     super.xp[1] = (int) (super.xp[1]*1.25);
     super.lvl = super.lvl + 1;
     }
@@ -37,7 +37,7 @@ public class Player extends Entity {
        if (this.faceLeft == false) {
         super.picture = "CarbotMarineDR.png";
       } else {
-        super.picture = "CarbotMarineDwL.png";
+        super.picture = "CarbotMarineDL.png";
       }
     }
     if (direction[3] == true) {

@@ -68,6 +68,10 @@ public class Entity {
   return isAlive;
  }
  
+ public void setAlive(boolean b) {
+   this.isAlive = b;
+ }
+ 
  public String getImage() {
   return picture;
  }
