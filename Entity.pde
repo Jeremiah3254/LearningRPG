@@ -75,5 +75,9 @@ public class Entity {
  public String getImage() {
   return picture;
  }
+ 
+ public int getSPD() {
+  return speed;
+  }
 
 }
