@@ -18,7 +18,7 @@ public void setup() {
   System.out.println(height/2);
   background = loadImage("Ground.png", "png");
   //Check
-  Player1 = new Player(new int[] {100,10},new int[] {100,100},width/2-30,height/2-30);
+  Player1 = new Player(new int[] {100,10},new int[] {100,100},1,0,width/2-30,height/2-30,25);
   //Check
   for (int i = 0; i<Enemies.length; i++) {
     Enemies[i] = new EnemyMob("Spider",1,new int[] {0,10},new int[] {100,100},(int) random(-width,width)*10,(int) random(-height,height)*10);
@@ -41,7 +41,7 @@ public void draw() {
     int boundsTop = Player1.getY() - (height/2)-30;
     int boundsBottom = Player1.getY() + (height/2)+30;
     if (foundEnemy == false) {
-    Enemy.move(movement);
+    Enemy.move(movement,Player1.getSPD());
     }
       if (Enemy.getX() >= boundsLeft && Enemy.getX() <= boundsRight && Enemy.getY() <= boundsBottom && Enemy.getY() >= boundsTop) {
         if (Enemy.isAlive() == true && foundEnemy == false) {
