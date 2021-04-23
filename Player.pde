@@ -1,14 +1,17 @@
 public class Player extends Entity {
   int[] hp = new int[2],xp = new int[2];
-  int x,y;
+  int x,y,damage,speed,skillPoints;
   boolean faceUp = false;
   boolean faceLeft = false;
-  public Player(int[] xp,int[] hp,int x,int y) {
-    super("CarbotMarineDR.png",x,y,1,hp,xp,25);
+  public Player(int[] xp,int[] hp,int skillPoints,int damage,int x,int y,int speed) {
+    super("CarbotMarineDR.png",x,y,1,hp,xp,speed);
+    this.damage = damage;
+    this.skillPoints = skillPoints;
   }
   
   public void levelUp() {
   if (super.xp[0] >= super.xp[1]) {
+    this.skillPoints = this.skillPoints + 1;
     super.xp[0] = super.xp[0] - super.xp[1];
     super.xp[1] = (int) (super.xp[1]*1.25);
     super.lvl = super.lvl + 1;
@@ -48,5 +51,17 @@ public class Player extends Entity {
       super.picture = "CarbotMarineFR.png";
       }
     }
+  }
+  
+  public void upgradeDamage() {
+  this.damage = this.damage+1;
+  }
+  
+  public void upgradeSpeed() {
+  super.speed = super.speed+1;
+  }
+  
+  public void upgradeHP() {
+  super.hp[1] = super.hp[1]+10;
   }
 }
