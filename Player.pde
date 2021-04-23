@@ -1,15 +1,52 @@
 public class Player extends Entity {
   int[] hp = new int[2],xp = new int[2];
   int x,y;
+  boolean faceUp = false;
+  boolean faceLeft = false;
   public Player(int[] xp,int[] hp,int x,int y) {
-    super("CarbotMarine.png",x,y,1,hp,xp,25);
+    super("CarbotMarineDR.png",x,y,1,hp,xp,25);
   }
   
   public void levelUp() {
   if (super.xp[0] >= super.xp[1]) {
     super.xp[0] = 0;
-    super.xp[1] = super.xp[1]*1.25;
+    super.xp[1] = (int) (super.xp[1]*1.25);
     super.lvl = super.lvl + 1;
+    }
+  }
+  
+  public void move(boolean[] direction) {
+    if (direction[0] == true) {
+      this.faceUp = true;
+      if (this.faceLeft == false) {
+        super.picture = "CarbotMarineFR.png";
+      } else {
+        super.picture = "CarbotMarineFL.png";
+      }
+    }
+    if (direction[1] == true) {
+      this.faceLeft = true;
+      if (this.faceUp == false) {
+      super.picture = "CarbotMarineDL.png";
+      } else {
+      super.picture = "CarbotMarineFL.png";
+      }
+    }
+    if (direction[2] == true) {
+       this.faceUp = false;
+       if (this.faceLeft == false) {
+        super.picture = "CarbotMarineDR.png";
+      } else {
+        super.picture = "CarbotMarineDwL.png";
+      }
+    }
+    if (direction[3] == true) {
+      this.faceLeft = false;
+      if (this.faceUp == false) {
+      super.picture = "CarbotMarineDR.png";
+      } else {
+      super.picture = "CarbotMarineFR.png";
+      }
     }
   }
 }

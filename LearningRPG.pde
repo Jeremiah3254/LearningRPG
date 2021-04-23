@@ -58,6 +58,7 @@ public void draw() {
   //b2.move(movement);
   if (Player1.isAlive() == true) {
     //Player1.move(movement);
+    Player1.move(movement);
     Player1.draw();
     Player1.levelUp();
   }
@@ -76,7 +77,7 @@ public void combatUI(EnemyMob enemy) {
   Estat = new ButtonUI(width-300,0,300,125,"Enemy "+"Lvl: "+enemy.getLvl()+"\nXp: "+enemy.getCXP()+"/"+enemy.getMXP()+"\nHealth: "+enemy.getCHP()+"/"+enemy.getMHP(),#e60000,2);
   background1 = new ButtonUI(0,0,width/2,height,"",#4dff4d,1);
   background2 = new ButtonUI(width-(width/2),0,width/2,height,"",#ff4d4d,1);
-  Player = loadImage("CarbotMarineCombatImage.png" , "png");
+  Player = loadImage("CarbotMarineDR.png" , "png");
   Enemy = loadImage(enemy.getImage(), "png");
 }
 
