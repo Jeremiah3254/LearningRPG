@@ -33,18 +33,18 @@ public class EnemyMob extends Entity {
     }
  }
  
- public void move(boolean[] direction) {
+ public void move(boolean[] direction,int SPD) {
     if (direction[0] == true) {//w
-      super.y = super.y+speed;
+      super.y = super.y+SPD;
     }
     if (direction[1] == true) {//a
-      super.x = super.x+speed;
+      super.x = super.x+SPD;
     }
     if (direction[2] == true) {//s
-      super.y = super.y-speed; 
+      super.y = super.y-SPD; 
     }
     if (direction[3] == true) {//d
-      super.x = super.x-speed;
+      super.x = super.x-SPD;
     }
   }
   
