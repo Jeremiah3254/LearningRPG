@@ -2,7 +2,9 @@ import java.awt.Rectangle;
 
 public class ButtonUI {
   public int x, y, w, h,align;
-  public color c;
+  public int strokeA = 153;
+  public color c,old;
+  public boolean hovered;
   public String title, text;
   public Rectangle clickArea;
   
@@ -22,6 +24,22 @@ public class ButtonUI {
   }
   
   public void draw() {
+    stroke(strokeA);
+    fill(c);
+    rect(x,y,w,h);
+    fill(0);
+    if (this.align == 1) {
+    textAlign(CENTER,CENTER);
+    } else if (this.align == 2) {
+    textAlign(CENTER,CENTER);
+    }else if (this.align == 3) {
+    textAlign(CENTER,CENTER);
+    }
+    textSize(15);
+    text(title,x+w/2,y+h/2);
+  }
+  
+  public void drawL(String hover) {
     fill(c);
     rect(x,y,w,h);
     
@@ -34,7 +52,7 @@ public class ButtonUI {
     textAlign(CENTER,CENTER);
     }
     textSize(20);
-    text(title,x+w/2,y+h/2);
+    text(hover,x+w/2,y+h/2);
   }
   
   public void move(boolean[] direction) {
@@ -50,6 +68,28 @@ public class ButtonUI {
     if (direction[3] == true) {
       this.x = x+25;
     }
+  }
+  
+  public void hoverAnim() {
+  if (mouseX >= this.x && mouseX <= this.x+this.w && mouseY >= this.y && mouseY <= this.y+this.h) {
+     if (this.hovered == false) {
+       this.old = this.c;
+       this.strokeA = 255;
+     }
+     this.hovered = true;
+     this.c = #808080;
+   }else if (this.hovered == true) {
+    this.hovered = false;
+    this.c = this.old;
+    this.strokeA = 153;
+   }
+}
+  
+  public boolean hoverOver() {
+   if (mouseX >= this.x && mouseX <= this.x+this.w && mouseY >= this.y && mouseY <= this.y+this.h) {
+     return true;
+   }
+   return false;
   }
   
   public boolean isClicked() {

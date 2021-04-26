@@ -1,11 +1,19 @@
-boolean foundEnemy = false;
+boolean foundEnemy = false, attackSkills = false, healSkills = false;
+boolean attributesMenuVis = false, manageSkillsMenuVis = false;
+String currentHoverText = "";
 EnemyMob currentEnemy;
 boolean[] movement = new boolean[4];
 //CarbotMarine.png
 //BossImage.png
 //EnemySprite.png
 Player Player1;
-ButtonUI Pstat,Estat,background1,background2,bottomBar;
+// player ui
+ButtonUI playerStats, attributeMenu, skillMenu;
+ButtonUI backGroundA, healthD, healthA, staminaD, staminaA, damageD, damageA, speedD, speedA;
+// player ui
+// combat ui
+ButtonUI Pstat,Estat,background1,background2,bottomBar,attackButton,healButton,runButton,hoverText;
+// combat ui
 EnemyMob[] Enemies = new EnemyMob[2000];
 PImage background,Player,Enemy;
 
@@ -18,7 +26,7 @@ public void setup() {
   System.out.println(height/2);
   background = loadImage("Ground.png", "png");
   //Check
-  Player1 = new Player(new int[] {100,10},new int[] {100,100},1,0,width/2-30,height/2-30,25);
+  Player1 = new Player(new int[] {100,10},new int[] {100,100},new int[] {100,100},1,0,width/2-30,height/2-30,25);
   //Check
   for (int i = 0; i<Enemies.length; i++) {
     Enemies[i] = new EnemyMob("Spider",1,new int[] {0,10},new int[] {100,100},(int) random(-width,width)*10,(int) random(-height,height)*10);
@@ -64,39 +72,119 @@ public void draw() {
     Player1.draw();
     Player1.levelUp();
   }
-  if (foundEnemy == true) {
+  
+  if (foundEnemy == false && attackSkills == false && healSkills == false) {
+    playerUI();
+    attributeMenu.hoverAnim();
+    skillMenu.hoverAnim();
+    playerStats.draw();
+    attributeMenu.draw();
+    skillMenu.draw();
+  }
+  
+  if (foundEnemy == false && attackSkills == false && healSkills == false && attributesMenuVis == true) {
+    attributesUI();
+    backGroundA.draw();
+    //healthD.draw();
+    healthA.draw();
+    /*staminaD.draw();
+    staminaA.draw();
+    damageD.draw();
+    damageA.draw();
+    speedD.draw();
+    speedA.draw();*/
+  }
+  
+  if (foundEnemy == true && attackSkills == false && healSkills == false) {
+  attackButton.hoverAnim();
+  healButton.hoverAnim();
+  runButton.hoverAnim();
   background1.draw();
   background2.draw();
   Pstat.draw();
   Estat.draw();
   bottomBar.draw();
+  attackButton.draw();
+  healButton.draw();
+  runButton.draw();
+  hoverText.drawL(currentHoverText);
+  image(Player,0+25,200,150,150);
+  image(Enemy,width-175,200,150,150);
+  if (attackButton.hoverOver() == true) {
+    //attackButton.setStroke(255);
+    currentHoverText = "Choose from a list of skills that you have unlocked, get a question\n correct and you will damage the enemy, get a question wrong\n and the enemy will retaliate.";
+    } else if (healButton.hoverOver() == true) {
+      currentHoverText = "Choose from a list of skills that you have unlocked, get a question\n correct and you will heal yourself, get a question wrong\n and the enemy will retaliate.";
+    } else if (runButton.hoverOver() == true) {
+      currentHoverText = "Try to escape from the enemies grasps.";
+    }else {
+     currentHoverText = ""; 
+    }
+  }
+  if (foundEnemy == true && attackSkills == true && healSkills == false) {
+  attackButton.hoverAnim();
+  healButton.hoverAnim();
+  runButton.hoverAnim();
+  background1.draw();
+  background2.draw();
+  Pstat.draw();
+  Estat.draw();
+  bottomBar.draw();
+  attackButton.draw();
+  healButton.draw();
+  runButton.draw();
+  hoverText.drawL(currentHoverText);
+  currentHoverText = ""; 
   image(Player,0+25,200,150,150);
   image(Enemy,width-175,200,150,150);
   }
+  
 }
 
+
 public void combatUI(EnemyMob enemy) {
-  Pstat = new ButtonUI(0,0,300,125,"Player "+"Lvl: "+Player1.getLvl()+"\nXp: "+Player1.getCXP()+"/"+Player1.getMXP()+"\nHealth: "+Player1.getCHP()+"/"+Player1.getMHP(),#00b300,3);
+  Pstat = new ButtonUI(0,0,300,125,"Player "+"Lvl: "+Player1.getLvl()+"\nXp: "+Player1.getCXP()+"/"+Player1.getMXP()+"\nHealth: "+Player1.getCHP()+"/"+Player1.getMHP()+"\nStamina: "+Player1.getStamC()+"/"+Player1.getStamM(),#00b300,3);
   Estat = new ButtonUI(width-300,0,300,125,"Enemy "+"Lvl: "+enemy.getLvl()+"\nXp: "+enemy.getCXP()+"/"+enemy.getMXP()+"\nHealth: "+enemy.getCHP()+"/"+enemy.getMHP(),#e60000,2);
   background1 = new ButtonUI(0,0,width/2,height,"",#4dff4d,1);
   background2 = new ButtonUI(width-(width/2),0,width/2,height,"",#ff4d4d,1);
   Player = loadImage("CarbotMarineDR.png" , "png");
   Enemy = loadImage(enemy.getImage(), "png");
   bottomBar = new ButtonUI(0,(int)(height/1.75),width,height/2,"",#000000,1);
+  attackButton = new ButtonUI(width-(int)(width/3),(int)(height/1.55),(int)(width/6),(int)(height/7),"Attack",#FF00FF,1);
+  healButton = new ButtonUI(width-(int)(width/6),(int)(height/1.55),(int)(width/6),(int)(height/7),"Rejuvenators",#00b300,1);
+  runButton = new ButtonUI(width-(int)(width/3),(int)(height/1.27),(int)(width/3),(int)(height/7),"Run",#e60000,1);
+  hoverText = new ButtonUI(0,(int)(height/1.55),(int)(width/1.5),(int)(height/3.5),currentHoverText,#FFFFFF,1);
+}
+
+public void playerUI() {
+  playerStats = new ButtonUI(0,0,300,100,"Player "+"Lvl: "+Player1.getLvl()+"\nXp: "+Player1.getCXP()+"/"+Player1.getMXP()+"\nHealth: "+Player1.getCHP()+"/"+Player1.getMHP()+"\nStamina: "+Player1.getStamC()+"/"+Player1.getStamM(),#964B00,3);
+  attributeMenu = new ButtonUI(0,100,150,25,"Attributes",#00b300,3);
+  skillMenu = new ButtonUI(150,100,150,25,"Manage Skills",#008080,3);
+}
+
+public void attributesUI() {
+  backGroundA = new ButtonUI(width/4,height/4,width/2,height/2,"",#C0C0C0,3);
+  healthA = new ButtonUI(width/4,height/4,50,50,"+",#C0C0C0,3);
 }
 
 public void mouseReleased() {
   if (foundEnemy == true) {
-  if (Pstat.isClicked()) {
-    println(Pstat.title);
-    /* kill mobs & close ui
+  if (runButton.isClicked()) {
+    //add other conditions so you cant click the button when its hidden
     foundEnemy = false;
+    attackSkills = false;
     currentEnemy.setAlive(false);
-    */
   }
-  if (Estat.isClicked()) {
-    println(Estat.title);
+    if (attackButton.isClicked()) {
+      attackSkills = true;
     }
+    }
+  if (attributeMenu.isClicked() && foundEnemy == false) {
+      if (attributesMenuVis == false) {
+       attributesMenuVis = true; 
+      } else {
+       attributesMenuVis = false; 
+      }
   }
 }
 

@@ -1,11 +1,12 @@
 public class Player extends Entity {
-  int[] hp = new int[2],xp = new int[2];
+  int[] hp = new int[2],xp = new int[2],stamina = new int[2];
   int x,y,damage,speed,skillPoints;
   boolean faceUp = false;
   boolean faceLeft = false;
-  public Player(int[] xp,int[] hp,int skillPoints,int damage,int x,int y,int speed) {
+  public Player(int[] xp,int[] hp,int[] stamina,int skillPoints,int damage,int x,int y,int speed) {
     super("CarbotMarineDR.png",x,y,1,hp,xp,speed);
     this.damage = damage;
+    this.stamina = stamina;
     this.skillPoints = skillPoints;
   }
   
@@ -63,5 +64,13 @@ public class Player extends Entity {
   
   public void upgradeHP() {
   super.hp[1] = super.hp[1]+10;
+  }
+  
+  public int getStamC() {
+   return stamina[0];
+  }
+  
+  public int getStamM() {
+   return stamina[1]; 
   }
 }
