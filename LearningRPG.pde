@@ -1,4 +1,4 @@
-boolean foundEnemy = false, attackSkills = false, healSkills = false;
+boolean foundEnemy = false, battleUILoaded = false, attackSkills = false, healSkills = false;
 boolean attributesMenuVis = false, attributesLoaded = false, manageSkillsMenuVis = false;
 String currentHoverText = "";
 EnemyMob currentEnemy;
@@ -161,6 +161,7 @@ public void combatUI(EnemyMob enemy) {
   healButton = new ButtonUI(width-(int)(width/6),(int)(height/1.55),(int)(width/6),(int)(height/7),"Rejuvenators",#00b300,1);
   runButton = new ButtonUI(width-(int)(width/3),(int)(height/1.27),(int)(width/3),(int)(height/7),"Run",#e60000,1);
   hoverText = new ButtonUI(0,(int)(height/1.55),(int)(width/1.5),(int)(height/3.5),currentHoverText,#FFFFFF,1);
+  battleUILoaded = true;
 }
 
 public void playerUI() {
@@ -185,12 +186,13 @@ public void attributesUI() {
 }
 
 public void mouseReleased() {
-  if (foundEnemy == true) {
+  if (foundEnemy == true && battleUILoaded == true) {
   if (runButton.isClicked()) {
     //add other conditions so you cant click the button when its hidden
     foundEnemy = false;
     attackSkills = false;
     currentEnemy.setAlive(false);
+    battleUILoaded = false;
   }
     if (attackButton.isClicked()) {
       attackSkills = true;
