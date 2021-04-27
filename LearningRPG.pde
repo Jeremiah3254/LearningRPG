@@ -9,7 +9,8 @@ boolean[] movement = new boolean[4];
 Player Player1;
 // player ui
 ButtonUI playerStats, attributeMenu, skillMenu;
-ButtonUI backGroundA, healthD, healthA, staminaD, staminaA, damageD, damageA, speedD, speedA;
+ButtonUI backGroundA, healthA, staminaA, damageA, speedA;
+TextLabels attributeTitle, currentPoints, healthD, staminaD, damageD, speedD;
 // player ui
 // combat ui
 ButtonUI Pstat,Estat,background1,background2,bottomBar,attackButton,healButton,runButton,hoverText;
@@ -84,15 +85,21 @@ public void draw() {
   
   if (foundEnemy == false && attackSkills == false && healSkills == false && attributesMenuVis == true) {
     attributesUI();
+    healthA.hoverAnim();
+    staminaA.hoverAnim();
+    damageA.hoverAnim();
+    speedA.hoverAnim();
     backGroundA.draw();
-    //healthD.draw();
+    healthD.draw();
     healthA.draw();
-    /*staminaD.draw();
+    attributeTitle.draw();
+    staminaD.draw();
     staminaA.draw();
     damageD.draw();
     damageA.draw();
     speedD.draw();
-    speedA.draw();*/
+    speedA.draw();
+    currentPoints.draw();
   }
   
   if (foundEnemy == true && attackSkills == false && healSkills == false) {
@@ -164,7 +171,16 @@ public void playerUI() {
 
 public void attributesUI() {
   backGroundA = new ButtonUI(width/4,height/4,width/2,height/2,"",#C0C0C0,3);
-  healthA = new ButtonUI(width/4,height/4,50,50,"+",#C0C0C0,3);
+  healthA = new ButtonUI((int)(width/1.48),height/3,60,60,"+",#00b300,3);
+  staminaA = new ButtonUI((int)(width/1.48),(int)(height/2.25),60,60,"+",#00b300,3);
+  damageA = new ButtonUI((int)(width/1.48),(int)(height/1.80),60,60,"+",#00b300,3);
+  speedA = new ButtonUI((int)(width/1.48),(int)(height/1.5),60,60,"+",#00b300,3);
+  attributeTitle = new TextLabels("Attributes Menu",(int)(width/2.25),(int)(height/4.5),100,100,#000000,25);
+  healthD = new TextLabels("Health Attribute: 0",(int)(width/2.5),height/3,50,50,#DC143C,25);
+  staminaD = new TextLabels("Stamina Attribute: 0",(int)(width/2.5),(int)(height/2.25),50,50,#00ff00,25);
+  damageD = new TextLabels("Damage Attribute: 0",(int)(width/2.5),(int)(height/1.80),50,50,#800080,25);
+  speedD = new TextLabels("Speed Attribute: 0",(int)(width/2.5),(int)(height/1.5),50,50,#FFFF00,25);
+  currentPoints = new TextLabels("Current Points: 0",(int)(width/1.60),(int)(height/4.5),100,100,#000000,10);
 }
 
 public void mouseReleased() {
