@@ -1,5 +1,5 @@
 boolean foundEnemy = false, attackSkills = false, healSkills = false;
-boolean attributesMenuVis = false, manageSkillsMenuVis = false;
+boolean attributesMenuVis = false, attributesLoaded = false, manageSkillsMenuVis = false;
 String currentHoverText = "";
 EnemyMob currentEnemy;
 boolean[] movement = new boolean[4];
@@ -176,11 +176,12 @@ public void attributesUI() {
   damageA = new ButtonUI((int)(width/1.48),(int)(height/1.80),60,60,"+",#00b300,3);
   speedA = new ButtonUI((int)(width/1.48),(int)(height/1.5),60,60,"+",#00b300,3);
   attributeTitle = new TextLabels("Attributes Menu",(int)(width/2.25),(int)(height/4.5),100,100,#000000,25);
-  healthD = new TextLabels("Health Attribute: 0",(int)(width/2.5),height/3,50,50,#DC143C,25);
-  staminaD = new TextLabels("Stamina Attribute: 0",(int)(width/2.5),(int)(height/2.25),50,50,#00ff00,25);
-  damageD = new TextLabels("Damage Attribute: 0",(int)(width/2.5),(int)(height/1.80),50,50,#800080,25);
-  speedD = new TextLabels("Speed Attribute: 0",(int)(width/2.5),(int)(height/1.5),50,50,#FFFF00,25);
-  currentPoints = new TextLabels("Current Points: 0",(int)(width/1.60),(int)(height/4.5),100,100,#000000,10);
+  healthD = new TextLabels("Health Attribute: "+Player1.getHealthA(),(int)(width/2.5),height/3,50,50,#DC143C,25);
+  staminaD = new TextLabels("Stamina Attribute: "+Player1.getStaminaA(),(int)(width/2.5),(int)(height/2.25),50,50,#00ff00,25);
+  damageD = new TextLabels("Damage Attribute: "+Player1.getDamageA(),(int)(width/2.5),(int)(height/1.80),50,50,#800080,25);
+  speedD = new TextLabels("Speed Attribute: "+Player1.getSpeedA(),(int)(width/2.5),(int)(height/1.5),50,50,#FFFF00,25);
+  currentPoints = new TextLabels("Current Points: "+Player1.getSkillPoints(),(int)(width/1.60),(int)(height/4.5),100,100,#000000,10);
+  attributesLoaded = true;
 }
 
 public void mouseReleased() {
@@ -199,8 +200,26 @@ public void mouseReleased() {
       if (attributesMenuVis == false) {
        attributesMenuVis = true; 
       } else {
-       attributesMenuVis = false; 
+       attributesLoaded = false;
+       attributesMenuVis = false;
       }
+  }
+  // upgrade attributes
+  if (attributesMenuVis == true && attributesLoaded == true && foundEnemy == false && Player1.getSkillPoints() >= 1 && healthA.isClicked()) {
+    Player1.spendAttribute();
+    Player1.upgradeHP();
+  }
+  if (attributesMenuVis == true && attributesLoaded == true && foundEnemy == false && Player1.getSkillPoints() >= 1 && staminaA.isClicked()) {
+    Player1.spendAttribute();
+    Player1.upgradeStamina();
+  }
+  if (attributesMenuVis == true && attributesLoaded == true && foundEnemy == false && Player1.getSkillPoints() >= 1 && damageA.isClicked()) {
+    Player1.spendAttribute();
+    Player1.upgradeDamage();
+  }
+  if (attributesMenuVis == true && attributesLoaded == true && foundEnemy == false && Player1.getSkillPoints() >= 1 && speedA.isClicked()) {
+    Player1.spendAttribute();
+    Player1.upgradeSpeed();
   }
 }
 

@@ -1,6 +1,6 @@
 public class Player extends Entity {
   int[] hp = new int[2],xp = new int[2],stamina = new int[2];
-  int x,y,damage,speed,skillPoints;
+  int x,y,damage,speed,stam,health,skillPoints;
   boolean faceUp = false;
   boolean faceLeft = false;
   public Player(int[] xp,int[] hp,int[] stamina,int skillPoints,int damage,int x,int y,int speed) {
@@ -54,6 +54,10 @@ public class Player extends Entity {
     }
   }
   
+  public void spendAttribute() {
+   this.skillPoints = this.skillPoints-1;
+  }
+  
   public void upgradeDamage() {
   this.damage = this.damage+1;
   }
@@ -63,7 +67,31 @@ public class Player extends Entity {
   }
   
   public void upgradeHP() {
-  super.hp[1] = super.hp[1]+10;
+  this.health = this.health+1;
+  }
+  
+  public void upgradeStamina() {
+   this.stam = stam+1; 
+  }
+  
+  public int getDamageA() {
+   return damage; 
+  }
+  
+  public int getSpeedA() {
+   return super.speed;
+  }
+  
+  public int getHealthA() {
+   return health; 
+  }
+  
+  public int getStaminaA() {
+   return stam; 
+  }
+  
+  public int getSkillPoints() {
+   return skillPoints;
   }
   
   public int getStamC() {
