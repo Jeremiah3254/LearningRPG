@@ -5,7 +5,7 @@ public class ButtonUI {
   public int strokeA = 153;
   public color c,old;
   public boolean hovered;
-  public String title, text;
+  public String title = " ", text = "";
   public Rectangle clickArea;
   
   public ButtonUI(int x, int y, int w, int h, String title, color c, int align) {
@@ -19,8 +19,12 @@ public class ButtonUI {
     this.clickArea = new Rectangle(x,y,w,h);
   }
   
-  public void setText(String text) {
-    this.text = text;
+  public void setText(String t) {
+    this.title = t;
+  }
+  
+  public String getText() {
+   return title; 
   }
   
   public void draw() {

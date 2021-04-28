@@ -1,4 +1,3 @@
-  
 public class Entity {
   //PImage image;// = loadImage(url, "png");
   boolean isAlive = true;

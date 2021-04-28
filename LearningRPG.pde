@@ -1,3 +1,5 @@
+boolean gamePaused = false;
+String pauseText = "Pause Game";
 boolean foundEnemy = false, battleUILoaded = false, attackSkills = false, healSkills = false;
 boolean attributesMenuVis = false, attributesLoaded = false, manageSkillsMenuVis = false;
 String currentHoverText = "";
@@ -8,7 +10,7 @@ boolean[] movement = new boolean[4];
 //EnemySprite.png
 Player Player1;
 // player ui
-ButtonUI playerStats, attributeMenu, skillMenu;
+ButtonUI playerStats, attributeMenu, skillMenu, pauseButton;
 ButtonUI backGroundA, healthA, staminaA, damageA, speedA;
 TextLabels attributeTitle, currentPoints, healthD, staminaD, damageD, speedD;
 // player ui
@@ -49,11 +51,11 @@ public void draw() {
     int boundsRight = Player1.getX() + (width/2)+30;
     int boundsTop = Player1.getY() - (height/2)-30;
     int boundsBottom = Player1.getY() + (height/2)+30;
-    if (foundEnemy == false) {
+    if (foundEnemy == false && gamePaused == false) {
     Enemy.move(movement,Player1.getSPD());
     }
       if (Enemy.getX() >= boundsLeft && Enemy.getX() <= boundsRight && Enemy.getY() <= boundsBottom && Enemy.getY() >= boundsTop) {
-        if (Enemy.isAlive() == true && foundEnemy == false) {
+        if (Enemy.isAlive() == true && foundEnemy == false && gamePaused == false) {
           Enemy.randomMovement();
           Enemy.draw();
           if (dist(Player1.getX(),Player1.getY(),Enemy.getX(),Enemy.getY()) <= (60 / 2) + (60 / 2)) {
@@ -69,7 +71,9 @@ public void draw() {
   //b2.move(movement);
   if (Player1.isAlive() == true) {
     //Player1.move(movement);
+    if (gamePaused == false) {
     Player1.move(movement);
+    }
     Player1.draw();
     Player1.levelUp();
   }
@@ -78,6 +82,8 @@ public void draw() {
     playerUI();
     attributeMenu.hoverAnim();
     skillMenu.hoverAnim();
+    pauseButton.hoverAnim();
+    pauseButton.draw();
     playerStats.draw();
     attributeMenu.draw();
     skillMenu.draw();
@@ -168,6 +174,7 @@ public void playerUI() {
   playerStats = new ButtonUI(0,0,300,100,"Player "+"Lvl: "+Player1.getLvl()+"\nXp: "+Player1.getCXP()+"/"+Player1.getMXP()+"\nHealth: "+Player1.getCHP()+"/"+Player1.getMHP()+"\nStamina: "+Player1.getStamC()+"/"+Player1.getStamM(),#964B00,3);
   attributeMenu = new ButtonUI(0,100,150,25,"Attributes",#00b300,3);
   skillMenu = new ButtonUI(150,100,150,25,"Manage Skills",#008080,3);
+  pauseButton = new ButtonUI(0,125,300,25,pauseText,#00b300,3);
 }
 
 public void attributesUI() {
@@ -205,6 +212,15 @@ public void mouseReleased() {
        attributesLoaded = false;
        attributesMenuVis = false;
       }
+  }
+  if (pauseButton.isClicked() && foundEnemy == false) {
+    if (gamePaused == false) {
+      pauseText = "Unpause Game";
+      gamePaused = true;
+    } else {
+      pauseText = "Pause Game";
+      gamePaused = false;
+    }
   }
   // upgrade attributes
   if (attributesMenuVis == true && attributesLoaded == true && foundEnemy == false && Player1.getSkillPoints() >= 1 && healthA.isClicked()) {
