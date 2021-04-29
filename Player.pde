@@ -19,26 +19,6 @@ public class Player extends Entity {
     }
   }
   
-  Public String getBorder() {
-  String result = "UnrankedPortrait.png";
-    if (super.lvl >= 0 && super.lvl <= 4) {
-    result = "UnrankedPortrait.png";
-    } else if (super.lvl >= 5 && super.lvl <= 9) {
-    result = "BronzePortrait.png";
-    } else if (super.lvl >= 10 && super.lvl <= 14) {
-    result = "SilverPortrait.png";
-    } else if (super.lvl >= 15 && super.lvl <= 19) {
-    result = "GoldPortrait.png";
-    } else if (super.lvl >= 20 && super.lvl <= 24) {
-    result = "PlatinumPortrait.png"
-    } else if (super.lvl >= 25 && super.lvl <= 29) {
-    result = "DiamondPortrait.png";
-    } else if (super.lvl >= 30 && super.lvl <= 34) {
-    result = "MasterPortrait.png";
-    }
-    return result;
-  }
-  
   public void move(boolean[] direction) {
     if (direction[0] == true) {
       this.faceUp = true;
