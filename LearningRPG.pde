@@ -127,6 +127,10 @@ public void draw() {
   hoverText.drawL(currentHoverText);
   image(Player,0+25,200,150,150);
   image(Enemy,width-175,200,150,150);
+  // player portrait
+  image(PortraitImages,0,0,85,85);
+  image(playerPortrait,0,0,85,85);
+  // player portrait
   if (attackButton.hoverOver() == true) {
     //attackButton.setStroke(255);
     currentHoverText = "Choose from a list of skills that you have unlocked, get a question\n correct and you will damage the enemy, get a question wrong\n and the enemy will retaliate.";
@@ -154,6 +158,10 @@ public void draw() {
   currentHoverText = ""; 
   image(Player,0+25,200,150,150);
   image(Enemy,width-175,200,150,150);
+  // player portrait
+  image(PortraitImages,0,0,85,85);
+  image(playerPortrait,0,0,85,85);
+  // player portrait
   }
   
 }
@@ -171,6 +179,8 @@ public void combatUI(EnemyMob enemy) {
   healButton = new ButtonUI(width-(int)(width/6),(int)(height/1.55),(int)(width/6),(int)(height/7),"Rejuvenators",#00b300,1);
   runButton = new ButtonUI(width-(int)(width/3),(int)(height/1.27),(int)(width/3),(int)(height/7),"Run",#e60000,1);
   hoverText = new ButtonUI(0,(int)(height/1.55),(int)(width/1.5),(int)(height/3.5),currentHoverText,#FFFFFF,1);
+  playerPortrait = loadImage(Player1.getBorder(), "png");
+  PortraitImages = loadImage("CarbotMarinePortrait.png" , "png");
   battleUILoaded = true;
 }
 
