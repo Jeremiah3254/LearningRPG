@@ -54,6 +54,11 @@ public class Player extends Entity {
     }
   }
   
+  public void refreshStats() {
+   super.hp[1] = 100 + (this.health*10); 
+   this.stamina[1] = 100 + (this.stam*10);
+  }
+  
   public void spendAttribute() {
    this.skillPoints = this.skillPoints-1;
   }

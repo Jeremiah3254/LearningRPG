@@ -11,6 +11,7 @@ boolean[] movement = new boolean[4];
 Player Player1;
 // player ui
 ButtonUI playerStats, attributeMenu, skillMenu, pauseButton;
+PImage playerPortrait,PortraitImages;
 ButtonUI backGroundA, healthA, staminaA, damageA, speedA;
 TextLabels attributeTitle, currentPoints, healthD, staminaD, damageD, speedD;
 // player ui
@@ -76,6 +77,7 @@ public void draw() {
     }
     Player1.draw();
     Player1.levelUp();
+    Player1.refreshStats();
   }
   
   if (foundEnemy == false && attackSkills == false && healSkills == false) {
@@ -87,6 +89,8 @@ public void draw() {
     playerStats.draw();
     attributeMenu.draw();
     skillMenu.draw();
+    image(PortraitImages,0,0,85,85);
+    image(playerPortrait,0,0,85,85);
   }
   
   if (foundEnemy == false && attackSkills == false && healSkills == false && attributesMenuVis == true) {
@@ -175,6 +179,8 @@ public void playerUI() {
   attributeMenu = new ButtonUI(0,100,150,25,"Attributes",#00b300,3);
   skillMenu = new ButtonUI(150,100,150,25,"Manage Skills",#008080,3);
   pauseButton = new ButtonUI(0,125,300,25,pauseText,#00b300,3);
+  playerPortrait = loadImage("UnrankedPortrait.png" , "png");
+  PortraitImages = loadImage("CarbotMarinePortrait.png" , "png");
 }
 
 public void attributesUI() {
@@ -193,15 +199,15 @@ public void attributesUI() {
 }
 
 public void mouseReleased() {
-  if (foundEnemy == true && battleUILoaded == true) {
-  if (runButton.isClicked()) {
+  if (battleUILoaded == true && foundEnemy == true) {
+  if (battleUILoaded == true && runButton.isClicked()) {
     //add other conditions so you cant click the button when its hidden
     foundEnemy = false;
     attackSkills = false;
     currentEnemy.setAlive(false);
     battleUILoaded = false;
   }
-    if (attackButton.isClicked()) {
+    if (battleUILoaded == true && attackButton.isClicked()) {
       attackSkills = true;
     }
     }
