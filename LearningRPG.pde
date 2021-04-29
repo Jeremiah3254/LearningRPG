@@ -33,7 +33,7 @@ public void setup() {
   Player1 = new Player(new int[] {100,10},new int[] {100,100},new int[] {100,100},1,0,width/2-30,height/2-30,25);
   //Check
   for (int i = 0; i<Enemies.length; i++) {
-    Enemies[i] = new EnemyMob("Spider",1,new int[] {0,10},new int[] {100,100},(int) random(-width,width)*10,(int) random(-height,height)*10);
+    Enemies[i] = new EnemyMob("Spider","EnemySprite.png",1,new int[] {0,10},new int[] {100,100},(int) random(-width,width)*10,(int) random(-height,height)*10);
   }
   //fullScreen();
 }
@@ -179,7 +179,7 @@ public void playerUI() {
   attributeMenu = new ButtonUI(0,100,150,25,"Attributes",#00b300,3);
   skillMenu = new ButtonUI(150,100,150,25,"Manage Skills",#008080,3);
   pauseButton = new ButtonUI(0,125,300,25,pauseText,#00b300,3);
-  playerPortrait = loadImage("UnrankedPortrait.png" , "png");
+  playerPortrait = loadImage(Player1.getBorder(), "png");
   PortraitImages = loadImage("CarbotMarinePortrait.png" , "png");
 }
 
