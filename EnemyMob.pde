@@ -1,9 +1,9 @@
 public class EnemyMob extends Entity {
-  String mobName;
+  String mobName,mobImage;
   int[] hp = new int[2],xp = new int[2];
   int lvl,x,y;
- public EnemyMob(String mobName,int lvl,int[] xp,int[] hp,int x, int y) {
-  super("EnemySprite.png",x,y,lvl,hp,xp,25); 
+ public EnemyMob(String mobName,String mobImage,int lvl,int[] xp,int[] hp,int x, int y) {
+  super(mobImage,x,y,lvl,hp,xp,25); 
   this.mobName = mobName;
  }
  
