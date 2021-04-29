@@ -34,9 +34,8 @@ public class Player extends Entity {
     } else if (super.lvl >= 25 && super.lvl <= 29) {
     result = "DiamondPortrait.png";
     } else if (super.lvl >= 30 && super.lvl <= 34) {
-    
-    } else if (super.)
-    
+    result = "MasterPortrait.png";
+    }
     return result;
   }
   
