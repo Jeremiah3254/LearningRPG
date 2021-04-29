@@ -205,6 +205,8 @@ public void attributesUI() {
   damageD = new TextLabels("Damage Attribute: "+Player1.getDamageA(),(int)(width/2.5),(int)(height/1.80),50,50,#800080,25);
   speedD = new TextLabels("Speed Attribute: "+Player1.getSpeedA(),(int)(width/2.5),(int)(height/1.5),50,50,#FFFF00,25);
   currentPoints = new TextLabels("Current Points: "+Player1.getSkillPoints(),(int)(width/1.60),(int)(height/4.5),100,100,#000000,10);
+  playerPortrait = loadImage(Player1.getBorder(), "png");
+  PortraitImages = loadImage("CarbotMarinePortrait.png" , "png");
   attributesLoaded = true;
 }
 
