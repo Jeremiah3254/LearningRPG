@@ -55,6 +55,27 @@ public class EnemyMob extends Entity {
       super.x = super.x-SPD;
     }
   }
+ 
+ //Change Stats
+ public void changeName(String name) {
+ this.mobName = name
+ }
+ public void changeMobImage(String image) {
+ this.mobImage = image;
+ }
+ public void changeLvl(int level) {
+ super.lvl = level;
+ }
+ public void changeHP(int health) {
+ super.hp[0] = health;
+ super.hp[1] = health;
+ }
+ 
+ //Change Stats
+ 
+ public String getName() {
+ return mobName;
+ }
   
  public boolean isAlive() {
     return isAlive;
