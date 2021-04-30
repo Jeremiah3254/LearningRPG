@@ -44,11 +44,23 @@ public void setup() {
 public void draw() {
   //background(loadImage("Ground2.png"));
   //background(200);
+   int boundsLeft = Player1.getX() - (width/2)-30;
+   int boundsRight = Player1.getX() + (width/2)+30;
+   int boundsTop = Player1.getY() - (height/2)-30;
+   int boundsBottom = Player1.getY() + (height/2)+30;
+  
   image(background,0,0,width,height);
   
+  if (grassBiome.getX()+750 >= boundsLeft && grassBiome.getX()-750 <= boundsRight && grassBiome.getY()-750 <= boundsBottom && grassBiome.getY() >= boundsTop) {
   grassBiome.draw();
+  }
+  if (mixtureBiome.getx()+750 >= boundsLeft && mixtureBiome.getX()-750 <= boundsRight && mixtureBiome.getY()-750 <= boundsBottom && mixtureBiome.getY() >= boundsTop) {
   mixtureBiome.draw();
+  }
+  if (mudBiome.getx()+750 >= boundsLeft && mudBiome.getX()-750 <= boundsRight && mudBiome.getY()-750 <= boundsBottom && mudBiome.getY() >= boundsTop) {
   mudBiome.draw();
+  }
+  
   if (gamePaused == false) {
   grassBiome.move(movement,Player1.getSpeedA());
   mixtureBiome.move(movement,Player1.getSpeedA());
@@ -64,10 +76,6 @@ public void draw() {
   //translate(x-Player1.getX(),y-Player1.getY()); 
   
   for (EnemyMob Enemy : Enemies) {
-    int boundsLeft = Player1.getX() - (width/2)-30;
-    int boundsRight = Player1.getX() + (width/2)+30;
-    int boundsTop = Player1.getY() - (height/2)-30;
-    int boundsBottom = Player1.getY() + (height/2)+30;
     if (foundEnemy == false && gamePaused == false) {
     Enemy.move(movement,Player1.getSPD());
     }
@@ -191,7 +199,7 @@ public void draw() {
 
 public void combatUI(EnemyMob enemy) {
   Pstat = new ButtonUI(0,0,300,125,"Player "+"Lvl: "+Player1.getLvl()+"\nXp: "+Player1.getCXP()+"/"+Player1.getMXP()+"\nHealth: "+Player1.getCHP()+"/"+Player1.getMHP()+"\nStamina: "+Player1.getStamC()+"/"+Player1.getStamM(),#00b300,3);
-  Estat = new ButtonUI(width-300,0,300,125,"Enemy "+"Lvl: "+enemy.getLvl()+"\nXp: "+enemy.getCXP()+"/"+enemy.getMXP()+"\nHealth: "+enemy.getCHP()+"/"+enemy.getMHP(),#e60000,2);
+  Estat = new ButtonUI(width-300,0,300,125,enemy.getName()+" "+"Lvl: "+enemy.getLvl()+"\nXp: "+enemy.getCXP()+"/"+enemy.getMXP()+"\nHealth: "+enemy.getCHP()+"/"+enemy.getMHP(),#e60000,2);
   background1 = new ButtonUI(0,0,width/2,height,"",#4dff4d,1);
   background2 = new ButtonUI(width-(width/2),0,width/2,height,"",#ff4d4d,1);
   Player = loadImage("CarbotMarineDR.png" , "png");
