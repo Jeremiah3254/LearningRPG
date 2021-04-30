@@ -1,10 +1,18 @@
 public class EnemyMob extends Entity {
-  String mobName,mobImage;
+  String mobName,mobImage = "EnemySprite.png";
   int[] hp = new int[2],xp = new int[2];
   int lvl,x,y;
  public EnemyMob(String mobName,String mobImage,int lvl,int[] xp,int[] hp,int x, int y) {
   super(mobImage,x,y,lvl,hp,xp,25); 
   this.mobName = mobName;
+ }
+ 
+ public String findBorder() {
+   String result = "SpiderEnemyPortrait.png";
+   if (mobImage == "EnemySprite.png") {
+    result = "SpiderEnemyPortrait.png";
+   }
+   return result;
  }
  
  public boolean getCollision(Player P) {
@@ -50,6 +58,10 @@ public class EnemyMob extends Entity {
   
  public boolean isAlive() {
     return isAlive;
+ }
+ 
+ public String getIcon() {
+  return this.mobImage; 
  }
  
 }

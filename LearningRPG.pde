@@ -11,7 +11,7 @@ boolean[] movement = new boolean[4];
 Player Player1;
 // player ui
 ButtonUI playerStats, attributeMenu, skillMenu, pauseButton;
-PImage playerPortrait,PortraitImages;
+PImage playerPortrait,PortraitImages,enemyPortrait,enemyPortraitImages;
 ButtonUI backGroundA, healthA, staminaA, damageA, speedA;
 TextLabels attributeTitle, currentPoints, healthD, staminaD, damageD, speedD;
 // player ui
@@ -20,7 +20,7 @@ ButtonUI Pstat,Estat,background1,background2,bottomBar,attackButton,healButton,r
 // combat ui
 EnemyMob[] Enemies = new EnemyMob[2000];
 PImage background,Player,Enemy;
-
+Biome grassBiome,mixtureBiome,mudBiome;
 
 public void setup() {
   frameRate(60);
@@ -29,8 +29,11 @@ public void setup() {
   System.out.println(width/2);
   System.out.println(height/2);
   background = loadImage("Ground.png", "png");
+  grassBiome = new Biome("grassTerrain.png",(int) random(-width,width)*10,(int) random(-height,height)*10,1500,1500);
+  mixtureBiome = new Biome("mixtureTerrain.png",(int) random(-width,width)*10,(int) random(-height,height)*10,1500,1500);
+  mudBiome = new Biome("mudTerrain.png",(int) random(-width,width)*10,(int) random(-height,height)*10,1500,1500);
   //Check
-  Player1 = new Player(new int[] {100,10},new int[] {100,100},new int[] {100,100},1,0,width/2-30,height/2-30,25);
+  Player1 = new Player(new int[] {100000,10},new int[] {100,100},new int[] {100,100},1,0,width/2-30,height/2-30,25);
   //Check
   for (int i = 0; i<Enemies.length; i++) {
     Enemies[i] = new EnemyMob("Spider","EnemySprite.png",1,new int[] {0,10},new int[] {100,100},(int) random(-width,width)*10,(int) random(-height,height)*10);
@@ -42,6 +45,19 @@ public void draw() {
   //background(loadImage("Ground2.png"));
   //background(200);
   image(background,0,0,width,height);
+  
+  grassBiome.draw();
+  mixtureBiome.draw();
+  mudBiome.draw();
+  if (gamePaused == false) {
+  grassBiome.move(movement,Player1.getSpeedA());
+  mixtureBiome.move(movement,Player1.getSpeedA());
+  mudBiome.move(movement,Player1.getSpeedA());
+  }
+  
+  
+  System.out.println(grassBiome.getX());
+  System.out.println(grassBiome.getY());
   int x = (width/2)-30;
   int y = (height/2)-30;
 
@@ -131,6 +147,10 @@ public void draw() {
   image(PortraitImages,0,0,85,85);
   image(playerPortrait,0,0,85,85);
   // player portrait
+  //enemy Portrait
+  image(enemyPortraitImages,width-85,0,85,85);
+  image(enemyPortrait,width-85,0,85,85);
+  //enemy Portrait
   if (attackButton.hoverOver() == true) {
     //attackButton.setStroke(255);
     currentHoverText = "Choose from a list of skills that you have unlocked, get a question\n correct and you will damage the enemy, get a question wrong\n and the enemy will retaliate.";
@@ -162,6 +182,8 @@ public void draw() {
   image(PortraitImages,0,0,85,85);
   image(playerPortrait,0,0,85,85);
   // player portrait
+  image(enemyPortraitImages,width-85,0,85,85);
+  image(enemyPortrait,width-85,0,85,85);
   }
   
 }
@@ -181,6 +203,8 @@ public void combatUI(EnemyMob enemy) {
   hoverText = new ButtonUI(0,(int)(height/1.55),(int)(width/1.5),(int)(height/3.5),currentHoverText,#FFFFFF,1);
   playerPortrait = loadImage(Player1.getBorder(), "png");
   PortraitImages = loadImage("CarbotMarinePortrait.png" , "png");
+  enemyPortrait = loadImage(enemy.getBorder(), "png");
+  enemyPortraitImages = loadImage(enemy.findBorder(), "png");
   battleUILoaded = true;
 }
 

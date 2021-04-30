@@ -16,22 +16,24 @@ public class Entity {
     this.speed = speed;
   }
   
-   Public String getBorder() {
+   public String getBorder() {
     String result = "UnrankedPortrait.png";
     if (this.lvl >= 0 && this.lvl <= 4) {
     result = "UnrankedPortrait.png";
-    } else if (this.lvl >= 5 && this..lvl <= 9) {
+    } else if (this.lvl >= 5 && this.lvl <= 9) {
     result = "BronzePortrait.png";
     } else if (this.lvl >= 10 && this.lvl <= 14) {
     result = "SilverPortrait.png";
     } else if (this.lvl >= 15 && this.lvl <= 19) {
     result = "GoldPortrait.png";
     } else if (this.lvl >= 20 && this.lvl <= 24) {
-    result = "PlatinumPortrait.png"
+    result = "PlatinumPortrait.png";
     } else if (this.lvl >= 25 && this.lvl <= 29) {
     result = "DiamondPortrait.png";
     } else if (this.lvl >= 30 && this.lvl <= 34) {
     result = "MasterPortrait.png";
+    } else if (this.lvl >= 35) {
+    result = "GrandMasterPortrait.png"; 
     }
     return result;
   }
