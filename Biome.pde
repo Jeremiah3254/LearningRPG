@@ -24,6 +24,21 @@ public class Biome {
     }
   }
   
+  public void mobsInside(EnemyMob enemy,int biome) {
+   int boundsLeft = this.x - 750;
+   int boundsRight = this.x + 750;
+   int boundsTop = this.y - 750;
+   int boundsBottom = this.y + 750;
+   if (enemy.getX() >= boundsLeft && enemy.getX() <= boundsRight && enemy.getY() <= boundsBottom && enemy.getY() >= boundsTop) {
+     if (biome == 1) {
+      enemy.changeName("Zergling");
+      enemy.changeMobImage("CarbotZergling.png");
+      enemy.changeLvl((int) random(5,1));
+      enemy.changeHP((int) random(350,100));
+     }
+   }
+  }
+  
   public void draw() {
    image(loadImage(this.biomeImage, "png"),x,y,sizeX,sizeY); 
   }
