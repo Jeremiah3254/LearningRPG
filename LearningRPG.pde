@@ -21,6 +21,7 @@ ButtonUI Pstat,Estat,background1,background2,bottomBar,attackButton,healButton,r
 EnemyMob[] Enemies = new EnemyMob[2000];
 PImage background,Player,Enemy;
 Biome grassBiome,mixtureBiome,mudBiome;
+boolean initializedStats = false;
 
 public void setup() {
   frameRate(60);
@@ -76,6 +77,14 @@ public void draw() {
   //translate(x-Player1.getX(),y-Player1.getY()); 
   
   for (EnemyMob Enemy : Enemies) {
+    /*
+    if (initializedStats == false) {
+    grassBiome.mobsInside(Enemy,1);
+    mixtureBiome.mobsInside(Enemy,2);
+    mudBiome.mobsInside(mobsInside,3);
+    initializedStats = true;
+    }
+    */
     if (foundEnemy == false && gamePaused == false) {
     Enemy.move(movement,Player1.getSPD());
     }
