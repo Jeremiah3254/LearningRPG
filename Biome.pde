@@ -25,16 +25,17 @@ public class Biome {
   }
   
   public void mobsInside(EnemyMob enemy,int biome) {
-   int boundsLeft = this.x - 750;
-   int boundsRight = this.x + 750;
-   int boundsTop = this.y - 750;
-   int boundsBottom = this.y + 750;
+   int boundsLeft = this.x;
+   int boundsRight = this.x + 1500;
+   int boundsTop = this.y;
+   int boundsBottom = this.y + 1500;
    if (enemy.getX() >= boundsLeft && enemy.getX() <= boundsRight && enemy.getY() <= boundsBottom && enemy.getY() >= boundsTop) {
      if (biome == 1) {
+      System.out.println("mobFound");
       enemy.changeName("Zergling");
       enemy.changeMobImage("CarbotZergling.png");
-      enemy.changeLvl((int) random(5,1));
-      enemy.changeHP((int) random(350,100));
+      enemy.changeLvl((int) random(1,5));
+      enemy.changeHP((int) random(100,350));
      }
    }
   }

@@ -22,6 +22,7 @@ EnemyMob[] Enemies = new EnemyMob[2000];
 PImage background,Player,Enemy;
 Biome grassBiome,mixtureBiome,mudBiome;
 boolean initializedStats = false;
+WayPoint grassWP,mixtureWP,mudWP;
 
 public void setup() {
   frameRate(60);
@@ -29,6 +30,9 @@ public void setup() {
   size(1000,750);
   System.out.println(width/2);
   System.out.println(height/2);
+  grassWP = new WayPoint("GrassLands",160,0,255,0);
+  mixtureWP = new WayPoint("ObscureLands",160,204,102,0);
+  mudWP = new WayPoint("MudLands",160,240,247,196);
   background = loadImage("Ground.png", "png");
   grassBiome = new Biome("grassTerrain.png",(int) random(-width,width)*10,(int) random(-height,height)*10,1500,1500);
   mixtureBiome = new Biome("mixtureTerrain.png",(int) random(-width,width)*10,(int) random(-height,height)*10,1500,1500);
@@ -52,39 +56,51 @@ public void draw() {
   
   image(background,0,0,width,height);
   
-  if (grassBiome.getX()+750 >= boundsLeft && grassBiome.getX()-750 <= boundsRight && grassBiome.getY()-750 <= boundsBottom && grassBiome.getY() >= boundsTop) {
+  if (grassBiome.getX()+1500 >= boundsLeft && grassBiome.getX() <= boundsRight && grassBiome.getY() <= boundsBottom && grassBiome.getY()+1500 >= boundsTop) {
   grassBiome.draw();
   }
-  if (mixtureBiome.getx()+750 >= boundsLeft && mixtureBiome.getX()-750 <= boundsRight && mixtureBiome.getY()-750 <= boundsBottom && mixtureBiome.getY() >= boundsTop) {
+  if (mixtureBiome.getX()+1500 >= boundsLeft && mixtureBiome.getX() <= boundsRight && mixtureBiome.getY() <= boundsBottom && mixtureBiome.getY()+1500 >= boundsTop) {
   mixtureBiome.draw();
   }
-  if (mudBiome.getx()+750 >= boundsLeft && mudBiome.getX()-750 <= boundsRight && mudBiome.getY()-750 <= boundsBottom && mudBiome.getY() >= boundsTop) {
+  if (mudBiome.getX()+1500 >= boundsLeft && mudBiome.getX() <= boundsRight && mudBiome.getY() <= boundsBottom && mudBiome.getY()+1500 >= boundsTop) {
   mudBiome.draw();
   }
   
-  if (gamePaused == false) {
+  if (gamePaused == false && foundEnemy == false) {
   grassBiome.move(movement,Player1.getSpeedA());
   mixtureBiome.move(movement,Player1.getSpeedA());
   mudBiome.move(movement,Player1.getSpeedA());
   }
   
+  grassWP.draw(grassBiome,Player1.getX(),Player1.getY());
+  mixtureWP.draw(mixtureBiome,Player1.getX(),Player1.getY());
+  mudWP.draw(mudBiome,Player1.getX(),Player1.getY());
   
-  System.out.println(grassBiome.getX());
-  System.out.println(grassBiome.getY());
+  //System.out.println(grassBiome.getX());
+  //System.out.println(grassBiome.getY());
   int x = (width/2)-30;
   int y = (height/2)-30;
 
-  //translate(x-Player1.getX(),y-Player1.getY()); 
+  //translate(x-Player1.getX(),y-Player1.getY());
+  
+  if (initializedStats == false) {
+  for (int i = 0; i<Enemies.length; i++) {
+    if (initializedStats == false && i < (Enemies.length-1)) {
+     grassBiome.mobsInside(Enemies[i],1);
+    //mixtureBiome.mobsInside(Enemies[i],2);
+    //mudBiome.mobsInside(Enemies[i],3);
+    } else {
+      grassBiome.mobsInside(Enemies[i],1);
+    //mixtureBiome.mobsInside(Enemies[i],2);
+    //mudBiome.mobsInside(Enemies[i],3);
+    initializedStats = true;
+    System.out.println("done");
+    }
+  }
+  }
   
   for (EnemyMob Enemy : Enemies) {
-    /*
-    if (initializedStats == false) {
-    grassBiome.mobsInside(Enemy,1);
-    mixtureBiome.mobsInside(Enemy,2);
-    mudBiome.mobsInside(mobsInside,3);
-    initializedStats = true;
-    }
-    */
+ 
     if (foundEnemy == false && gamePaused == false) {
     Enemy.move(movement,Player1.getSPD());
     }

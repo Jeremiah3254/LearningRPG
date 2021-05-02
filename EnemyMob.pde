@@ -9,8 +9,10 @@ public class EnemyMob extends Entity {
  
  public String findBorder() {
    String result = "SpiderEnemyPortrait.png";
-   if (mobImage == "EnemySprite.png") {
+   if (super.picture == "EnemySprite.png") {
     result = "SpiderEnemyPortrait.png";
+   }else if (super.picture == "CarbotZergling.png") {
+    result = "CarbotZerglingPortrait.png";
    }
    return result;
  }
@@ -57,11 +59,12 @@ public class EnemyMob extends Entity {
   }
  
  //Change Stats
+ 
  public void changeName(String name) {
- this.mobName = name
+ this.mobName = name;
  }
  public void changeMobImage(String image) {
- this.mobImage = image;
+ super.picture = image;
  }
  public void changeLvl(int level) {
  super.lvl = level;
