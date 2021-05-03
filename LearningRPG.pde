@@ -19,7 +19,7 @@ ButtonUI[] detailBorders = new ButtonUI[4];
 ButtonUI[] skillTypeButton = new ButtonUI[4];
 PImage[] skillTypeIcons = new PImage[4];
 TextLabels[] skillTypeNames = new TextLabels[4];
-TextLabels[] skillLevelText = new TextLabels[4];
+//B[] skillLevelText = new TextLabels[4];
 // player ui
 // combat ui
 ButtonUI Pstat,Estat,background1,background2,bottomBar,attackButton,healButton,runButton,hoverText;
@@ -139,15 +139,23 @@ public void draw() {
      skillsMenu();
      skillTypeButton[0].hoverAnim();
      skillTypeButton[1].hoverAnim();
+     skillTypeButton[2].hoverAnim();
      backgroundSM.draw(); 
      detailBorders[0].draw();
      skillTypeNames[0].draw();
      image(skillTypeIcons[0],(width/6),(int) (height/2.5),120,120);
+     skillLevelText[0].draw();
      skillTypeButton[0].draw();
      detailBorders[1].draw();
      skillTypeNames[1].draw();
      image(skillTypeIcons[1],(int) (width/2.4),(int) (height/2.5),120,120);
+     skillLevelText[1].draw();
      skillTypeButton[1].draw();
+     detailBorders[2].draw();
+     skillTypeNames[2].draw();
+     image(skillTypeIcons[2],(int) (width/1.487),(int) (height/2.5),120,120);
+     skillLevelText[2].draw();
+     skillTypeButton[2].draw();
   }
   
   if (foundEnemy == false && attackSkills == false && healSkills == false) {
@@ -293,13 +301,20 @@ public void skillsMenu() {
   detailBorders[0] = new ButtonUI((int) (width/9.75),height/4,250,(int) (height/2.25),"",#C0C0C0,3);
   skillTypeNames[0] = new TextLabels("Math",(int) (width/6),(int) (height/3.5),120,40,#0000FF,35);
   skillTypeIcons[0] = loadImage("MathLogo.png", "png");
+  skillLevelText[0] = new TextLabels("4",(int) (width/6),(int) (height/2.25),120,40,#FFFF00,60);
   skillTypeButton[0] = new ButtonUI((int) (width/9.75),(int) (height/1.54),250,75,"Select",#C0C0C0,3);
   // math
   detailBorders[1] = new ButtonUI((int) (width/2.83),height/4,250,(int) (height/2.25),"",#C0C0C0,3);
   skillTypeNames[1] = new TextLabels("Science",(int) (width/2.4),(int) (height/3.5),120,40,#FF0000,35);
   skillTypeIcons[1] = loadImage("ScienceLogo.png", "png");
+  skillLevelText[1] = new TextLabels("7",(int) (width/2.4),(int) (height/2.25),120,40,#FFFF00,60);
   skillTypeButton[1] = new ButtonUI((int) (width/2.83),(int) (height/1.54),250,75,"Select",#C0C0C0,3);
   // science
+  detailBorders[2] = new ButtonUI((int) (width/1.657),height/4,250,(int) (height/2.25),"",#C0C0C0,3);
+  skillTypeNames[2] = new TextLabels("Social Studies",(int) (width/1.487),(int) (height/3.5),120,40,#964B00,35);
+  skillTypeIcons[2] = loadImage("socialStudiesLogo.png", "png");
+  skillLevelText[2] = new TextLabels("2",(int) (width/1.487),(int) (height/2.25),120,40,#FFFF00,60);
+  skillTypeButton[2] = new ButtonUI((int) (width/1.657),(int) (height/1.54),250,75,"Select",#C0C0C0,3);
 }
 
 public void mouseReleased() {
