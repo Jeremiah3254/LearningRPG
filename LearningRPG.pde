@@ -1,7 +1,7 @@
 boolean gamePaused = false;
 String pauseText = "Pause Game";
 boolean foundEnemy = false, battleUILoaded = false, attackSkills = false, healSkills = false;
-boolean attributesMenuVis = false, attributesLoaded = false, manageSkillsMenuVis = false;
+boolean attributesMenuVis = false, attributesLoaded = false, manageSkillsMenuVis = false, manageSkillsMenuLoaded = false;
 String currentHoverText = "";
 EnemyMob currentEnemy;
 boolean[] movement = new boolean[4];
@@ -14,6 +14,12 @@ ButtonUI playerStats, attributeMenu, skillMenu, pauseButton;
 PImage playerPortrait,PortraitImages,enemyPortrait,enemyPortraitImages;
 ButtonUI backGroundA, healthA, staminaA, damageA, speedA;
 TextLabels attributeTitle, currentPoints, healthD, staminaD, damageD, speedD;
+ButtonUI backgroundSM;
+ButtonUI[] detailBorders = new ButtonUI[4];
+ButtonUI[] skillTypeButton = new ButtonUI[4];
+PImage[] skillTypeIcons = new PImage[4];
+TextLabels[] skillTypeNames = new TextLabels[4];
+TextLabels[] skillLevelText = new TextLabels[4];
 // player ui
 // combat ui
 ButtonUI Pstat,Estat,background1,background2,bottomBar,attackButton,healButton,runButton,hoverText;
@@ -53,7 +59,8 @@ public void draw() {
    int boundsRight = Player1.getX() + (width/2)+30;
    int boundsTop = Player1.getY() - (height/2)-30;
    int boundsBottom = Player1.getY() + (height/2)+30;
-  
+   //test
+
   image(background,0,0,width,height);
   
   if (grassBiome.getX()+1500 >= boundsLeft && grassBiome.getX() <= boundsRight && grassBiome.getY() <= boundsBottom && grassBiome.getY()+1500 >= boundsTop) {
@@ -72,9 +79,11 @@ public void draw() {
   mudBiome.move(movement,Player1.getSpeedA());
   }
   
+  if (foundEnemy == false) {
   grassWP.draw(grassBiome,Player1.getX(),Player1.getY());
   mixtureWP.draw(mixtureBiome,Player1.getX(),Player1.getY());
   mudWP.draw(mudBiome,Player1.getX(),Player1.getY());
+  }
   
   //System.out.println(grassBiome.getX());
   //System.out.println(grassBiome.getY());
@@ -87,12 +96,12 @@ public void draw() {
   for (int i = 0; i<Enemies.length; i++) {
     if (initializedStats == false && i < (Enemies.length-1)) {
      grassBiome.mobsInside(Enemies[i],1);
-    //mixtureBiome.mobsInside(Enemies[i],2);
-    //mudBiome.mobsInside(Enemies[i],3);
+     mixtureBiome.mobsInside(Enemies[i],2);
+     mudBiome.mobsInside(Enemies[i],3);
     } else {
       grassBiome.mobsInside(Enemies[i],1);
-    //mixtureBiome.mobsInside(Enemies[i],2);
-    //mudBiome.mobsInside(Enemies[i],3);
+      mixtureBiome.mobsInside(Enemies[i],2);
+      mudBiome.mobsInside(Enemies[i],3);
     initializedStats = true;
     System.out.println("done");
     }
@@ -100,7 +109,6 @@ public void draw() {
   }
   
   for (EnemyMob Enemy : Enemies) {
- 
     if (foundEnemy == false && gamePaused == false) {
     Enemy.move(movement,Player1.getSPD());
     }
@@ -117,8 +125,6 @@ public void draw() {
         }
      }
   }
-  //b1.move(movement);
-  //b2.move(movement);
   if (Player1.isAlive() == true) {
     //Player1.move(movement);
     if (gamePaused == false) {
@@ -127,6 +133,21 @@ public void draw() {
     Player1.draw();
     Player1.levelUp();
     Player1.refreshStats();
+  }
+  
+  if (foundEnemy == false && attackSkills == false && healSkills == false && manageSkillsMenuVis == true) {
+     skillsMenu();
+     skillTypeButton[0].hoverAnim();
+     skillTypeButton[1].hoverAnim();
+     backgroundSM.draw(); 
+     detailBorders[0].draw();
+     skillTypeNames[0].draw();
+     image(skillTypeIcons[0],(width/6),(int) (height/2.5),120,120);
+     skillTypeButton[0].draw();
+     detailBorders[1].draw();
+     skillTypeNames[1].draw();
+     image(skillTypeIcons[1],(int) (width/2.4),(int) (height/2.5),120,120);
+     skillTypeButton[1].draw();
   }
   
   if (foundEnemy == false && attackSkills == false && healSkills == false) {
@@ -267,6 +288,20 @@ public void attributesUI() {
   attributesLoaded = true;
 }
 
+public void skillsMenu() {
+  backgroundSM = new ButtonUI((int) (width/9.75),height/4,(int) (width/1.25),height/2,"",#C0C0C0,3);
+  detailBorders[0] = new ButtonUI((int) (width/9.75),height/4,250,(int) (height/2.25),"",#C0C0C0,3);
+  skillTypeNames[0] = new TextLabels("Math",(int) (width/6),(int) (height/3.5),120,40,#0000FF,35);
+  skillTypeIcons[0] = loadImage("MathLogo.png", "png");
+  skillTypeButton[0] = new ButtonUI((int) (width/9.75),(int) (height/1.54),250,75,"Select",#C0C0C0,3);
+  // math
+  detailBorders[1] = new ButtonUI((int) (width/2.83),height/4,250,(int) (height/2.25),"",#C0C0C0,3);
+  skillTypeNames[1] = new TextLabels("Science",(int) (width/2.4),(int) (height/3.5),120,40,#FF0000,35);
+  skillTypeIcons[1] = loadImage("ScienceLogo.png", "png");
+  skillTypeButton[1] = new ButtonUI((int) (width/2.83),(int) (height/1.54),250,75,"Select",#C0C0C0,3);
+  // science
+}
+
 public void mouseReleased() {
   if (battleUILoaded == true && foundEnemy == true) {
   if (battleUILoaded == true && runButton.isClicked()) {
@@ -286,6 +321,14 @@ public void mouseReleased() {
       } else {
        attributesLoaded = false;
        attributesMenuVis = false;
+      }
+  }
+  if (skillMenu.isClicked() && foundEnemy == false) {
+      if (manageSkillsMenuVis == false) {
+       manageSkillsMenuVis = true; 
+      } else {
+       manageSkillsMenuLoaded = false;
+       manageSkillsMenuVis = false;
       }
   }
   if (pauseButton.isClicked() && foundEnemy == false) {
