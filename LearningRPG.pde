@@ -341,6 +341,7 @@ public void mouseReleased() {
     foundEnemy = false;
     attackSkills = false;
     currentEnemy.setAlive(false);
+    currentEnemy.setDeathTime(minute());
     battleUILoaded = false;
   }
     if (battleUILoaded == true && attackButton.isClicked()) {
