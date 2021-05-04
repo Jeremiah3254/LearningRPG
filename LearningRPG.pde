@@ -106,7 +106,7 @@ public void draw() {
    }
   }
   }
-
+  tankBoss.respawnBoss();
   
   
   if (initializedStats == false) {
