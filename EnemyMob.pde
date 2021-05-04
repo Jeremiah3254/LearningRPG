@@ -1,11 +1,32 @@
 public class EnemyMob extends Entity {
   String mobName,mobImage = "EnemySprite.png";
+  boolean isBoss;
   int[] hp = new int[2],xp = new int[2];
-  int lvl,x,y;
+  int lvl,x,y,w,h;
  public EnemyMob(String mobName,String mobImage,int lvl,int[] xp,int[] hp,int x, int y) {
   super(mobImage,x,y,lvl,hp,xp,25); 
   this.mobName = mobName;
  }
+ 
+ public EnemyMob(String mobName,String mobImage,int lvl,int[] xp,int[] hp,int x, int y,int w, int h,boolean isBoss) {
+   super(mobImage,x,y,lvl,hp,xp,25);
+   this.mobName = mobName;
+   this.isBoss = isBoss;
+   this.w = w;
+   this.h = h;
+ }
+ 
+   public void drawB() {
+   //String url = picture;
+   image(loadImage(super.picture, "png"),super.x,super.y,this.w,this.h);
+  }
+  
+  public void respawnBoss() {
+    if (super.isAlive == false && this.isBoss == true) {
+      delay(60000);
+      super.isAlive = true;
+    }
+  }
  
  public String findBorder() {
    String result = "SpiderEnemyPortrait.png";

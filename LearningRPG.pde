@@ -19,7 +19,7 @@ ButtonUI[] detailBorders = new ButtonUI[4];
 ButtonUI[] skillTypeButton = new ButtonUI[4];
 PImage[] skillTypeIcons = new PImage[4];
 TextLabels[] skillTypeNames = new TextLabels[4];
-//B[] skillLevelText = new TextLabels[4];
+TextLabels[] skillLevelText = new TextLabels[4];
 // player ui
 // combat ui
 ButtonUI Pstat,Estat,background1,background2,bottomBar,attackButton,healButton,runButton,hoverText;
@@ -29,6 +29,7 @@ PImage background,Player,Enemy;
 Biome grassBiome,mixtureBiome,mudBiome;
 boolean initializedStats = false;
 WayPoint grassWP,mixtureWP,mudWP;
+EnemyMob tankBoss;
 
 public void setup() {
   frameRate(60);
@@ -37,8 +38,8 @@ public void setup() {
   System.out.println(width/2);
   System.out.println(height/2);
   grassWP = new WayPoint("GrassLands",160,0,255,0);
-  mixtureWP = new WayPoint("ObscureLands",160,204,102,0);
-  mudWP = new WayPoint("MudLands",160,240,247,196);
+  mixtureWP = new WayPoint("ObscureLands",160,165,42,42);
+  mudWP = new WayPoint("MudLands",160,204,102,0);
   background = loadImage("Ground.png", "png");
   grassBiome = new Biome("grassTerrain.png",(int) random(-width,width)*10,(int) random(-height,height)*10,1500,1500);
   mixtureBiome = new Biome("mixtureTerrain.png",(int) random(-width,width)*10,(int) random(-height,height)*10,1500,1500);
@@ -46,6 +47,9 @@ public void setup() {
   //Check
   Player1 = new Player(new int[] {100000,10},new int[] {100,100},new int[] {100,100},1,0,width/2-30,height/2-30,25);
   //Check
+  //bosses
+  tankBoss = new EnemyMob("Tank [Boss]","SiegeTankBoss.png",1,new int[] {0,10},new int[] {100,100},(int) random(mixtureBiome.getX(),mixtureBiome.getX() + 1500),(int) random(mixtureBiome.getY(),mixtureBiome.getY() + 1500),100,100,true);
+  //bosses
   for (int i = 0; i<Enemies.length; i++) {
     Enemies[i] = new EnemyMob("Spider","EnemySprite.png",1,new int[] {0,10},new int[] {100,100},(int) random(-width,width)*10,(int) random(-height,height)*10);
   }
@@ -90,7 +94,20 @@ public void draw() {
   int x = (width/2)-30;
   int y = (height/2)-30;
 
-  //translate(x-Player1.getX(),y-Player1.getY());
+  if (gamePaused == false && foundEnemy == false) {
+  tankBoss.move(movement,Player1.getSPD());
+  if (tankBoss.getX() >= boundsLeft && tankBoss.getX() <= boundsRight && tankBoss.getY() <= boundsBottom && tankBoss.getY() >= boundsTop) {
+   tankBoss.drawB();
+   tankBoss.randomMovement(); 
+   if (dist(Player1.getX(),Player1.getY(),tankBoss.getX(),tankBoss.getY()) <= (60 / 2) + (60 / 2)) {
+   foundEnemy = true;
+   combatUI(tankBoss);
+   currentEnemy = tankBoss;
+   }
+  }
+  }
+
+  
   
   if (initializedStats == false) {
   for (int i = 0; i<Enemies.length; i++) {
