@@ -2,7 +2,7 @@ public class EnemyMob extends Entity {
   String mobName,mobImage = "EnemySprite.png";
   boolean isBoss;
   int[] hp = new int[2],xp = new int[2];
-  int lvl,x,y,w,h;
+  int lvl,x,y,w,h, deathTime;
  public EnemyMob(String mobName,String mobImage,int lvl,int[] xp,int[] hp,int x, int y) {
   super(mobImage,x,y,lvl,hp,xp,25); 
   this.mobName = mobName;
@@ -23,8 +23,9 @@ public class EnemyMob extends Entity {
   
   public void respawnBoss() {
     if (super.isAlive == false && this.isBoss == true) {
-      delay(60000);
+      if (minute() == deathTime+3) {
       super.isAlive = true;
+      }
     }
   }
  
@@ -34,6 +35,8 @@ public class EnemyMob extends Entity {
     result = "SpiderEnemyPortrait.png";
    }else if (super.picture == "CarbotZergling.png") {
     result = "CarbotZerglingPortrait.png";
+   }else if (super.picture == "SiegeTankBoss.png") {
+    result = "SiegeTankBossPortrait.png";
    }
    return result;
  }
@@ -109,4 +112,7 @@ public class EnemyMob extends Entity {
   return this.mobImage; 
  }
  
+ public void setDeathTime(int time) {
+  this.deathTime = time;
+ }
 }
