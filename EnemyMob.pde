@@ -23,7 +23,7 @@ public class EnemyMob extends Entity {
   
   public void respawnBoss() {
     if (super.isAlive == false && this.isBoss == true) {
-      if (minute() == deathTime+3) {
+      if (minute() == deathTime+1) {
       super.isAlive = true;
       }
     }
@@ -36,7 +36,9 @@ public class EnemyMob extends Entity {
    }else if (super.picture == "CarbotZergling.png") {
     result = "CarbotZerglingPortrait.png";
    }else if (super.picture == "SiegeTankBoss.png") {
-    result = "SiegeTankBossPortrait.png";
+    result = "SeigeTankBossPortrait.png";
+   }else if (super.picture == "MarauderMob.png") {
+     
    }
    return result;
  }
