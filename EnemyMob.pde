@@ -1,6 +1,6 @@
 public class EnemyMob extends Entity {
   String mobName,mobImage = "EnemySprite.png";
-  boolean isBoss;
+  boolean isRegionBound;
   int[] hp = new int[2],xp = new int[2];
   int lvl,x,y,w,h, deathTime;
  public EnemyMob(String mobName,String mobImage,int lvl,int[] xp,int[] hp,int x, int y) {
@@ -11,7 +11,7 @@ public class EnemyMob extends Entity {
  public EnemyMob(String mobName,String mobImage,int lvl,int[] xp,int[] hp,int x, int y,int w, int h,boolean isBoss) {
    super(mobImage,x,y,lvl,hp,xp,25);
    this.mobName = mobName;
-   this.isBoss = isBoss;
+   this.isRegionBound = isBoss;
    this.w = w;
    this.h = h;
  }
@@ -22,7 +22,7 @@ public class EnemyMob extends Entity {
   }
   
   public void respawnBoss() {
-    if (super.isAlive == false && this.isBoss == true) {
+    if (super.isAlive == false && this.isRegionBound == true) {
       if (minute() == deathTime+2) {
       super.isAlive = true;
       }
@@ -117,6 +117,10 @@ public class EnemyMob extends Entity {
  }
  
  //Change Stats
+ 
+ public boolean isRegionBound() {
+ return isRegionBound;
+ }
  
  public String getName() {
  return mobName;
