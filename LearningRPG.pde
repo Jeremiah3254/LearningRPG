@@ -94,6 +94,7 @@ public void draw() {
   int x = (width/2)-30;
   int y = (height/2)-30;
 
+  if (tankBoss.isRegionBound() == true)
   if (gamePaused == false && foundEnemy == false) {
   tankBoss.move(movement,Player1.getSPD());
   if (tankBoss.getX() >= boundsLeft && tankBoss.getX() <= boundsRight && tankBoss.getY() <= boundsBottom && tankBoss.getY() >= boundsTop && tankBoss.isAlive() == true) {
@@ -112,7 +113,7 @@ public void draw() {
   //System.out.println(minute());
   
   
-  if (initializedStats == false) {
+  //if (initializedStats == false) {
   for (int i = 0; i<Enemies.length; i++) {
     if (initializedStats == false && i < (Enemies.length-1)) {
      grassBiome.mobsInside(Enemies[i],1);
