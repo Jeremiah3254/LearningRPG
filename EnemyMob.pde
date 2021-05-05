@@ -23,7 +23,7 @@ public class EnemyMob extends Entity {
   
   public void respawnBoss() {
     if (super.isAlive == false && this.isBoss == true) {
-      if (minute() == deathTime+1) {
+      if (minute() == deathTime+2) {
       super.isAlive = true;
       }
     }
@@ -67,6 +67,22 @@ public class EnemyMob extends Entity {
     if (direction == 4) {
       super.x = super.x+(speed/2);
     }
+ }
+ 
+ public void randomMovementBoss(Biome b) {
+  int direction;
+  direction = (int) random(4);
+  if (direction == 1 && this.y  >= b.getU()) {
+    super.y = super.y-(speed/2);
+  }
+  if (direction == 2 && this.x >= b.getX()) {
+    super.x = super.x-(speed/2);
+  }
+  if (direction == 3 && this.y <= (b.getY()+1500)) {
+    super.y = super.y+(speed/2);
+  }
+  if (direction == 4 && this.x <= (b.getX()+1500))
+    super.x = super.x+(speed/2)
  }
  
  public void move(boolean[] direction,int SPD) {
