@@ -98,7 +98,7 @@ public void draw() {
   tankBoss.move(movement,Player1.getSPD());
   if (tankBoss.getX() >= boundsLeft && tankBoss.getX() <= boundsRight && tankBoss.getY() <= boundsBottom && tankBoss.getY() >= boundsTop && tankBoss.isAlive() == true) {
    tankBoss.drawB();
-   tankBoss.randomMovement(); 
+   tankBoss.randomMovementBoss(mixtureBiome); 
    if (dist(Player1.getX(),Player1.getY(),tankBoss.getX(),tankBoss.getY()) <= (60 / 2) + (60 / 2) && tankBoss.isAlive() == true) {
    foundEnemy = true;
    combatUI(tankBoss);
