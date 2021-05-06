@@ -15,16 +15,17 @@ PImage playerPortrait,PortraitImages,enemyPortrait,enemyPortraitImages;
 ButtonUI backGroundA, healthA, staminaA, damageA, speedA;
 TextLabels attributeTitle, currentPoints, healthD, staminaD, damageD, speedD;
 ButtonUI backgroundSM;
-ButtonUI[] detailBorders = new ButtonUI[4];
-ButtonUI[] skillTypeButton = new ButtonUI[4];
+ButtonUI[] detailBorders = new ButtonUI[4],skillTypeButton = new ButtonUI[4];
 PImage[] skillTypeIcons = new PImage[4];
-TextLabels[] skillTypeNames = new TextLabels[4];
-TextLabels[] skillLevelText = new TextLabels[4];
+TextLabels[] skillTypeNames = new TextLabels[4],skillLevelText = new TextLabels[4];
+ButtonUI rightArrowS,leftArrowS;
+TextLabels currentPage;
 // player ui
 // combat ui
 ButtonUI Pstat,Estat,background1,background2,bottomBar,attackButton,healButton,runButton,hoverText;
 // combat ui
 EnemyMob[] Enemies = new EnemyMob[2000];
+skillTypes[] skillCategories = new skillTypes[4];
 PImage background,Player,Enemy;
 Biome grassBiome,mixtureBiome,mudBiome;
 boolean initializedStats = false;
@@ -46,6 +47,10 @@ public void setup() {
   mudBiome = new Biome("mudTerrain.png",(int) random(-width,width)*10,(int) random(-height,height)*10,1500,1500);
   //Check
   Player1 = new Player(new int[] {100000,10},new int[] {100,100},new int[] {100,100},1,0,width/2-30,height/2-30,25);
+  skillCategories[0] = new skillTypes(0,new int[] {0,10});
+  skillCategories[1] = new skillTypes(0,new int[] {0,10});
+  skillCategories[2] = new skillTypes(0,new int[] {0,10});
+  skillCategories[3] = new skillTypes(0,new int[] {0,10});
   //Check
   //bosses
   tankBoss = new EnemyMob("Tank [Boss]","SiegeTankBoss.png",1,new int[] {0,10},new int[] {100,100},(int) random(mixtureBiome.getX(),mixtureBiome.getX() + 1500),(int) random(mixtureBiome.getY(),mixtureBiome.getY() + 1500),100,100,true);
@@ -94,7 +99,6 @@ public void draw() {
   int x = (width/2)-30;
   int y = (height/2)-30;
 
-  if (tankBoss.isRegionBound() == true)
   if (gamePaused == false && foundEnemy == false) {
   tankBoss.move(movement,Player1.getSPD());
   if (tankBoss.getX() >= boundsLeft && tankBoss.getX() <= boundsRight && tankBoss.getY() <= boundsBottom && tankBoss.getY() >= boundsTop && tankBoss.isAlive() == true) {
@@ -113,7 +117,7 @@ public void draw() {
   //System.out.println(minute());
   
   
-  //if (initializedStats == false) {
+  if (initializedStats == false) {
   for (int i = 0; i<Enemies.length; i++) {
     if (initializedStats == false && i < (Enemies.length-1)) {
      grassBiome.mobsInside(Enemies[i],1);
@@ -322,20 +326,22 @@ public void skillsMenu() {
   detailBorders[0] = new ButtonUI((int) (width/9.75),height/4,250,(int) (height/2.25),"",#C0C0C0,3);
   skillTypeNames[0] = new TextLabels("Math",(int) (width/6),(int) (height/3.5),120,40,#0000FF,35);
   skillTypeIcons[0] = loadImage("MathLogo.png", "png");
-  skillLevelText[0] = new TextLabels("4",(int) (width/6),(int) (height/2.25),120,40,#FFFF00,60);
+  skillLevelText[0] = new TextLabels(skillCategories[0].getLvl()+"",(int) (width/6),(int) (height/2.25),120,40,#FFFF00,60);
   skillTypeButton[0] = new ButtonUI((int) (width/9.75),(int) (height/1.54),250,75,"Select",#C0C0C0,3);
   // math
   detailBorders[1] = new ButtonUI((int) (width/2.83),height/4,250,(int) (height/2.25),"",#C0C0C0,3);
   skillTypeNames[1] = new TextLabels("Science",(int) (width/2.4),(int) (height/3.5),120,40,#FF0000,35);
   skillTypeIcons[1] = loadImage("ScienceLogo.png", "png");
-  skillLevelText[1] = new TextLabels("7",(int) (width/2.4),(int) (height/2.25),120,40,#FFFF00,60);
+  skillLevelText[1] = new TextLabels(skillCategories[1].getLvl()+"",(int) (width/2.4),(int) (height/2.25),120,40,#FFFF00,60);
   skillTypeButton[1] = new ButtonUI((int) (width/2.83),(int) (height/1.54),250,75,"Select",#C0C0C0,3);
   // science
   detailBorders[2] = new ButtonUI((int) (width/1.657),height/4,250,(int) (height/2.25),"",#C0C0C0,3);
   skillTypeNames[2] = new TextLabels("Social Studies",(int) (width/1.487),(int) (height/3.5),120,40,#964B00,35);
   skillTypeIcons[2] = loadImage("socialStudiesLogo.png", "png");
-  skillLevelText[2] = new TextLabels("2",(int) (width/1.487),(int) (height/2.25),120,40,#FFFF00,60);
+  skillLevelText[2] = new TextLabels(skillCategories[2].getLvl()+"",(int) (width/1.487),(int) (height/2.25),120,40,#FFFF00,60);
   skillTypeButton[2] = new ButtonUI((int) (width/1.657),(int) (height/1.54),250,75,"Select",#C0C0C0,3);
+  // right and left tabs
+  
 }
 
 public void mouseReleased() {

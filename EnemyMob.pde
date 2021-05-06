@@ -72,7 +72,7 @@ public class EnemyMob extends Entity {
  public void randomMovementBoss(Biome b) {
   int direction;
   direction = (int) random(4);
-  if (direction == 1 && this.y  >= b.getU()) {
+  if (direction == 1 && this.y  >= b.getY()) {
     super.y = super.y-(speed/2);
   }
   if (direction == 2 && this.x >= b.getX()) {
@@ -82,7 +82,7 @@ public class EnemyMob extends Entity {
     super.y = super.y+(speed/2);
   }
   if (direction == 4 && this.x <= (b.getX()+1500))
-    super.x = super.x+(speed/2)
+    super.x = super.x+(speed/2);
  }
  
  public void move(boolean[] direction,int SPD) {
