@@ -164,6 +164,7 @@ public void draw() {
   
   if (foundEnemy == false && attackSkills == false && healSkills == false && manageSkillsMenuVis == true) {
      skillsMenu();
+     if (pageNumber == 1) {
      skillTypeButton[0].hoverAnim();
      skillTypeButton[1].hoverAnim();
      skillTypeButton[2].hoverAnim();
@@ -189,6 +190,19 @@ public void draw() {
      leftArrowS.draw();
      rightArrowS.draw();
      currentPage.draw();
+     } else if (pageNumber == 2) {
+     leftArrowS.hoverAnim();
+     rightArrowS.hoverAnim();
+     skillTypeButton[3].hoverAnim();
+     detailBorders[3].draw();
+     skillTypeNames[3].draw();
+     skillLevelText[3].draw();
+     skillTypeButton[3].draw();
+     sideColumS.draw();
+     leftArrowS.draw();
+     rightArrowS.draw();
+     currentPage.draw();
+     }
   }
   
   if (foundEnemy == false && attackSkills == false && healSkills == false) {
@@ -353,6 +367,13 @@ public void skillsMenu() {
   leftArrowS = new ButtonUI((int) (width/1.171),height/4,50,50,"<",#FF0000,3);
   rightArrowS = new ButtonUI((int) (width/1.171),(int) (height/1.467),50,50,">",#FF0000,3);
   currentPage = new TextLabels(pageNumber+"",(int) (width/1.171),height/4,50,(int) (height/2),#FFFFFF,60);
+  //English
+  detailBorders[3] = new ButtonUI((int) (width/9.75),height/4,250,(int) (height/2.25),"",#C0C0C0,3);
+  skillTypeNames[3] = new TextLabels("English",(int) (width/6),(int) (height/3.5),120,40,#0000FF,35);
+  skillTypeIcons[3] = loadImage("EnglishLogo.png", "png");
+  skillLevelText[3] = new TextLabels(skillCategories[3].getLvl()+"",(int) (width/6),(int) (height/2.25),120,40,#FFFF00,60);
+  skillTypeButton[3] = new ButtonUI((int) (width/9.75),(int) (height/1.54),250,75,"Select",#C0C0C0,3);
+  manageSkillsMenuLoaded = true;
 }
 
 public void mouseReleased() {
@@ -410,6 +431,12 @@ public void mouseReleased() {
   if (attributesMenuVis == true && attributesLoaded == true && foundEnemy == false && Player1.getSkillPoints() >= 1 && speedA.isClicked()) {
     Player1.spendAttribute();
     Player1.upgradeSpeed();
+  }
+  if (manageSkillsMenuVis == true && manageSkillsMenuLoaded == true && leftArrowS.isClicked() && foundEnemy == false && pageNumber > 1) {
+    pageNumber = pageNumber -1;
+  }
+  if (manageSkillsMenuVis == true && manageSkillsMenuLoaded == true && leftArrowS.isClicked() && foundEnemy == false && pageNumber < 2) {
+    pageNumber = pageNumber +1;
   }
 }
 
