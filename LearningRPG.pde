@@ -18,8 +18,9 @@ ButtonUI backgroundSM;
 ButtonUI[] detailBorders = new ButtonUI[4],skillTypeButton = new ButtonUI[4];
 PImage[] skillTypeIcons = new PImage[4];
 TextLabels[] skillTypeNames = new TextLabels[4],skillLevelText = new TextLabels[4];
-ButtonUI rightArrowS,leftArrowS;
+ButtonUI rightArrowS,leftArrowS,sideColumS;
 TextLabels currentPage;
+int pageNumber = 1;
 // player ui
 // combat ui
 ButtonUI Pstat,Estat,background1,background2,bottomBar,attackButton,healButton,runButton,hoverText;
@@ -53,7 +54,8 @@ public void setup() {
   skillCategories[3] = new skillTypes(0,new int[] {0,10});
   //Check
   //bosses
-  tankBoss = new EnemyMob("Tank [Boss]","SiegeTankBoss.png",1,new int[] {0,10},new int[] {100,100},(int) random(mixtureBiome.getX(),mixtureBiome.getX() + 1500),(int) random(mixtureBiome.getY(),mixtureBiome.getY() + 1500),100,100,true);
+  tankBoss = new EnemyMob("Tank [Boss]","SiegeTankBoss.png",(int) random(10,15),new int[] {0,10},new int[] {100,100},(int) random(mixtureBiome.getX(),mixtureBiome.getX() + 1500),(int) random(mixtureBiome.getY(),mixtureBiome.getY() + 1500),100,100,true);
+  tankBoss.changeHP((int) random(1000,1500));
   //bosses
   for (int i = 0; i<Enemies.length; i++) {
     Enemies[i] = new EnemyMob("Spider","EnemySprite.png",1,new int[] {0,10},new int[] {100,100},(int) random(-width,width)*10,(int) random(-height,height)*10);
@@ -165,6 +167,8 @@ public void draw() {
      skillTypeButton[0].hoverAnim();
      skillTypeButton[1].hoverAnim();
      skillTypeButton[2].hoverAnim();
+     leftArrowS.hoverAnim();
+     rightArrowS.hoverAnim();
      backgroundSM.draw(); 
      detailBorders[0].draw();
      skillTypeNames[0].draw();
@@ -181,6 +185,10 @@ public void draw() {
      image(skillTypeIcons[2],(int) (width/1.487),(int) (height/2.5),120,120);
      skillLevelText[2].draw();
      skillTypeButton[2].draw();
+     sideColumS.draw();
+     leftArrowS.draw();
+     rightArrowS.draw();
+     currentPage.draw();
   }
   
   if (foundEnemy == false && attackSkills == false && healSkills == false) {
@@ -341,7 +349,10 @@ public void skillsMenu() {
   skillLevelText[2] = new TextLabels(skillCategories[2].getLvl()+"",(int) (width/1.487),(int) (height/2.25),120,40,#FFFF00,60);
   skillTypeButton[2] = new ButtonUI((int) (width/1.657),(int) (height/1.54),250,75,"Select",#C0C0C0,3);
   // right and left tabs
-  
+  sideColumS = new ButtonUI((int) (width/1.171),height/4,50,(int) (height/2),"",#FF0000,3);
+  leftArrowS = new ButtonUI((int) (width/1.171),height/4,50,50,"<",#FF0000,3);
+  rightArrowS = new ButtonUI((int) (width/1.171),(int) (height/1.467),50,50,">",#FF0000,3);
+  currentPage = new TextLabels(pageNumber+"",(int) (width/1.171),height/4,50,(int) (height/2),#FFFFFF,60);
 }
 
 public void mouseReleased() {

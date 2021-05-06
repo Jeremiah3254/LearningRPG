@@ -38,7 +38,7 @@ public class EnemyMob extends Entity {
    }else if (super.picture == "SiegeTankBoss.png") {
     result = "SeigeTankBossPortrait.png";
    }else if (super.picture == "MarauderMob.png") {
-     
+    result = "MarauderMobPortrait.png";
    }
    return result;
  }
