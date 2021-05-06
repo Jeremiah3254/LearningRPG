@@ -6,6 +6,13 @@ public class skillTypes {
    this.xp = xp;
    
  }
+ 
+ public void levelUp() {
+  if (this.xp[0] >= this.xp[1]) {
+  this.level = this.level+1;
+  this.xp[0] = this.xp[0] - this.xp[1];
+  }
+ }
   
   public int getXPC() {
     return xp[0];
