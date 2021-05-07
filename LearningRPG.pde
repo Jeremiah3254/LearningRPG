@@ -21,6 +21,7 @@ PImage[] skillTypeIcons = new PImage[4];
 TextLabels[] skillTypeNames = new TextLabels[4],skillLevelText = new TextLabels[4];
 ButtonUI rightArrowS,leftArrowS,sideColumS;
 TextLabels currentPage;
+progressBar mathLvlBar, scienceLvlBar, socialStudiesLvlBar, englishLvlBar;
 int pageNumber = 1;
 // player ui
 // combat ui
@@ -176,16 +177,19 @@ public void draw() {
      skillTypeNames[0].draw();
      image(skillTypeIcons[0],(width/6),(int) (height/2.5),120,120);
      skillLevelText[0].draw();
+     mathLvlBar.draw();
      skillTypeButton[0].draw();
      detailBorders[1].draw();
      skillTypeNames[1].draw();
      image(skillTypeIcons[1],(int) (width/2.4),(int) (height/2.5),120,120);
      skillLevelText[1].draw();
+     scienceLvlBar.draw();
      skillTypeButton[1].draw();
      detailBorders[2].draw();
      skillTypeNames[2].draw();
      image(skillTypeIcons[2],(int) (width/1.487),(int) (height/2.5),120,120);
      skillLevelText[2].draw();
+     socialStudiesLvlBar.draw();
      skillTypeButton[2].draw();
      sideColumS.draw();
      leftArrowS.draw();
@@ -197,6 +201,7 @@ public void draw() {
      rightArrowS.hoverAnim();
      skillTypeButton[3].hoverAnim();
      detailBorders[3].draw();
+     englishLvlBar.draw();
      skillTypeButton[3].draw();
      image(skillTypeIcons[3],(int) (width/6),(int) (height/2.5),120,120);
      skillTypeNames[3].draw();
@@ -373,18 +378,21 @@ public void skillsMenu() {
   skillTypeNames[0] = new TextLabels("Math",(int) (width/6),(int) (height/3.5),120,40,#0000FF,35);
   skillTypeIcons[0] = loadImage("MathLogo.png", "png");
   skillLevelText[0] = new TextLabels(skillCategories[0].getLvl()+"",(int) (width/6),(int) (height/2.25),120,40,#FFFF00,60);
+  mathLvlBar = new progressBar("XP: "+skillCategories[0].getXPC()+"/"+skillCategories[0].getXPM(),1,new int[] {skillCategories[0].getXPC(),skillCategories[0].getXPM()},(int) (width/9.75),(int) (height/1.68),250,40,#FFFF00);
   skillTypeButton[0] = new ButtonUI((int) (width/9.75),(int) (height/1.54),250,75,"Select",#C0C0C0,3);
   // math
   detailBorders[1] = new ButtonUI((int) (width/2.83),height/4,250,(int) (height/2.25),"",#C0C0C0,3);
   skillTypeNames[1] = new TextLabels("Science",(int) (width/2.4),(int) (height/3.5),120,40,#FF0000,35);
   skillTypeIcons[1] = loadImage("ScienceLogo.png", "png");
   skillLevelText[1] = new TextLabels(skillCategories[1].getLvl()+"",(int) (width/2.4),(int) (height/2.25),120,40,#FFFF00,60);
+  scienceLvlBar = new progressBar("XP: "+skillCategories[1].getXPC()+"/"+skillCategories[1].getXPM(),1,new int[] {skillCategories[1].getXPC(),skillCategories[1].getXPM()},(int) (width/2.83),(int) (height/1.68),250,40,#FFFF00);
   skillTypeButton[1] = new ButtonUI((int) (width/2.83),(int) (height/1.54),250,75,"Select",#C0C0C0,3);
   // science
   detailBorders[2] = new ButtonUI((int) (width/1.657),height/4,250,(int) (height/2.25),"",#C0C0C0,3);
   skillTypeNames[2] = new TextLabels("Social Studies",(int) (width/1.487),(int) (height/3.5),120,40,#964B00,35);
   skillTypeIcons[2] = loadImage("socialStudiesLogo.png", "png");
   skillLevelText[2] = new TextLabels(skillCategories[2].getLvl()+"",(int) (width/1.487),(int) (height/2.25),120,40,#FFFF00,60);
+  socialStudiesLvlBar = new progressBar("XP: "+skillCategories[2].getXPC()+"/"+skillCategories[2].getXPM(),1,new int[] {skillCategories[2].getXPC(),skillCategories[2].getXPM()},(int) (width/1.657),(int) (height/1.68),250,40,#FFFF00);
   skillTypeButton[2] = new ButtonUI((int) (width/1.657),(int) (height/1.54),250,75,"Select",#C0C0C0,3);
   // right and left tabs
   sideColumS = new ButtonUI((int) (width/1.171),height/4,50,(int) (height/2),"",#FF0000,3);
@@ -396,6 +404,7 @@ public void skillsMenu() {
   skillTypeNames[3] = new TextLabels("English",(int) (width/6),(int) (height/3.5),120,40,#0000FF,35);
   skillTypeIcons[3] = loadImage("EnglishIcon.png", "png");
   skillLevelText[3] = new TextLabels(skillCategories[3].getLvl()+"",(int) (width/6),(int) (height/2.25),120,40,#FFFF00,60);
+  englishLvlBar = new progressBar("XP: "+skillCategories[3].getXPC()+"/"+skillCategories[3].getXPM(),1,new int[] {skillCategories[3].getXPC(),skillCategories[3].getXPM()},(int) (width/9.75),(int) (height/1.68),250,40,#FFFF00);
   skillTypeButton[3] = new ButtonUI((int) (width/9.75),(int) (height/1.54),250,75,"Select",#C0C0C0,3);
   manageSkillsMenuLoaded = true;
 }
