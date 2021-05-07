@@ -192,13 +192,15 @@ public void draw() {
      rightArrowS.draw();
      currentPage.draw();
      } else if (pageNumber == 2) {
+     backgroundSM.draw(); 
      leftArrowS.hoverAnim();
      rightArrowS.hoverAnim();
      skillTypeButton[3].hoverAnim();
      detailBorders[3].draw();
+     skillTypeButton[3].draw();
+     image(skillTypeIcons[3],(int) (width/6),(int) (height/2.5),120,120);
      skillTypeNames[3].draw();
      skillLevelText[3].draw();
-     skillTypeButton[3].draw();
      sideColumS.draw();
      leftArrowS.draw();
      rightArrowS.draw();
@@ -457,7 +459,7 @@ public void mouseReleased() {
   if (manageSkillsMenuVis == true && manageSkillsMenuLoaded == true && leftArrowS.isClicked() && foundEnemy == false && pageNumber > 1) {
     pageNumber = pageNumber -1;
   }
-  if (manageSkillsMenuVis == true && manageSkillsMenuLoaded == true && leftArrowS.isClicked() && foundEnemy == false && pageNumber < 2) {
+  if (manageSkillsMenuVis == true && manageSkillsMenuLoaded == true && rightArrowS.isClicked() && foundEnemy == false && pageNumber < 2) {
     pageNumber = pageNumber +1;
   }
 }
