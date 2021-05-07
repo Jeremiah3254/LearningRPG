@@ -10,6 +10,7 @@ boolean[] movement = new boolean[4];
 //EnemySprite.png
 Player Player1;
 // player ui
+progressBar PlayerHP,PlayerXP,PlayerStamina,EnemyHP,EnemyXP;
 ButtonUI playerStats, attributeMenu, skillMenu, pauseButton;
 PImage playerPortrait,PortraitImages,enemyPortrait,enemyPortraitImages;
 ButtonUI backGroundA, healthA, staminaA, damageA, speedA;
@@ -58,7 +59,7 @@ public void setup() {
   tankBoss.changeHP((int) random(1000,1500));
   //bosses
   for (int i = 0; i<Enemies.length; i++) {
-    Enemies[i] = new EnemyMob("Spider","EnemySprite.png",1,new int[] {0,10},new int[] {100,100},(int) random(-width,width)*10,(int) random(-height,height)*10);
+    Enemies[i] = new EnemyMob("Spider","EnemySprite.png",1,new int[] {0,10},new int[] {80,100},(int) random(-width,width)*10,(int) random(-height,height)*10);
   }
   //fullScreen();
 }
@@ -210,10 +211,13 @@ public void draw() {
     attributeMenu.hoverAnim();
     skillMenu.hoverAnim();
     pauseButton.hoverAnim();
-    pauseButton.draw();
     playerStats.draw();
-    attributeMenu.draw();
+    PlayerXP.draw();
+    PlayerHP.draw();
+    PlayerStamina.draw();
     skillMenu.draw();
+    attributeMenu.draw();
+    pauseButton.draw();
     image(PortraitImages,0,0,85,85);
     image(playerPortrait,0,0,85,85);
   }
@@ -249,6 +253,11 @@ public void draw() {
   attackButton.draw();
   healButton.draw();
   runButton.draw();
+  PlayerXP.draw();
+  PlayerHP.draw();
+  PlayerStamina.draw();
+  EnemyXP.draw();
+  EnemyHP.draw();
   hoverText.drawL(currentHoverText);
   image(Player,0+25,200,150,150);
   image(Enemy,width-175,200,150,150);
@@ -285,6 +294,11 @@ public void draw() {
   runButton.draw();
   hoverText.drawL(currentHoverText);
   currentHoverText = ""; 
+  PlayerXP.draw();
+  PlayerHP.draw();
+  PlayerStamina.draw();
+  EnemyXP.draw();
+  EnemyHP.draw();
   image(Player,0+25,200,150,150);
   image(Enemy,width-175,200,150,150);
   // player portrait
@@ -299,8 +313,8 @@ public void draw() {
 
 
 public void combatUI(EnemyMob enemy) {
-  Pstat = new ButtonUI(0,0,300,125,"Player "+"Lvl: "+Player1.getLvl()+"\nXp: "+Player1.getCXP()+"/"+Player1.getMXP()+"\nHealth: "+Player1.getCHP()+"/"+Player1.getMHP()+"\nStamina: "+Player1.getStamC()+"/"+Player1.getStamM(),#00b300,3);
-  Estat = new ButtonUI(width-300,0,300,125,enemy.getName()+" "+"Lvl: "+enemy.getLvl()+"\nXp: "+enemy.getCXP()+"/"+enemy.getMXP()+"\nHealth: "+enemy.getCHP()+"/"+enemy.getMHP(),#e60000,2);
+  Pstat = new ButtonUI(0,0,300,100,"Player "+"Lvl: "+Player1.getLvl()+"\n\n\n",#00b300,3);
+  Estat = new ButtonUI(width-300,0,300,100,enemy.getName()+" "+"Lvl: "+enemy.getLvl()+"\n\n\n",#e60000,2);
   background1 = new ButtonUI(0,0,width/2,height,"",#4dff4d,1);
   background2 = new ButtonUI(width-(width/2),0,width/2,height,"",#ff4d4d,1);
   Player = loadImage("CarbotMarineDR.png" , "png");
@@ -314,6 +328,11 @@ public void combatUI(EnemyMob enemy) {
   PortraitImages = loadImage("CarbotMarinePortrait.png" , "png");
   enemyPortrait = loadImage(enemy.getBorder(), "png");
   enemyPortraitImages = loadImage(enemy.findBorder(), "png");
+  PlayerXP = new progressBar("XP: "+Player1.getCXP()+"/"+Player1.getMXP(),1,new int[] {Player1.getCXP(),Player1.getMXP()},75,25,225,25,#FFFF00);
+  PlayerHP = new progressBar("Health: "+Player1.getCHP()+"/"+Player1.getMHP(),1,new int[] {Player1.getCHP(),Player1.getMHP()},75,50,225,25,#FF0000);
+  PlayerStamina = new progressBar("Stamina: "+Player1.getStamC()+"/"+Player1.getStamM(),1,new int[] {Player1.getStamC(),Player1.getStamM()},15,75,285,25,#00FF00);
+  EnemyXP = new progressBar("XP: "+enemy.getCXP()+"/"+enemy.getMXP(),2,new int[] {enemy.getCXP(),enemy.getMXP()},width-300,25,225,25,#FFFF00);
+  EnemyHP = new progressBar("Health: "+enemy.getCHP()+"/"+enemy.getMHP(),2,new int[] {enemy.getCHP(),enemy.getMHP()},width-300,50,225,25,#FF0000);
   battleUILoaded = true;
 }
 
@@ -324,6 +343,9 @@ public void playerUI() {
   pauseButton = new ButtonUI(0,125,300,25,pauseText,#00b300,3);
   playerPortrait = loadImage(Player1.getBorder(), "png");
   PortraitImages = loadImage("CarbotMarinePortrait.png" , "png");
+  PlayerXP = new progressBar("XP: "+Player1.getCXP()+"/"+Player1.getMXP(),1,new int[] {Player1.getCXP(),Player1.getMXP()},75,25,225,25,#FFFF00);
+  PlayerHP = new progressBar("Health: "+Player1.getCHP()+"/"+Player1.getMHP(),1,new int[] {Player1.getCHP(),Player1.getMHP()},75,50,225,25,#FF0000);
+  PlayerStamina = new progressBar("Stamina: "+Player1.getStamC()+"/"+Player1.getStamM(),1,new int[] {Player1.getStamC(),Player1.getStamM()},15,75,285,25,#00FF00);
 }
 
 public void attributesUI() {
@@ -370,7 +392,7 @@ public void skillsMenu() {
   //English
   detailBorders[3] = new ButtonUI((int) (width/9.75),height/4,250,(int) (height/2.25),"",#C0C0C0,3);
   skillTypeNames[3] = new TextLabels("English",(int) (width/6),(int) (height/3.5),120,40,#0000FF,35);
-  skillTypeIcons[3] = loadImage("EnglishLogo.png", "png");
+  skillTypeIcons[3] = loadImage("EnglishIcon.png", "png");
   skillLevelText[3] = new TextLabels(skillCategories[3].getLvl()+"",(int) (width/6),(int) (height/2.25),120,40,#FFFF00,60);
   skillTypeButton[3] = new ButtonUI((int) (width/9.75),(int) (height/1.54),250,75,"Select",#C0C0C0,3);
   manageSkillsMenuLoaded = true;

@@ -36,12 +36,6 @@ public class Biome {
       enemy.changeMobImage("CarbotZergling.png");
       enemy.changeLvl((int) random(1,5));
       enemy.changeHP((int) random(100,350));
-     }else if (biome == 2) {
-      System.out.println("mobFound");
-      enemy.changeName("Marauder");
-      enemy.changeMobImage("MarauderMob.png");
-      enemy.changeLvl((int) random(5,10));
-      enemy.changeHP((int) random(350,850));
      }
    }
   }
