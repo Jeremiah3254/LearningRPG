@@ -19,6 +19,16 @@ public class Player extends Entity {
     }
   }
   
+  public void damageEnemy(EnemyMob enemy, equippedSkills skill) {
+    enemy.getCHP() = enemy.getCHP() - skill.getDamage();
+    this.stam[0] = this.stam[0] - skill.getStaminaCost();
+  }
+  
+  public void damageEnemy(equippedSkills skill) {
+    super.hp[0] = super.hp[0] - skill.getDamage();
+    this.stam[0] = this.stam[0] - skill.getStaminaCost();
+  }
+  
   public void move(boolean[] direction) {
     if (direction[0] == true) {
       this.faceUp = true;
