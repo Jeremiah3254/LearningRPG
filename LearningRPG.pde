@@ -1,7 +1,8 @@
 boolean gamePaused = false;
+int currentTopic = 0;
 String pauseText = "Pause Game";
 boolean foundEnemy = false, battleUILoaded = false, attackSkills = false, healSkills = false;
-boolean attributesMenuVis = false, attributesLoaded = false, manageSkillsMenuVis = false, manageSkillsMenuLoaded = false;
+boolean attributesMenuVis = false, attributesLoaded = false, manageSkillsMenuVis = false, manageSkillsMenuLoaded = false, skillMenuVis = false;
 String currentHoverText = "";
 EnemyMob currentEnemy;
 boolean[] movement = new boolean[4];
@@ -471,6 +472,28 @@ public void mouseReleased() {
   if (manageSkillsMenuVis == true && manageSkillsMenuLoaded == true && rightArrowS.isClicked() && foundEnemy == false && pageNumber < 2) {
     pageNumber = pageNumber +1;
   }
+  //select skill menu topic button
+  if (skillMenuVis == false && manageSkillsMenuVis == true && manageSkillsMenuLoaded == true && foundEnemy == false && skillTypeButton[0].isClicked()) {
+    skillMenuVis = true;
+    manageSkillMenuVis = false;
+    currentTopic = 1;
+  ]
+  if (skillMenuVis == false && manageSkillsMenuVis == true && manageSkillsMenuLoaded == true && foundEnemy == false && skillTypeButton[1].isClicked()) {
+    skillMenuVis = true;
+    manageSkillMenuVis = false;
+    currentTopic = 2;
+  }
+  if (skillMenuVis == false && manageSkillsMenuVis == true && manageSkillsMenuLoaded == true && foundEnemy == false && skillTypeButton[2].isClicked()) {
+    skillMenuVis = true;
+    manageSkillMenuVis = false;
+    currentTopic = 3;
+  }
+  if (skillMenuVis == false && manageSkillsMenuVis == true && manageSkillsMenuLoaded == true && foundEnemy == false && skillTypeButton[3].isClicked()) {
+    skillMenuVis = true;
+    manageSkillMenuVis = false;
+    currentTopic = 4;
+  }
+  //select skill menu topic button
 }
 
 public void keyReleased() {
