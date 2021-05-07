@@ -8,5 +8,20 @@ public class equippedSkills {
     this.damage = damage;
   }
   
+  public String getskillName() {
+  return this.skillName;
+  }
+  
+  public int getLvl() {
+  return this.lvl;
+  }
+  
+  public int getStaminaCost() {
+  return this.staminaCost;
+  }
+  
+  public int getDamage() {
+  return this.damage;
+  }
   
 }
