@@ -95,9 +95,9 @@ public void draw() {
   for (Biome biome : biomes) {
     if (biome.getX()+1500 >= boundsLeft && biome.getX() <= boundsRight && biome.getY() <= boundsBottom && biome.getY()+1500 >= boundsTop) {
       biome.draw();
-      if (gamePaused == false && foundEnemy == false) {
+    }
+    if (gamePaused == false && foundEnemy == false) {
         biome.move(movement,Player1.getSpeedA());
-      }
     }
   }
   
