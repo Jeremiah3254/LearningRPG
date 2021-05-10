@@ -35,7 +35,8 @@ PImage background,Player,Enemy;
 Biome[] biomes = new Biome[8];
 boolean initializedStats = false;
 WayPoint grassWP,mixtureWP,mudWP,rockSandWP,rockWP,rockyJungleWP,roughGassWP,templeGroundWP;
-EnemyMob tankBoss;
+//EnemyMob tankBoss;
+EnemyMob[] Bosses = new EnemyMob[8];
 
 public void setup() {
   frameRate(60);
@@ -73,7 +74,9 @@ public void setup() {
   skillCategories[3] = new skillTypes(0,new int[] {0,10});
   //Check
   //bosses
-  tankBoss = new EnemyMob("Tank [Boss]","SiegeTankBoss.png",(int) random(10,15),new int[] {0,10},new int[] {100,100},(int) random(biomes[1].getX(),biomes[1].getX() + 1500),(int) random(biomes[1].getY(),biomes[1].getY() + 1500),100,100,true);
+  Bosses[0] = 
+  Bosses[1] = new EnemyMob("Tank [Boss]","SiegeTankBoss.png",(int) random(10,15),new int[] {0,10},new int[] {100,100},(int) random(biomes[1].getX(),biomes[1].getX() + 1500),(int) random(biomes[1].getY(),biomes[1].getY() + 1500),100,100,true);
+  //tankBoss = new EnemyMob("Tank [Boss]","SiegeTankBoss.png",(int) random(10,15),new int[] {0,10},new int[] {100,100},(int) random(biomes[1].getX(),biomes[1].getX() + 1500),(int) random(biomes[1].getY(),biomes[1].getY() + 1500),100,100,true);
   tankBoss.changeHP((int) random(1000,1500));
   //bosses
   for (int i = 0; i<Enemies.length; i++) {
