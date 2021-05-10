@@ -2,7 +2,7 @@ boolean gamePaused = false;
 int currentTopic = 0;
 String pauseText = "Pause Game";
 boolean foundEnemy = false, battleUILoaded = false, attackSkills = false, healSkills = false;
-boolean attributesMenuVis = false, attributesLoaded = false, manageSkillsMenuVis = false, manageSkillsMenuLoaded = false, skillMenuVis = false;
+boolean attributesMenuVis = false, attributesLoaded = false, manageSkillsMenuVis = false, manageSkillsMenuLoaded = false;
 String currentHoverText = "";
 EnemyMob currentEnemy;
 boolean[] movement = new boolean[4];
@@ -31,9 +31,10 @@ ButtonUI Pstat,Estat,background1,background2,bottomBar,attackButton,healButton,r
 EnemyMob[] Enemies = new EnemyMob[2000];
 skillTypes[] skillCategories = new skillTypes[4];
 PImage background,Player,Enemy;
-Biome grassBiome,mixtureBiome,mudBiome;
+//Biome grassBiome,mixtureBiome,mudBiome;
+Biome[] biomes = new Biome[8];
 boolean initializedStats = false;
-WayPoint grassWP,mixtureWP,mudWP;
+WayPoint grassWP,mixtureWP,mudWP,rockSandWP,rockWP,rockyJungleWP,roughGassWP,templeGroundWP;
 EnemyMob tankBoss;
 
 public void setup() {
@@ -45,10 +46,25 @@ public void setup() {
   grassWP = new WayPoint("GrassLands",160,0,255,0);
   mixtureWP = new WayPoint("ObscureLands",160,165,42,42);
   mudWP = new WayPoint("MudLands",160,204,102,0);
+  rockSandWP  = new WayPoint("RockySandLands",160,76,70,50);
+  rockWP  = new WayPoint("RockyLands",160,0,0,0);
+  rockyJungleWP = new WayPoint("RockyJungleLands",160,210,105,30);
+  roughGassWP = new WayPoint("RoughGrassLands",160,34,139,34);
+  templeGroundWP = new WayPoint("TempleLands",160,34,139,34);
   background = loadImage("Ground.png", "png");
+  biomes[0] = new Biome("grassTerrain.png",(int) random(-width,width)*10,(int) random(-height,height)*10,1500,1500);
+  biomes[1] = new Biome("mixtureTerrain.png",(int) random(-width,width)*10,(int) random(-height,height)*10,1500,1500);
+  biomes[2] = new Biome("mudTerrain.png",(int) random(-width,width)*10,(int) random(-height,height)*10,1500,1500);
+  biomes[3] = new Biome("RockSandTerrain.png",(int) random(-width,width)*10,(int) random(-height,height)*10,1500,1500);
+  biomes[4] = new Biome("RockTerrain.png",(int) random(-width,width)*10,(int) random(-height,height)*10,1500,1500);
+  biomes[5] = new Biome("RockyJungleTerrain.png",(int) random(-width,width)*10,(int) random(-height,height)*10,1500,1500);
+  biomes[6] = new Biome("RoughGrassTerrain.png",(int) random(-width,width)*10,(int) random(-height,height)*10,1500,1500);
+  biomes[7] = new Biome("TempleGroundTerrain.png",(int) random(-width,width)*10,(int) random(-height,height)*10,1500,1500);
+  /*
   grassBiome = new Biome("grassTerrain.png",(int) random(-width,width)*10,(int) random(-height,height)*10,1500,1500);
   mixtureBiome = new Biome("mixtureTerrain.png",(int) random(-width,width)*10,(int) random(-height,height)*10,1500,1500);
   mudBiome = new Biome("mudTerrain.png",(int) random(-width,width)*10,(int) random(-height,height)*10,1500,1500);
+  */
   //Check
   Player1 = new Player(new int[] {100000,10},new int[] {100,100},new int[] {100,100},1,0,width/2-30,height/2-30,25);
   skillCategories[0] = new skillTypes(0,new int[] {0,10});
@@ -57,7 +73,7 @@ public void setup() {
   skillCategories[3] = new skillTypes(0,new int[] {0,10});
   //Check
   //bosses
-  tankBoss = new EnemyMob("Tank [Boss]","SiegeTankBoss.png",(int) random(10,15),new int[] {0,10},new int[] {100,100},(int) random(mixtureBiome.getX(),mixtureBiome.getX() + 1500),(int) random(mixtureBiome.getY(),mixtureBiome.getY() + 1500),100,100,true);
+  tankBoss = new EnemyMob("Tank [Boss]","SiegeTankBoss.png",(int) random(10,15),new int[] {0,10},new int[] {100,100},(int) random(biomes[1].getX(),biomes[1].getX() + 1500),(int) random(biomes[1].getY(),biomes[1].getY() + 1500),100,100,true);
   tankBoss.changeHP((int) random(1000,1500));
   //bosses
   for (int i = 0; i<Enemies.length; i++) {
@@ -76,27 +92,32 @@ public void draw() {
    //test
 
   image(background,0,0,width,height);
-  
-  if (grassBiome.getX()+1500 >= boundsLeft && grassBiome.getX() <= boundsRight && grassBiome.getY() <= boundsBottom && grassBiome.getY()+1500 >= boundsTop) {
-  grassBiome.draw();
-  }
-  if (mixtureBiome.getX()+1500 >= boundsLeft && mixtureBiome.getX() <= boundsRight && mixtureBiome.getY() <= boundsBottom && mixtureBiome.getY()+1500 >= boundsTop) {
-  mixtureBiome.draw();
-  }
-  if (mudBiome.getX()+1500 >= boundsLeft && mudBiome.getX() <= boundsRight && mudBiome.getY() <= boundsBottom && mudBiome.getY()+1500 >= boundsTop) {
-  mudBiome.draw();
+  for (Biome biome : biomes) {
+    if (biome.getX()+1500 >= boundsLeft && biome.getX() <= boundsRight && biome.getY() <= boundsBottom && biome.getY()+1500 >= boundsTop) {
+      biome.draw();
+      if (gamePaused == false && foundEnemy == false) {
+        biome.move(movement,Player1.getSpeedA());
+      }
+    }
   }
   
-  if (gamePaused == false && foundEnemy == false) {
+  /*if (gamePaused == false && foundEnemy == false) {
   grassBiome.move(movement,Player1.getSpeedA());
   mixtureBiome.move(movement,Player1.getSpeedA());
   mudBiome.move(movement,Player1.getSpeedA());
   }
+  */
   
   if (foundEnemy == false) {
-  grassWP.draw(grassBiome,Player1.getX(),Player1.getY());
-  mixtureWP.draw(mixtureBiome,Player1.getX(),Player1.getY());
-  mudWP.draw(mudBiome,Player1.getX(),Player1.getY());
+  grassWP.draw(biomes[0],Player1.getX(),Player1.getY());
+  mixtureWP.draw(biomes[1],Player1.getX(),Player1.getY());
+  mudWP.draw(biomes[2],Player1.getX(),Player1.getY());
+  rockSandWP.draw(biomes[3],Player1.getX(),Player1.getY());
+  rockWP.draw(biomes[4],Player1.getX(),Player1.getY());
+  rockyJungleWP.draw(biomes[5],Player1.getX(),Player1.getY());
+  roughGassWP.draw(biomes[6],Player1.getX(),Player1.getY());
+  templeGroundWP.draw(biomes[7],Player1.getX(),Player1.getY());
+  
   }
   
   //System.out.println(grassBiome.getX());
@@ -108,7 +129,7 @@ public void draw() {
   tankBoss.move(movement,Player1.getSPD());
   if (tankBoss.getX() >= boundsLeft && tankBoss.getX() <= boundsRight && tankBoss.getY() <= boundsBottom && tankBoss.getY() >= boundsTop && tankBoss.isAlive() == true) {
    tankBoss.drawB();
-   tankBoss.randomMovementBoss(mixtureBiome); 
+   tankBoss.randomMovementBoss(biomes[1]); 
    if (dist(Player1.getX(),Player1.getY(),tankBoss.getX(),tankBoss.getY()) <= (60 / 2) + (60 / 2) && tankBoss.isAlive() == true) {
    foundEnemy = true;
    combatUI(tankBoss);
@@ -123,18 +144,16 @@ public void draw() {
   
   
   if (initializedStats == false) {
+  for (int q = 0; q<biomes.length; q++) {
   for (int i = 0; i<Enemies.length; i++) {
     if (initializedStats == false && i < (Enemies.length-1)) {
-     grassBiome.mobsInside(Enemies[i],1);
-     mixtureBiome.mobsInside(Enemies[i],2);
-     mudBiome.mobsInside(Enemies[i],3);
+     biomes[q].mobsInside(Enemies[i],q);
     } else {
-      grassBiome.mobsInside(Enemies[i],1);
-      mixtureBiome.mobsInside(Enemies[i],2);
-      mudBiome.mobsInside(Enemies[i],3);
+    biomes[q].mobsInside(Enemies[i],q);
     initializedStats = true;
     System.out.println("done");
     }
+  }
   }
   }
   
@@ -165,7 +184,7 @@ public void draw() {
     Player1.refreshStats();
   }
   
-  if (foundEnemy == false && attackSkills == false && healSkills == false && manageSkillsMenuVis == true) {
+  if (manageSkillsMenuVis == true && foundEnemy == false && attackSkills == false && healSkills == false) {
      skillsMenu();
      if (pageNumber == 1) {
      skillTypeButton[0].hoverAnim();
@@ -473,24 +492,24 @@ public void mouseReleased() {
     pageNumber = pageNumber +1;
   }
   //select skill menu topic button
-  if (skillMenuVis == false && manageSkillsMenuVis == true && manageSkillsMenuLoaded == true && foundEnemy == false && skillTypeButton[0].isClicked()) {
-    skillMenuVis = true;
-    manageSkillMenuVis = false;
+  if (manageSkillsMenuVis == true && manageSkillsMenuLoaded == true && foundEnemy == false && skillTypeButton[0].isClicked() && pageNumber == 1) {
+    manageSkillsMenuLoaded = false;
+    manageSkillsMenuVis = false;
     currentTopic = 1;
-  ]
-  if (skillMenuVis == false && manageSkillsMenuVis == true && manageSkillsMenuLoaded == true && foundEnemy == false && skillTypeButton[1].isClicked()) {
-    skillMenuVis = true;
-    manageSkillMenuVis = false;
+  }
+  if (manageSkillsMenuVis == true && manageSkillsMenuLoaded == true && skillTypeButton[1].isClicked() && foundEnemy == false && pageNumber == 1) {
+    manageSkillsMenuLoaded = false;
+    manageSkillsMenuVis = false;
     currentTopic = 2;
   }
-  if (skillMenuVis == false && manageSkillsMenuVis == true && manageSkillsMenuLoaded == true && foundEnemy == false && skillTypeButton[2].isClicked()) {
-    skillMenuVis = true;
-    manageSkillMenuVis = false;
+  if (manageSkillsMenuVis == true && manageSkillsMenuLoaded == true && foundEnemy == false && skillTypeButton[2].isClicked() && pageNumber == 1) {
+    manageSkillsMenuLoaded = false;
+    manageSkillsMenuVis = false;
     currentTopic = 3;
   }
-  if (skillMenuVis == false && manageSkillsMenuVis == true && manageSkillsMenuLoaded == true && foundEnemy == false && skillTypeButton[3].isClicked()) {
-    skillMenuVis = true;
-    manageSkillMenuVis = false;
+  if (manageSkillsMenuVis == true && manageSkillsMenuLoaded == true && foundEnemy == false && skillTypeButton[3].isClicked() && pageNumber == 2) {
+    manageSkillsMenuLoaded = false;
+    manageSkillsMenuVis = false;
     currentTopic = 4;
   }
   //select skill menu topic button

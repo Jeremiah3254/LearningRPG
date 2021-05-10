@@ -10,7 +10,7 @@ public class equippedSkills {
   
   public boolean hasStamina(Player p1) {
   boolean result = false;
-  if (p1.getStamC >= this.staminaCost) {
+  if (p1.getStamC() >= this.staminaCost) {
   result = true;
   }
   return result;

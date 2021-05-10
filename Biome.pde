@@ -1,6 +1,7 @@
 public class Biome {
  String biomeImage;
  int x,y,sizeX,sizeY;
+ 
  public Biome(String biomeImage, int x, int y, int sizeX, int sizeY) {
    this.biomeImage = biomeImage;
    this.x = x;

@@ -82,6 +82,10 @@ public class Entity {
   return hp[0];
   }
   
+  public void setCHP(int health) {
+   hp[0] = health; 
+  }
+  
   public int getMHP(){
   return hp[1];
   }
