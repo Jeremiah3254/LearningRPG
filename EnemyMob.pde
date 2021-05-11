@@ -39,6 +39,20 @@ public class EnemyMob extends Entity {
     result = "SeigeTankBossPortrait.png";
    }else if (super.picture == "MarauderMob.png") {
     result = "MarauderderMobPortrait.png";
+   }else if (super.picture == "KerriganBoss.png") {
+    result = "KerriganBossPortrait.png";
+   }else if (super.picture == "ArchonBoss.png") {
+    result = "ArchonBossPortrait.png";
+   }else if (super.picture == "ColossusBoss.png") {
+    result = "ColossusBossPortrait.png";
+   }else if (super.picture == "ThorBoss.png") {
+    result = "ThorBossPortrait.png";
+   }else if (super.picture == "HyperionBoss.png") {
+    result = "HyperionBossPortrait.png";
+   }else if (super.picture == "CarrierBoss.png") {
+    result = "CarrierBossPortrait.png";
+   }else if (super.picture == "MothershipBoss.png") {
+    result = "MothershipBossPortrait.png";
    }
    return result;
  }

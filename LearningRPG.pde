@@ -47,7 +47,7 @@ public void setup() {
   grassWP = new WayPoint("GrassLands",160,0,255,0);
   mixtureWP = new WayPoint("ObscureLands",160,165,42,42);
   mudWP = new WayPoint("MudLands",160,204,102,0);
-  rockSandWP  = new WayPoint("RockySandLands",160,76,70,50);
+  rockSandWP  = new WayPoint("RockySandLands",160,255,0,0);
   rockWP  = new WayPoint("RockyLands",160,0,0,0);
   rockyJungleWP = new WayPoint("RockyJungleLands",160,210,105,30);
   roughGassWP = new WayPoint("RoughGrassLands",160,34,139,34);
@@ -74,16 +74,16 @@ public void setup() {
   skillCategories[3] = new skillTypes(0,new int[] {0,10});
   //Check
   //bosses
-  //Bosses[0] = new EnemyMob("Kerrigan [Boss]","KerriganBoss.png",(int) random(5,10),new int[] {0,10},new int[] {100,100},(int) random(biomes[0].getX(),biomes[0].getX() + 1500),(int) random(biomes[0].getY(),biomes[1].getY() + 1500),100,100,true);
+  Bosses[0] = new EnemyMob("Kerrigan [Boss]","KerriganBoss.png",(int) random(5,10),new int[] {0,10},new int[] {100,100},(int) random(biomes[0].getX(),biomes[0].getX() + 1500),(int) random(biomes[0].getY(),biomes[0].getY() + 1500),100,100,true);
   Bosses[1] = new EnemyMob("Tank [Boss]","SiegeTankBoss.png",(int) random(10,15),new int[] {0,10},new int[] {100,100},(int) random(biomes[1].getX(),biomes[1].getX() + 1500),(int) random(biomes[1].getY(),biomes[1].getY() + 1500),100,100,true);
-  Bosses[2] = new EnemyMob("Archon [Boss]","ArchonBoss.png",(int) random(15,20),new int[] {0,10},new int[] {100,100},(int) random(biomes[2].getX(),biomes[1].getX() + 1500),(int) random(biomes[2].getY(),biomes[2].getY() + 1500),100,100,true);
+  Bosses[2] = new EnemyMob("Archon [Boss]","ArchonBoss.png",(int) random(15,20),new int[] {0,10},new int[] {100,100},(int) random(biomes[2].getX(),biomes[2].getX() + 1500),(int) random(biomes[2].getY(),biomes[2].getY() + 1500),100,100,true);
   Bosses[3] = new EnemyMob("Colossus [Boss]","ColossusBoss.png",(int) random(20,25),new int[] {0,10},new int[] {100,100},(int) random(biomes[3].getX(),biomes[3].getX() + 1500),(int) random(biomes[3].getY(),biomes[3].getY() + 1500),100,100,true);
   Bosses[4] = new EnemyMob("Thor [Boss]","ThorBoss.png",(int) random(25,30),new int[] {0,10},new int[] {100,100},(int) random(biomes[4].getX(),biomes[4].getX() + 1500),(int) random(biomes[4].getY(),biomes[4].getY() + 1500),100,100,true);
-  Bosses[5] = new EnemyMob("Tempest [Boss]","TempestBoss.png",(int) random(30,35),new int[] {0,10},new int[] {100,100},(int) random(biomes[5].getX(),biomes[5].getX() + 1500),(int) random(biomes[5].getY(),biomes[5].getY() + 1500),100,100,true);
+  Bosses[5] = new EnemyMob("Hyperion [Boss]","HyperionBoss.png",(int) random(30,35),new int[] {0,10},new int[] {100,100},(int) random(biomes[5].getX(),biomes[5].getX() + 1500),(int) random(biomes[5].getY(),biomes[5].getY() + 1500),100,100,true);
   Bosses[6] = new EnemyMob("Carrier [Boss]","CarrierBoss.png",(int) random(35,40),new int[] {0,10},new int[] {100,100},(int) random(biomes[6].getX(),biomes[6].getX() + 1500),(int) random(biomes[6].getY(),biomes[6].getY() + 1500),100,100,true);
-  Bosses[7] = new EnemyMob("Mothership [Boss]","MothershipBoss.png",(int) random(40,45),new int[] {0,10},new int[] {100,100},(int) random(biomes[7].getX(),biomes[6].getX() + 1500),(int) random(biomes[6].getY(),biomes[6].getY() + 1500),100,100,true);
+  Bosses[7] = new EnemyMob("Mothership [Boss]","MothershipBoss.png",(int) random(40,45),new int[] {0,10},new int[] {100,100},(int) random(biomes[7].getX(),biomes[7].getX() + 1500),(int) random(biomes[7].getY(),biomes[7].getY() + 1500),100,100,true);
   //tankBoss = new EnemyMob("Tank [Boss]","SiegeTankBoss.png",(int) random(35,40),new int[] {0,10},new int[] {100,100},(int) random(biomes[1].getX(),biomes[1].getX() + 1500),(int) random(biomes[1].getY(),biomes[1].getY() + 1500),100,100,true); 
-  tankBoss.changeHP((int) random(1000,1500));
+  Bosses[1].changeHP((int) random(1000,1500));
   //bosses
   for (int i = 0; i<Enemies.length; i++) {
     Enemies[i] = new EnemyMob("Spider","EnemySprite.png",1,new int[] {0,10},new int[] {80,100},(int) random(-width,width)*10,(int) random(-height,height)*10);
@@ -134,21 +134,23 @@ public void draw() {
   int x = (width/2)-30;
   int y = (height/2)-30;
 
+for (EnemyMob boss : Bosses) {
   if (gamePaused == false && foundEnemy == false) {
-  tankBoss.move(movement,Player1.getSPD());
-  if (tankBoss.getX() >= boundsLeft && tankBoss.getX() <= boundsRight && tankBoss.getY() <= boundsBottom && tankBoss.getY() >= boundsTop && tankBoss.isAlive() == true) {
-   tankBoss.drawB();
-   tankBoss.randomMovementBoss(biomes[1]); 
-   if (dist(Player1.getX(),Player1.getY(),tankBoss.getX(),tankBoss.getY()) <= (60 / 2) + (60 / 2) && tankBoss.isAlive() == true) {
+  boss.move(movement,Player1.getSPD());
+  if (boss.getX() >= boundsLeft && boss.getX() <= boundsRight && boss.getY() <= boundsBottom && boss.getY() >= boundsTop && boss.isAlive() == true) {
+   boss.drawB();
+   boss.randomMovementBoss(biomes[1]); 
+   if (dist(Player1.getX(),Player1.getY(),boss.getX(),boss.getY()) <= (60 / 2) + (60 / 2) && boss.isAlive() == true) {
    foundEnemy = true;
-   combatUI(tankBoss);
-   currentEnemy = tankBoss;
+   combatUI(boss);
+   currentEnemy = boss;
    }
   }
   }
-  if (tankBoss.isAlive() == false) {
-   tankBoss.respawnBoss(); 
+  if (boss.isAlive() == false) {
+   boss.respawnBoss(); 
   }
+}
   //System.out.println(minute());
   
   
@@ -156,9 +158,9 @@ public void draw() {
   for (int q = 0; q<biomes.length; q++) {
   for (int i = 0; i<Enemies.length; i++) {
     if (initializedStats == false && i < (Enemies.length-1)) {
-     biomes[q].mobsInside(Enemies[i],q);
+     biomes[q].mobsInside(Enemies[i],(q+1));
     } else {
-    biomes[q].mobsInside(Enemies[i],q);
+    biomes[q].mobsInside(Enemies[i],(q+1));
     initializedStats = true;
     System.out.println("done");
     }

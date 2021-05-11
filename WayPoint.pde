@@ -32,7 +32,7 @@ public class WayPoint {
   stroke(this.red,this.green,this.blue);
   fill(0,0,0);
   textSize(15);
-  text(this.biomeName,70,-10);
+  text(this.biomeName,75,-10);
   line(0, 0, this.segLength,0);
   popMatrix();
  }
