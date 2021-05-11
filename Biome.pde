@@ -46,32 +46,32 @@ public class Biome {
       enemy.changeHP((int) random(350,850));
      }else if (biome == 3) {
       System.out.println("mobFound");
-      enemy.changeName("Zergling");
-      enemy.changeMobImage("MarauderMob.png");
+      enemy.changeName("Disruptor");
+      enemy.changeMobImage("DisruptorMob.png");
       enemy.changeLvl((int) random(10,15));
       enemy.changeHP((int) random(650,1150));
      }else if (biome == 4) {
       System.out.println("mobFound");
-      enemy.changeName("Zergling");
-      enemy.changeMobImage("MarauderMob.png");
+      enemy.changeName("Adept");
+      enemy.changeMobImage("AdeptMob.png");
       enemy.changeLvl((int) random(15,20));
       enemy.changeHP((int) random(950,1450));
      }else if (biome == 5) {
       System.out.println("mobFound");
-      enemy.changeName("Zergling");
+      enemy.changeName("unknown");
       enemy.changeMobImage("MarauderMob.png");
       enemy.changeLvl((int) random(20,25));
       enemy.changeHP((int) random(1250,1750));
      }else if (biome == 6) {
       System.out.println("mobFound");
-      enemy.changeName("Zergling");
+      enemy.changeName("unknown");
       enemy.changeMobImage("MarauderMob.png");
       enemy.changeLvl((int) random(25,30));
       enemy.changeHP((int) random(1550,2150));
      }else if (biome == 7) {
       System.out.println("mobFound");
-      enemy.changeName("Zergling");
-      enemy.changeMobImage("MarauderMob.png");
+      enemy.changeName("Void Ray");
+      enemy.changeMobImage("VoidrayMob.png");
       enemy.changeLvl((int) random(30,35));
       enemy.changeHP((int) random(1850,2450));
      }else if (biome == 8) {
