@@ -77,7 +77,7 @@ public class Biome {
      }else if (biome == 8) {
       System.out.println("mobFound");
       enemy.changeName("Dark Templar");
-      enemy.changeMobImage("DarkTemplar.png");
+      enemy.changeMobImage("DarkTemplarMob.png");
       enemy.changeLvl((int) random(35,40));
       enemy.changeHP((int) random(2350,3550));
      }

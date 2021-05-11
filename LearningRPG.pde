@@ -352,7 +352,7 @@ for (EnemyMob boss : Bosses) {
 
 public void combatUI(EnemyMob enemy) {
   Pstat = new ButtonUI(0,0,300,100,"Player "+"Lvl: "+Player1.getLvl()+"\n\n\n",#00b300,3);
-  Estat = new ButtonUI(width-300,0,300,100,enemy.getName()+" "+"Lvl: "+enemy.getLvl()+"\n\n\n",#e60000,2);
+  Estat = new ButtonUI(width-350,0,350,100,enemy.getName()+" "+"Lvl: "+enemy.getLvl()+"\n\n\n",#e60000,2);
   background1 = new ButtonUI(0,0,width/2,height,"",#4dff4d,1);
   background2 = new ButtonUI(width-(width/2),0,width/2,height,"",#ff4d4d,1);
   Player = loadImage("CarbotMarineDR.png" , "png");
