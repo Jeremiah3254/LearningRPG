@@ -83,7 +83,14 @@ public void setup() {
   Bosses[6] = new EnemyMob("Carrier [Boss]","CarrierBoss.png",(int) random(35,40),new int[] {0,10},new int[] {100,100},(int) random(biomes[6].getX(),biomes[6].getX() + 1500),(int) random(biomes[6].getY(),biomes[6].getY() + 1500),100,100,true);
   Bosses[7] = new EnemyMob("Mothership [Boss]","MothershipBoss.png",(int) random(40,45),new int[] {0,10},new int[] {100,100},(int) random(biomes[7].getX(),biomes[7].getX() + 1500),(int) random(biomes[7].getY(),biomes[7].getY() + 1500),100,100,true);
   //tankBoss = new EnemyMob("Tank [Boss]","SiegeTankBoss.png",(int) random(35,40),new int[] {0,10},new int[] {100,100},(int) random(biomes[1].getX(),biomes[1].getX() + 1500),(int) random(biomes[1].getY(),biomes[1].getY() + 1500),100,100,true); 
+  Bosses[0].changeHP((int) random(500,1000));
   Bosses[1].changeHP((int) random(1000,1500));
+  Bosses[2].changeHP((int) random(1500,2000));
+  Bosses[3].changeHP((int) random(2000,2500));
+  Bosses[4].changeHP((int) random(2500,3000));
+  Bosses[5].changeHP((int) random(3000,3500));
+  Bosses[6].changeHP((int) random(3500,4000));
+  Bosses[7].changeHP((int) random(4000,5000));
   //bosses
   for (int i = 0; i<Enemies.length; i++) {
     Enemies[i] = new EnemyMob("Spider","EnemySprite.png",1,new int[] {0,10},new int[] {80,100},(int) random(-width,width)*10,(int) random(-height,height)*10);
