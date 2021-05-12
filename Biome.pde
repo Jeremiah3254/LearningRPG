@@ -58,14 +58,14 @@ public class Biome {
       enemy.changeHP((int) random(950,1450));
      }else if (biome == 5) {
       System.out.println("mobFound");
-      enemy.changeName("unknown");
-      enemy.changeMobImage("MarauderMob.png");
+      enemy.changeName("Hellion");
+      enemy.changeMobImage("HellionMob.png");
       enemy.changeLvl((int) random(20,25));
       enemy.changeHP((int) random(1250,1750));
      }else if (biome == 6) {
       System.out.println("mobFound");
-      enemy.changeName("unknown");
-      enemy.changeMobImage("MarauderMob.png");
+      enemy.changeName("Viking");
+      enemy.changeMobImage("VikingMob.png");
       enemy.changeLvl((int) random(25,30));
       enemy.changeHP((int) random(1550,2150));
      }else if (biome == 7) {
