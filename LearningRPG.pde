@@ -449,6 +449,8 @@ public void skillsMenu() {
 
 public void IndividualSkillMenu(int selectedSkillType) {
 
+
+individualSkillMenuLoaded = true;
 }
 
 public void mouseReleased() {
