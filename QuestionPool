@@ -1,6 +1,10 @@
 public class QuestionPool {
   int topic, tier;
   String option1,option2,option3,option4;
+  String[][] MathTierQ = new String [10][10];
+  String[][] MathTierA = new String [10][10];
+  
+  
   
   public QuestionPool (int topic, int tier) {
   this.topic = topic;
@@ -8,16 +12,7 @@ public class QuestionPool {
   }
   
   public void questionAnswer(int correctAnswer) {
-  String[] MathTier0Q = new String [10];
-  String[] MathTier0A = new String [10];
-  //Questions
-  MathTier0Q[0] = "What is 5-3.";
-  MathTier0Q[1] = "What is 50-45.";
-  //Answers
-  MathTier0A[0] = "2";
-  MathTier0A[1] = "5";
-  MathTier0A[2] = "546";
-  
+    this.InitializeVariables();
     if (this.topic == 1) {
       if (this.tier == 0) {
         
@@ -29,5 +24,19 @@ public class QuestionPool {
     }
   }
 
+
+public void InitializeVariables() {
+  // <Topic> ~Math
+  
+  //Questions
+  MathTier0Q[0] = "What is 5-3.";
+  MathTier0Q[1] = "What is 50-45.";
+  //Answers
+  MathTier0A[0] = "2";
+  MathTier0A[1] = "5";
+  MathTier0A[2] = "546";
+  
+  // <Topic> ~Science
+}
 
 }
