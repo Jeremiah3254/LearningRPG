@@ -2,7 +2,7 @@ boolean gamePaused = false;
 int currentTopic = 0;
 String pauseText = "Pause Game";
 boolean foundEnemy = false, battleUILoaded = false, attackSkills = false, healSkills = false;
-boolean attributesMenuVis = false, attributesLoaded = false, manageSkillsMenuVis = false, manageSkillsMenuLoaded = false, individualSkillMenuVis = false, individualSkillMenuLoaded = false;
+boolean attributesMenuVis = false, attributesLoaded = false, manageSkillsMenuVis = false, manageSkillsMenuLoaded = false;
 String currentHoverText = "";
 EnemyMob currentEnemy;
 boolean[] movement = new boolean[4];
@@ -10,6 +10,10 @@ boolean[] movement = new boolean[4];
 //BossImage.png
 //EnemySprite.png
 Player Player1;
+//Player UI
+ButtonUI backgroundQA,sectionQA1,buttonQA1,sectionQA2,buttonQA2,sectionQA3,buttonQA3,sectionQA4,buttonQA4,rightArrowQA,leftArrow;
+progressBar xpbarQA;
+//Player UI
 // player ui
 progressBar PlayerHP,PlayerXP,PlayerStamina,EnemyHP,EnemyXP;
 ButtonUI playerStats, attributeMenu, skillMenu, pauseButton;
@@ -447,12 +451,6 @@ public void skillsMenu() {
   manageSkillsMenuLoaded = true;
 }
 
-public void IndividualSkillMenu(int selectedSkillType) {
-
-
-individualSkillMenuLoaded = true;
-}
-
 public void mouseReleased() {
   if (battleUILoaded == true && foundEnemy == true) {
   if (battleUILoaded == true && runButton.isClicked()) {
@@ -519,25 +517,21 @@ public void mouseReleased() {
   if (manageSkillsMenuVis == true && manageSkillsMenuLoaded == true && foundEnemy == false && skillTypeButton[0].isClicked() && pageNumber == 1) {
     manageSkillsMenuLoaded = false;
     manageSkillsMenuVis = false;
-    individualSkillMenuVis = true;
     currentTopic = 1;
   }
   if (manageSkillsMenuVis == true && manageSkillsMenuLoaded == true && skillTypeButton[1].isClicked() && foundEnemy == false && pageNumber == 1) {
     manageSkillsMenuLoaded = false;
     manageSkillsMenuVis = false;
-    individualSkillMenuVis = true;
     currentTopic = 2;
   }
   if (manageSkillsMenuVis == true && manageSkillsMenuLoaded == true && foundEnemy == false && skillTypeButton[2].isClicked() && pageNumber == 1) {
     manageSkillsMenuLoaded = false;
     manageSkillsMenuVis = false;
-    individualSkillMenuVis = true;
     currentTopic = 3;
   }
   if (manageSkillsMenuVis == true && manageSkillsMenuLoaded == true && foundEnemy == false && skillTypeButton[3].isClicked() && pageNumber == 2) {
     manageSkillsMenuLoaded = false;
     manageSkillsMenuVis = false;
-    individualSkillMenuVis = true;
     currentTopic = 4;
   }
   //select skill menu topic button
