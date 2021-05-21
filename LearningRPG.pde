@@ -13,6 +13,7 @@ Player Player1;
 //Player UI
 ButtonUI backgroundQA,sectionQA1,buttonQA1,sectionQA2,buttonQA2,sectionQA3,buttonQA3,sectionQA4,buttonQA4,rightArrowQA,leftArrow;
 progressBar xpbarQA;
+TextLabels tabQANumber;
 //Player UI
 // player ui
 progressBar PlayerHP,PlayerXP,PlayerStamina,EnemyHP,EnemyXP;
@@ -449,6 +450,10 @@ public void skillsMenu() {
   englishLvlBar = new progressBar("XP: "+skillCategories[3].getXPC()+"/"+skillCategories[3].getXPM(),1,new int[] {skillCategories[3].getXPC(),skillCategories[3].getXPM()},(int) (width/9.75),(int) (height/1.68),250,40,#FFFF00);
   skillTypeButton[3] = new ButtonUI((int) (width/9.75),(int) (height/1.54),250,75,"Select",#C0C0C0,3);
   manageSkillsMenuLoaded = true;
+}
+
+public void skillSelection() {
+  
 }
 
 public void mouseReleased() {
