@@ -1,9 +1,11 @@
 public class Biome {
  String biomeImage;
  int x,y,sizeX,sizeY;
+ PImage test;
  
  public Biome(String biomeImage, int x, int y, int sizeX, int sizeY) {
    this.biomeImage = biomeImage;
+   this.test = loadImage(this.biomeImage,"png");
    this.x = x;
    this.y = y;
    this.sizeX = sizeX;
@@ -85,7 +87,7 @@ public class Biome {
   }
   
   public void draw() {
-   image(loadImage(this.biomeImage, "png"),x,y,sizeX,sizeY); 
+   image(test,x,y,sizeX,sizeY); 
   }
   
   public int getX() {

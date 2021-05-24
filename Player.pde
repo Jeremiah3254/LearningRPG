@@ -3,6 +3,7 @@ public class Player extends Entity {
   int x,y,damage,speed,stam,health,skillPoints;
   boolean faceUp = false;
   boolean faceLeft = false;
+  PImage test;
   public Player(int[] xp,int[] hp,int[] stamina,int skillPoints,int damage,int x,int y,int speed) {
     super("CarbotMarineDR.png",x,y,1,hp,xp,speed);
     this.damage = damage;

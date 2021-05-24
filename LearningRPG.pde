@@ -2,7 +2,7 @@ boolean gamePaused = false;
 int currentTopic = 0;
 String pauseText = "Pause Game";
 boolean foundEnemy = false, battleUILoaded = false, attackSkills = false, healSkills = false;
-boolean attributesMenuVis = false, attributesLoaded = false, manageSkillsMenuVis = false, manageSkillsMenuLoaded = false;
+boolean attributesMenuVis = false, attributesLoaded = false, manageSkillsMenuVis = false, manageSkillsMenuLoaded = false, skillSectionEquipVis = false, skillSectionEquipLoaded = false;
 String currentHoverText = "";
 EnemyMob currentEnemy;
 boolean[] movement = new boolean[4];
@@ -47,6 +47,7 @@ public void setup() {
   frameRate(60);
   //fullScreen();
   size(1000,750);
+  //size(1250,1000);
   System.out.println(width/2);
   System.out.println(height/2);
   grassWP = new WayPoint("GrassLands",160,0,255,0);
@@ -79,14 +80,14 @@ public void setup() {
   skillCategories[3] = new skillTypes(0,new int[] {0,10});
   //Check
   //bosses
-  Bosses[0] = new EnemyMob("Kerrigan [Boss]","KerriganBoss.png",(int) random(5,10),new int[] {0,10},new int[] {100,100},(int) random(biomes[0].getX(),biomes[0].getX() + 1500),(int) random(biomes[0].getY(),biomes[0].getY() + 1500),100,100,true);
-  Bosses[1] = new EnemyMob("Tank [Boss]","SiegeTankBoss.png",(int) random(10,15),new int[] {0,10},new int[] {100,100},(int) random(biomes[1].getX(),biomes[1].getX() + 1500),(int) random(biomes[1].getY(),biomes[1].getY() + 1500),100,100,true);
-  Bosses[2] = new EnemyMob("Archon [Boss]","ArchonBoss.png",(int) random(15,20),new int[] {0,10},new int[] {100,100},(int) random(biomes[2].getX(),biomes[2].getX() + 1500),(int) random(biomes[2].getY(),biomes[2].getY() + 1500),100,100,true);
-  Bosses[3] = new EnemyMob("Colossus [Boss]","ColossusBoss.png",(int) random(20,25),new int[] {0,10},new int[] {100,100},(int) random(biomes[3].getX(),biomes[3].getX() + 1500),(int) random(biomes[3].getY(),biomes[3].getY() + 1500),100,100,true);
-  Bosses[4] = new EnemyMob("Thor [Boss]","ThorBoss.png",(int) random(25,30),new int[] {0,10},new int[] {100,100},(int) random(biomes[4].getX(),biomes[4].getX() + 1500),(int) random(biomes[4].getY(),biomes[4].getY() + 1500),100,100,true);
-  Bosses[5] = new EnemyMob("Hyperion [Boss]","HyperionBoss.png",(int) random(30,35),new int[] {0,10},new int[] {100,100},(int) random(biomes[5].getX(),biomes[5].getX() + 1500),(int) random(biomes[5].getY(),biomes[5].getY() + 1500),100,100,true);
-  Bosses[6] = new EnemyMob("Carrier [Boss]","CarrierBoss.png",(int) random(35,40),new int[] {0,10},new int[] {100,100},(int) random(biomes[6].getX(),biomes[6].getX() + 1500),(int) random(biomes[6].getY(),biomes[6].getY() + 1500),100,100,true);
-  Bosses[7] = new EnemyMob("Mothership [Boss]","MothershipBoss.png",(int) random(40,45),new int[] {0,10},new int[] {100,100},(int) random(biomes[7].getX(),biomes[7].getX() + 1500),(int) random(biomes[7].getY(),biomes[7].getY() + 1500),100,100,true);
+  Bosses[0] = new EnemyMob("Kerrigan [Boss]","KerriganBoss.png",(int) random(5,10),new int[] {0,10},new int[] {100,100},(int) random(biomes[0].getX(),biomes[0].getX() + 1500),(int) random(biomes[0].getY(),biomes[0].getY() + 1500),150,150,true);
+  Bosses[1] = new EnemyMob("Tank [Boss]","SiegeTankBoss.png",(int) random(10,15),new int[] {0,10},new int[] {100,100},(int) random(biomes[1].getX(),biomes[1].getX() + 1500),(int) random(biomes[1].getY(),biomes[1].getY() + 1500),150,150,true);
+  Bosses[2] = new EnemyMob("Archon [Boss]","ArchonBoss.png",(int) random(15,20),new int[] {0,10},new int[] {100,100},(int) random(biomes[2].getX(),biomes[2].getX() + 1500),(int) random(biomes[2].getY(),biomes[2].getY() + 1500),150,150,true);
+  Bosses[3] = new EnemyMob("Colossus [Boss]","ColossusBoss.png",(int) random(20,25),new int[] {0,10},new int[] {100,100},(int) random(biomes[3].getX(),biomes[3].getX() + 1500),(int) random(biomes[3].getY(),biomes[3].getY() + 1500),150,150,true);
+  Bosses[4] = new EnemyMob("Thor [Boss]","ThorBoss.png",(int) random(25,30),new int[] {0,10},new int[] {100,100},(int) random(biomes[4].getX(),biomes[4].getX() + 1500),(int) random(biomes[4].getY(),biomes[4].getY() + 1500),150,150,true);
+  Bosses[5] = new EnemyMob("Hyperion [Boss]","HyperionBoss.png",(int) random(30,35),new int[] {0,10},new int[] {100,100},(int) random(biomes[5].getX(),biomes[5].getX() + 1500),(int) random(biomes[5].getY(),biomes[5].getY() + 1500),150,150,true);
+  Bosses[6] = new EnemyMob("Carrier [Boss]","CarrierBoss.png",(int) random(35,40),new int[] {0,10},new int[] {100,100},(int) random(biomes[6].getX(),biomes[6].getX() + 1500),(int) random(biomes[6].getY(),biomes[6].getY() + 1500),150,150,true);
+  Bosses[7] = new EnemyMob("Mothership [Boss]","MothershipBoss.png",(int) random(40,45),new int[] {0,10},new int[] {100,100},(int) random(biomes[7].getX(),biomes[7].getX() + 1500),(int) random(biomes[7].getY(),biomes[7].getY() + 1500),150,150,true);
   //tankBoss = new EnemyMob("Tank [Boss]","SiegeTankBoss.png",(int) random(35,40),new int[] {0,10},new int[] {100,100},(int) random(biomes[1].getX(),biomes[1].getX() + 1500),(int) random(biomes[1].getY(),biomes[1].getY() + 1500),100,100,true); 
   Bosses[0].changeHP((int) random(500,1000));
   Bosses[1].changeHP((int) random(1000,1500));
@@ -205,6 +206,13 @@ for (EnemyMob boss : Bosses) {
     Player1.draw();
     Player1.levelUp();
     Player1.refreshStats();
+  }
+  
+  if (skillSectionEquipVis == true && foundEnemy == false && attackSkills == false && healSkills == false) {
+    skillSelection();
+    backgroundQA.draw();
+    sectionQA1.draw();
+    sectionQA2.draw();
   }
   
   if (manageSkillsMenuVis == true && foundEnemy == false && attackSkills == false && healSkills == false) {
@@ -453,7 +461,12 @@ public void skillsMenu() {
 }
 
 public void skillSelection() {
-  
+  backgroundQA = new ButtonUI((int) (width/9.75),height/4,(int) (width/1.25),height/2,"",#C0C0C0,3); 
+  System.out.println("("+((int) (width/1.25))+"),("+(height/2)+")");
+  sectionQA1 = new ButtonUI((int) (width/9.75),height/4,(int)(((int) (width/1.25))/4),(int) (height/2.25),"",#C0C0C0,3);
+  sectionQA2 = new ButtonUI((int) (width/4),height/4,(int)(((int) (width/1.25))/4),(int) (height/2.25),"",#C0C0C0,3);
+  sectionQA3 = new ButtonUI((int) (width/2.83),height/4,(int)(((int) (width/1.25))/4),(int) (height/2.25),"",#C0C0C0,3);
+  skillSectionEquipLoaded = true;
 }
 
 public void mouseReleased() {
@@ -522,21 +535,26 @@ public void mouseReleased() {
   if (manageSkillsMenuVis == true && manageSkillsMenuLoaded == true && foundEnemy == false && skillTypeButton[0].isClicked() && pageNumber == 1) {
     manageSkillsMenuLoaded = false;
     manageSkillsMenuVis = false;
+    skillSectionEquipVis = true;
     currentTopic = 1;
+    
   }
   if (manageSkillsMenuVis == true && manageSkillsMenuLoaded == true && skillTypeButton[1].isClicked() && foundEnemy == false && pageNumber == 1) {
     manageSkillsMenuLoaded = false;
     manageSkillsMenuVis = false;
+    skillSectionEquipVis = true;
     currentTopic = 2;
   }
   if (manageSkillsMenuVis == true && manageSkillsMenuLoaded == true && foundEnemy == false && skillTypeButton[2].isClicked() && pageNumber == 1) {
     manageSkillsMenuLoaded = false;
     manageSkillsMenuVis = false;
+    skillSectionEquipVis = true;
     currentTopic = 3;
   }
   if (manageSkillsMenuVis == true && manageSkillsMenuLoaded == true && foundEnemy == false && skillTypeButton[3].isClicked() && pageNumber == 2) {
     manageSkillsMenuLoaded = false;
     manageSkillsMenuVis = false;
+    skillSectionEquipVis = true;
     currentTopic = 4;
   }
   //select skill menu topic button

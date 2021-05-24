@@ -5,8 +5,10 @@ public class Entity {
   PVector pos;
   int x,y,lvl,speed;
   int[] hp = new int[2],xp = new int[2];
+  PImage test;
   public Entity(String picture,int x, int y,int lvl,int[] hp,int[] xp,int speed) {
     this.picture = picture;
+    //this.test = loadImage(this.picture, "png");
     //this.image = loadImage(this.picture, "png");
     this.x = x;
     this.y = y;
