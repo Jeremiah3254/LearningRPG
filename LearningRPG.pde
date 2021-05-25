@@ -1,6 +1,7 @@
 boolean gamePaused = false;
 int currentTopic = 0;
 String pauseText = "Pause Game";
+boolean gameLoaded = false;
 boolean foundEnemy = false, battleUILoaded = false, attackSkills = false, healSkills = false;
 boolean attributesMenuVis = false, attributesLoaded = false, manageSkillsMenuVis = false, manageSkillsMenuLoaded = false, skillSectionEquipVis = false, skillSectionEquipLoaded = false;
 String currentHoverText = "";
@@ -11,7 +12,7 @@ boolean[] movement = new boolean[4];
 //EnemySprite.png
 Player Player1;
 //Player UI
-ButtonUI backgroundQA,sectionQA1,buttonQA1,sectionQA2,buttonQA2,sectionQA3,buttonQA3,sectionQA4,buttonQA4,rightArrowQA,leftArrow;
+ButtonUI backgroundQA,sectionQA1,buttonQA1,sectionQA2,buttonQA2,sectionQA3,buttonQA3,sectionQA4,buttonQA4,rightArrowQA,leftArrowQA,SideColumnQA;
 progressBar xpbarQA;
 TextLabels tabQANumber;
 //Player UI
@@ -186,7 +187,7 @@ for (EnemyMob boss : Bosses) {
     Enemy.move(movement,Player1.getSPD());
     }
       if (Enemy.getX() >= boundsLeft && Enemy.getX() <= boundsRight && Enemy.getY() <= boundsBottom && Enemy.getY() >= boundsTop) {
-        if (Enemy.isAlive() == true && foundEnemy == false && gamePaused == false) {
+        if (Enemy.isAlive() == true && foundEnemy == false && gamePaused == false && gameLoaded == true) {
           Enemy.randomMovement();
           Enemy.draw();
           if (dist(Player1.getX(),Player1.getY(),Enemy.getX(),Enemy.getY()) <= (60 / 2) + (60 / 2)) {
@@ -208,11 +209,21 @@ for (EnemyMob boss : Bosses) {
     Player1.refreshStats();
   }
   
+  gameLoaded = true;
+  
   if (skillSectionEquipVis == true && foundEnemy == false && attackSkills == false && healSkills == false) {
     skillSelection();
     backgroundQA.draw();
     sectionQA1.draw();
     sectionQA2.draw();
+    sectionQA3.draw();
+    sectionQA4.draw();
+    xpbarQA.draw();
+    
+    SideColumnQA.draw();
+    rightArrowQA.draw();
+    leftArrowQA.draw();
+    tabQANumber.draw();
   }
   
   if (manageSkillsMenuVis == true && foundEnemy == false && attackSkills == false && healSkills == false) {
@@ -461,12 +472,24 @@ public void skillsMenu() {
 }
 
 public void skillSelection() {
-  backgroundQA = new ButtonUI((int) (width/9.75),height/4,(int) (width/1.25),height/2,"",#C0C0C0,3); 
+  if (currentTopic == 0) {
+  backgroundQA = new ButtonUI((int) (width/9.75),height/4,(int) (width/1.2),height/2,"",#C0C0C0,3); 
   System.out.println("("+((int) (width/1.25))+"),("+(height/2)+")");
   sectionQA1 = new ButtonUI((int) (width/9.75),height/4,(int)(((int) (width/1.25))/4),(int) (height/2.25),"",#C0C0C0,3);
-  sectionQA2 = new ButtonUI((int) (width/4),height/4,(int)(((int) (width/1.25))/4),(int) (height/2.25),"",#C0C0C0,3);
-  sectionQA3 = new ButtonUI((int) (width/2.83),height/4,(int)(((int) (width/1.25))/4),(int) (height/2.25),"",#C0C0C0,3);
+  sectionQA2 = new ButtonUI((int) (width/3.33),height/4,(int)(((int) (width/1.25))/4),(int) (height/2.25),"",#C0C0C0,3);
+  sectionQA3 = new ButtonUI((int) (width/2),height/4,(int)(((int) (width/1.25))/4),(int) (height/2.25),"",#C0C0C0,3);
+  sectionQA4 = new ButtonUI((int) (width/1.44),height/4,(int)(((int) (width/1.25))/4),(int) (height/2.25),"",#C0C0C0,3);
+  
+  xpbarQA = new progressBar("XP: "+skillCategories[0].getXPC()+"/"+skillCategories[0].getXPM(),1,new int[] {skillCategories[0].getXPC(),skillCategories[0].getXPM()},(int) (width/9.75),(int) (height/1.464),(int) (width/1.276),50,#FFFF00);
+  
+  SideColumnQA = new ButtonUI((int) (width/1.129),height/4,50,(int) (height/2),"",#FF0000,3);
+  leftArrowQA = new ButtonUI((int) (width/1.129),height/4,50,50,"<",#FF0000,3);
+  rightArrowQA = new ButtonUI((int) (width/1.129),(int) (height/1.467),50,50,">",#FF0000,3);
+  tabQANumber = new TextLabels(pageNumber+"",(int) (width/1.129),height/4,50,(int) (height/2),#FFFFFF,60);
+  //test
+  
   skillSectionEquipLoaded = true;
+  }
 }
 
 public void mouseReleased() {
@@ -536,26 +559,26 @@ public void mouseReleased() {
     manageSkillsMenuLoaded = false;
     manageSkillsMenuVis = false;
     skillSectionEquipVis = true;
-    currentTopic = 1;
+    currentTopic = 0;
     
   }
   if (manageSkillsMenuVis == true && manageSkillsMenuLoaded == true && skillTypeButton[1].isClicked() && foundEnemy == false && pageNumber == 1) {
     manageSkillsMenuLoaded = false;
     manageSkillsMenuVis = false;
     skillSectionEquipVis = true;
-    currentTopic = 2;
+    currentTopic = 1;
   }
   if (manageSkillsMenuVis == true && manageSkillsMenuLoaded == true && foundEnemy == false && skillTypeButton[2].isClicked() && pageNumber == 1) {
     manageSkillsMenuLoaded = false;
     manageSkillsMenuVis = false;
     skillSectionEquipVis = true;
-    currentTopic = 3;
+    currentTopic = 2;
   }
   if (manageSkillsMenuVis == true && manageSkillsMenuLoaded == true && foundEnemy == false && skillTypeButton[3].isClicked() && pageNumber == 2) {
     manageSkillsMenuLoaded = false;
     manageSkillsMenuVis = false;
     skillSectionEquipVis = true;
-    currentTopic = 4;
+    currentTopic = 3;
   }
   //select skill menu topic button
 }
