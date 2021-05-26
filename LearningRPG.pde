@@ -38,6 +38,9 @@ ButtonUI Pstat,Estat,background1,background2,bottomBar,attackButton,healButton,r
 // combat ui
 EnemyMob[] Enemies = new EnemyMob[2000];
 skillTypes[] skillCategories = new skillTypes[4];
+equippedSkills[] damageSkills = new equippedSkills[4];
+equippedSkills[] healSkills = new equippedSkills[4];
+
 PImage background,Player,Enemy;
 //Biome grassBiome,mixtureBiome,mudBiome;
 Biome[] biomes = new Biome[8];
