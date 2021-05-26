@@ -500,46 +500,88 @@ public void skillsMenu() {
 }
 
 public void skillSelection() {
-  if (currentTopic == 0) {
-    
   skillTierIconQA[0] = loadImage("Tier0Icon.png", "png");
   skillTierIconQA[1] = loadImage("Tier1Icon.png", "png");
   skillTierIconQA[2] = loadImage("Tier2Icon.png", "png");
   skillTierIconQA[3] = loadImage("Tier3Icon.png", "png");
   backgroundQA = new ButtonUI((int) (width/9.75),height/4,(int) (width/1.2),height/2,"",#C0C0C0,3); 
-  System.out.println("("+((int) (width/1.25))+"),("+(height/2)+")");
+  SideColumnQA = new ButtonUI((int) (width/1.129),height/4,50,(int) (height/2),"",#FF0000,3);
+  leftArrowQA = new ButtonUI((int) (width/1.129),height/4,50,50,"<",#FF0000,3);
+  rightArrowQA = new ButtonUI((int) (width/1.129),(int) (height/1.467),50,50,">",#FF0000,3);
+  tabQANumber = new TextLabels(pageNumber+"",(int) (width/1.129),height/4,50,(int) (height/2),#FFFFFF,60);
   sectionQA1 = new ButtonUI((int) (width/9.75),height/4,(int)(((int) (width/1.25))/4),(int) (height/2.25),"",#C0C0C0,3);
-  buttonQA1 = new ButtonUI((int) (width/9.75),(int)(height/1.626),(int)(((int) (width/1.25))/4),50,"Equip",#00FF00,3);
   sectionQA2 = new ButtonUI((int) (width/3.33),height/4,(int)(((int) (width/1.25))/4),(int) (height/2.25),"",#C0C0C0,3);
-  buttonQA2 = new ButtonUI((int) (width/3.33),(int)(height/1.626),(int)(((int) (width/1.25))/4),50,"Equip",#00FF00,3);
   sectionQA3 = new ButtonUI((int) (width/2),height/4,(int)(((int) (width/1.25))/4),(int) (height/2.25),"",#C0C0C0,3);
-  buttonQA3 = new ButtonUI((int) (width/2),(int)(height/1.626),(int)(((int) (width/1.25))/4),50,"Equip",#00FF00,3);
   sectionQA4 = new ButtonUI((int) (width/1.44),height/4,(int)(((int) (width/1.25))/4),(int) (height/2.25),"",#C0C0C0,3);
-  buttonQA4 = new ButtonUI((int) (width/1.44),(int)(height/1.626),(int)(((int) (width/1.25))/4),50,"Equip",#00FF00,3);
+  uttonQA1 = new ButtonUI((int) (width/9.75),(int)(height/1.626),(int)(((int) (width/1.25))/4),50,"Equip",#00FF00,3);
+  xpbarQA = new progressBar("XP: "+skillCategories[currentTopic].getXPC()+"/"+skillCategories[currentTopic].getXPM(),1,new int[] {skillCategories[currentTopic].getXPC(),skillCategories[currentTopic].getXPM()},(int) (width/9.75),(int) (height/1.464),(int) (width/1.276),50,#FFFF00);
+    if (skillCategories[currentTopic].getLvl() >= 5) {
+    buttonQA2 = new ButtonUI((int) (width/3.33),(int)(height/1.626),(int)(((int) (width/1.25))/4),50,"Equip",#00FF00,3);
+    }else {
+    buttonQA2 = new ButtonUI((int) (width/3.33),(int)(height/1.626),(int)(((int) (width/1.25))/4),50,"Locked",#00FF00,3);
+    }
+    if (skillCategories[currentTopic].getLvl() >= 10) {
+    buttonQA3 = new ButtonUI((int) (width/2),(int)(height/1.626),(int)(((int) (width/1.25))/4),50,"Equip",#00FF00,3);
+    }else {
+    buttonQA3 = new ButtonUI((int) (width/2),(int)(height/1.626),(int)(((int) (width/1.25))/4),50,"Locked",#00FF00,3);
+    }
+    if (skillCategories[currentTopic].getLvl() >= 15) {
+    buttonQA4 = new ButtonUI((int) (width/1.44),(int)(height/1.626),(int)(((int) (width/1.25))/4),50,"Equip",#00FF00,3);
+    }else {
+    buttonQA4 = new ButtonUI((int) (width/1.44),(int)(height/1.626),(int)(((int) (width/1.25))/4),50,"Locked",#00FF00,3);
+    }
+  
+  if (currentTopic == 0) {
   
   skillName1 = new TextLabels("Addition",(int) (width/9.75),height/4,(int)(((int) (width/1.25))/4),50,#000000,25);
-  skillName2 = new TextLabels("Addition",(int) (width/3.33),height/4,(int)(((int) (width/1.25))/4),50,#000000,25);
-  skillName3 = new TextLabels("Addition",(int) (width/2),height/4,(int)(((int) (width/1.25))/4),50,#000000,25);
-  skillName4 = new TextLabels("Addition",(int) (width/1.44),height/4,(int)(((int) (width/1.25))/4),50,#000000,25);
-  
+  skillName2 = new TextLabels("Multiplication",(int) (width/3.33),height/4,(int)(((int) (width/1.25))/4),50,#000000,25);
+  skillName3 = new TextLabels("Division",(int) (width/2),height/4,(int)(((int) (width/1.25))/4),50,#000000,25);
+  skillName4 = new TextLabels("PEMDAS",(int) (width/1.44),height/4,(int)(((int) (width/1.25))/4),50,#000000,25);
   
   skillDesc1 = new TextLabels("Level: 0\nDamage: 20\nStamina Cost: 10",(int) (width/9.75),height/2,(int)(((int) (width/1.25))/4),50,#000000,20);
   skillDesc2 = new TextLabels("Level: 5\nDamage: 35\nStamina Cost: 15",(int) (width/3.33),height/2,(int)(((int) (width/1.25))/4),50,#000000,20);
   skillDesc3 = new TextLabels("Level: 10\nDamage: 50\nStamina Cost: 25",(int) (width/2),height/2,(int)(((int) (width/1.25))/4),50,#000000,20);
   skillDesc4 = new TextLabels("Level: 15\nDamage: 100\nStamina Cost: 35",(int) (width/1.44),height/2,(int)(((int) (width/1.25))/4),50,#000000,20);
-  /*
-  */
+
+  skillSectionEquipLoaded = true;
+  } else if (currentTopic == 1) {
   
-  xpbarQA = new progressBar("XP: "+skillCategories[0].getXPC()+"/"+skillCategories[0].getXPM(),1,new int[] {skillCategories[0].getXPC(),skillCategories[0].getXPM()},(int) (width/9.75),(int) (height/1.464),(int) (width/1.276),50,#FFFF00);
+  skillName1 = new TextLabels("Cells",(int) (width/9.75),height/4,(int)(((int) (width/1.25))/4),50,#000000,25);
+  skillName2 = new TextLabels("DNA",(int) (width/3.33),height/4,(int)(((int) (width/1.25))/4),50,#000000,25);
+  skillName3 = new TextLabels("Planets",(int) (width/2),height/4,(int)(((int) (width/1.25))/4),50,#000000,25);
+  skillName4 = new TextLabels("Elements",(int) (width/1.44),height/4,(int)(((int) (width/1.25))/4),50,#000000,25);
   
-  SideColumnQA = new ButtonUI((int) (width/1.129),height/4,50,(int) (height/2),"",#FF0000,3);
-  leftArrowQA = new ButtonUI((int) (width/1.129),height/4,50,50,"<",#FF0000,3);
-  rightArrowQA = new ButtonUI((int) (width/1.129),(int) (height/1.467),50,50,">",#FF0000,3);
-  tabQANumber = new TextLabels(pageNumber+"",(int) (width/1.129),height/4,50,(int) (height/2),#FFFFFF,60);
-  //test
+  skillDesc1 = new TextLabels("Level: 0\nHeal Amount: 20\nStamina Cost: 10",(int) (width/9.75),height/2,(int)(((int) (width/1.25))/4),50,#000000,20);
+  skillDesc2 = new TextLabels("Level: 5\nHeal Amount: 35\nStamina Cost: 15",(int) (width/3.33),height/2,(int)(((int) (width/1.25))/4),50,#000000,20);
+  skillDesc3 = new TextLabels("Level: 10\nHeal Amount: 50\nStamina Cost: 25",(int) (width/2),height/2,(int)(((int) (width/1.25))/4),50,#000000,20);
+  skillDesc4 = new TextLabels("Level: 15\nHeal Amount: 100\nStamina Cost: 35",(int) (width/1.44),height/2,(int)(((int) (width/1.25))/4),50,#000000,20);
   
   skillSectionEquipLoaded = true;
-  }
+  } else if (currentTopic == 2) {
+  
+  skillName1 = new TextLabels("Presidents",(int) (width/9.75),height/4,(int)(((int) (width/1.25))/4),50,#000000,25);
+  skillName2 = new TextLabels("States",(int) (width/3.33),height/4,(int)(((int) (width/1.25))/4),50,#000000,25);
+  skillName3 = new TextLabels("Dates",(int) (width/2),height/4,(int)(((int) (width/1.25))/4),50,#000000,25);
+  skillName4 = new TextLabels("Dictators",(int) (width/1.44),height/4,(int)(((int) (width/1.25))/4),50,#000000,25);
+  
+  skillDesc1 = new TextLabels("Level: 0\nStamina Amount: 20\nStamina Cost: 10",(int) (width/9.75),height/2,(int)(((int) (width/1.25))/4),50,#000000,20);
+  skillDesc2 = new TextLabels("Level: 5\nStamina Amount: 35\nStamina Cost: 15",(int) (width/3.33),height/2,(int)(((int) (width/1.25))/4),50,#000000,20);
+  skillDesc3 = new TextLabels("Level: 10\nStamina Amount: 50\nStamina Cost: 25",(int) (width/2),height/2,(int)(((int) (width/1.25))/4),50,#000000,20);
+  skillDesc4 = new TextLabels("Level: 15\nStamina Amount: 100\nStamina Cost: 35",(int) (width/1.44),height/2,(int)(((int) (width/1.25))/4),50,#000000,20);
+  
+  } else if (currentTopic == 3) {
+  
+  skillName1 = new TextLabels("Grammar",(int) (width/9.75),height/4,(int)(((int) (width/1.25))/4),50,#000000,25);
+  skillName2 = new TextLabels("Vocab",(int) (width/3.33),height/4,(int)(((int) (width/1.25))/4),50,#000000,25);
+  skillName3 = new TextLabels("Figurative Language",(int) (width/2),height/4,(int)(((int) (width/1.25))/4),50,#000000,25);
+  skillName4 = new TextLabels("Characters",(int) (width/1.44),height/4,(int)(((int) (width/1.25))/4),50,#000000,25);
+  
+  skillDesc1 = new TextLabels("Level: 0\nDamage: 20\nStamina Cost: 10",(int) (width/9.75),height/2,(int)(((int) (width/1.25))/4),50,#000000,20);
+  skillDesc2 = new TextLabels("Level: 5\nDamage: 35\nStamina Cost: 15",(int) (width/3.33),height/2,(int)(((int) (width/1.25))/4),50,#000000,20);
+  skillDesc3 = new TextLabels("Level: 10\nDamage: 50\nStamina Cost: 25",(int) (width/2),height/2,(int)(((int) (width/1.25))/4),50,#000000,20);
+  skillDesc4 = new TextLabels("Level: 15\nDamage: 100\nStamina Cost: 35",(int) (width/1.44),height/2,(int)(((int) (width/1.25))/4),50,#000000,20);
+  
+  ]
 }
 
 public void mouseReleased() {
