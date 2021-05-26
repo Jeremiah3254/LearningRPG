@@ -13,6 +13,8 @@ boolean[] movement = new boolean[4];
 Player Player1;
 //Player UI
 ButtonUI backgroundQA,sectionQA1,buttonQA1,sectionQA2,buttonQA2,sectionQA3,buttonQA3,sectionQA4,buttonQA4,rightArrowQA,leftArrowQA,SideColumnQA;
+PImage[] skillTierIconQA = new PImage[4];
+TextLabels skillName1,skillName2,skillName3,skillName4,skillDesc1,skillDesc2,skillDesc3,skillDesc4;
 progressBar xpbarQA;
 TextLabels tabQANumber;
 //Player UI
@@ -213,12 +215,38 @@ for (EnemyMob boss : Bosses) {
   
   if (skillSectionEquipVis == true && foundEnemy == false && attackSkills == false && healSkills == false) {
     skillSelection();
+    leftArrowQA.hoverAnim();
+    rightArrowQA.hoverAnim();
+    buttonQA2.hoverAnim();
+    buttonQA1.hoverAnim();
+    buttonQA3.hoverAnim();
+    buttonQA4.hoverAnim();
+    
     backgroundQA.draw();
     sectionQA1.draw();
     sectionQA2.draw();
     sectionQA3.draw();
     sectionQA4.draw();
     xpbarQA.draw();
+    buttonQA1.draw();
+    buttonQA2.draw();
+    buttonQA3.draw();
+    buttonQA4.draw();
+    
+    skillName1.draw();
+    skillName2.draw();
+    skillName3.draw();
+    skillName4.draw();
+    
+    skillDesc1.draw();
+    skillDesc2.draw();
+    skillDesc3.draw();
+    skillDesc4.draw();
+    
+    image(skillTierIconQA[0],(int) (width/6.5), height/3,100,100);
+    image(skillTierIconQA[1],(int) (width/2.85), height/3,100,100);
+    image(skillTierIconQA[2],(int) (width/1.82), height/3,100,100);
+    image(skillTierIconQA[3],(int) (width/1.35), height/3,100,100);
     
     SideColumnQA.draw();
     rightArrowQA.draw();
@@ -473,12 +501,34 @@ public void skillsMenu() {
 
 public void skillSelection() {
   if (currentTopic == 0) {
+    
+  skillTierIconQA[0] = loadImage("Tier0Icon.png", "png");
+  skillTierIconQA[1] = loadImage("Tier1Icon.png", "png");
+  skillTierIconQA[2] = loadImage("Tier2Icon.png", "png");
+  skillTierIconQA[3] = loadImage("Tier3Icon.png", "png");
   backgroundQA = new ButtonUI((int) (width/9.75),height/4,(int) (width/1.2),height/2,"",#C0C0C0,3); 
   System.out.println("("+((int) (width/1.25))+"),("+(height/2)+")");
   sectionQA1 = new ButtonUI((int) (width/9.75),height/4,(int)(((int) (width/1.25))/4),(int) (height/2.25),"",#C0C0C0,3);
+  buttonQA1 = new ButtonUI((int) (width/9.75),(int)(height/1.626),(int)(((int) (width/1.25))/4),50,"Equip",#00FF00,3);
   sectionQA2 = new ButtonUI((int) (width/3.33),height/4,(int)(((int) (width/1.25))/4),(int) (height/2.25),"",#C0C0C0,3);
+  buttonQA2 = new ButtonUI((int) (width/3.33),(int)(height/1.626),(int)(((int) (width/1.25))/4),50,"Equip",#00FF00,3);
   sectionQA3 = new ButtonUI((int) (width/2),height/4,(int)(((int) (width/1.25))/4),(int) (height/2.25),"",#C0C0C0,3);
+  buttonQA3 = new ButtonUI((int) (width/2),(int)(height/1.626),(int)(((int) (width/1.25))/4),50,"Equip",#00FF00,3);
   sectionQA4 = new ButtonUI((int) (width/1.44),height/4,(int)(((int) (width/1.25))/4),(int) (height/2.25),"",#C0C0C0,3);
+  buttonQA4 = new ButtonUI((int) (width/1.44),(int)(height/1.626),(int)(((int) (width/1.25))/4),50,"Equip",#00FF00,3);
+  
+  skillName1 = new TextLabels("Addition",(int) (width/9.75),height/4,(int)(((int) (width/1.25))/4),50,#000000,25);
+  skillName2 = new TextLabels("Addition",(int) (width/3.33),height/4,(int)(((int) (width/1.25))/4),50,#000000,25);
+  skillName3 = new TextLabels("Addition",(int) (width/2),height/4,(int)(((int) (width/1.25))/4),50,#000000,25);
+  skillName4 = new TextLabels("Addition",(int) (width/1.44),height/4,(int)(((int) (width/1.25))/4),50,#000000,25);
+  
+  
+  skillDesc1 = new TextLabels("Level: 0\nDamage: 20\nStamina Cost: 10",(int) (width/9.75),height/2,(int)(((int) (width/1.25))/4),50,#000000,20);
+  skillDesc2 = new TextLabels("Level: 5\nDamage: 35\nStamina Cost: 15",(int) (width/3.33),height/2,(int)(((int) (width/1.25))/4),50,#000000,20);
+  skillDesc3 = new TextLabels("Level: 10\nDamage: 50\nStamina Cost: 25",(int) (width/2),height/2,(int)(((int) (width/1.25))/4),50,#000000,20);
+  skillDesc4 = new TextLabels("Level: 15\nDamage: 100\nStamina Cost: 35",(int) (width/1.44),height/2,(int)(((int) (width/1.25))/4),50,#000000,20);
+  /*
+  */
   
   xpbarQA = new progressBar("XP: "+skillCategories[0].getXPC()+"/"+skillCategories[0].getXPM(),1,new int[] {skillCategories[0].getXPC(),skillCategories[0].getXPM()},(int) (width/9.75),(int) (height/1.464),(int) (width/1.276),50,#FFFF00);
   
