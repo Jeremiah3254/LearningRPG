@@ -20,13 +20,19 @@ public class Player extends Entity {
     }
   }
   
+  public void setXP(int num) {
+   super.xp[0] = super.xp[0]+num; 
+  }
+  
   public void damageEnemy(EnemyMob enemy, equippedSkills skill) {
     enemy.setCHP((enemy.getCHP() - skill.getDamage()));
+    System.out.println("test");
     this.stamina[0] = this.stamina[0] - skill.getStaminaCost();
   }
   
-  public void damageEnemy(equippedSkills skill) {
+  public void damageplayer(equippedSkills skill) {
     super.hp[0] = super.hp[0] - skill.getDamage();
+    System.out.println("test1");
     this.stamina[0] = this.stamina[0] - skill.getStaminaCost();
   }
   

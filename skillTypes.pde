@@ -11,11 +11,16 @@ public class skillTypes {
   if (this.xp[0] >= this.xp[1]) {
   this.level = this.level+1;
   this.xp[0] = this.xp[0] - this.xp[1];
+  this.xp[1] = this.xp[1]+10;
   }
  }
   
   public int getXPC() {
     return xp[0];
+  }
+  
+  public void setXP() {
+   this.xp[0] = this.xp[0]+10;
   }
   
   public int getXPM() {

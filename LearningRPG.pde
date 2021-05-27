@@ -1,4 +1,4 @@
-boolean gamePaused = false;
+boolean gamePaused = false, playerdied = false;
 int currentTopic = 0;
 int currentSkillSelected = 0,clickTime;
 String pauseText = "Pause Game";
@@ -103,7 +103,7 @@ public void setup() {
   mudBiome = new Biome("mudTerrain.png",(int) random(-width,width)*10,(int) random(-height,height)*10,1500,1500);
   */
   //Check
-  Player1 = new Player(new int[] {100000,10},new int[] {100,100},new int[] {100,100},1,0,width/2-30,height/2-30,25);
+  Player1 = new Player(new int[] {0,10},new int[] {100,100},new int[] {100,100},1,0,width/2-30,height/2-30,25);
   skillCategories[0] = new skillTypes(0,new int[] {0,10});
   skillCategories[1] = new skillTypes(0,new int[] {0,10});
   skillCategories[2] = new skillTypes(0,new int[] {0,10});
@@ -158,12 +158,12 @@ public void draw() {
     if (biome.getX()+1500 >= boundsLeft && biome.getX() <= boundsRight && biome.getY() <= boundsBottom && biome.getY()+1500 >= boundsTop) {
       biome.draw();
     }
-    if (gamePaused == false && foundEnemy == false) {
+    if (gamePaused == false && playerdied == false && foundEnemy == false) {
         biome.move(movement,Player1.getSpeedA());
     }
   }
   
-  /*if (gamePaused == false && foundEnemy == false) {
+  /*if (gamePaused == false && playerdied == false && foundEnemy == false) {
   grassBiome.move(movement,Player1.getSpeedA());
   mixtureBiome.move(movement,Player1.getSpeedA());
   mudBiome.move(movement,Player1.getSpeedA());
@@ -188,7 +188,7 @@ public void draw() {
   int y = (height/2)-30;
 
 for (EnemyMob boss : Bosses) {
-  if (gamePaused == false && foundEnemy == false) {
+  if (gamePaused == false && playerdied == false && foundEnemy == false) {
   boss.move(movement,Player1.getSPD());
   if (boss.getX() >= boundsLeft && boss.getX() <= boundsRight && boss.getY() <= boundsBottom && boss.getY() >= boundsTop && boss.isAlive() == true) {
    boss.drawB();
@@ -222,11 +222,11 @@ for (EnemyMob boss : Bosses) {
   }
   
   for (EnemyMob Enemy : Enemies) {
-    if (foundEnemy == false && gamePaused == false) {
+    if (foundEnemy == false && gamePaused == false && playerdied == false) {
     Enemy.move(movement,Player1.getSPD());
     }
       if (Enemy.getX() >= boundsLeft && Enemy.getX() <= boundsRight && Enemy.getY() <= boundsBottom && Enemy.getY() >= boundsTop) {
-        if (Enemy.isAlive() == true && foundEnemy == false && gamePaused == false && gameLoaded == true) {
+        if (Enemy.isAlive() == true && foundEnemy == false && gamePaused == false && playerdied == false && gameLoaded == true) {
           Enemy.randomMovement();
           Enemy.draw();
           if (dist(Player1.getX(),Player1.getY(),Enemy.getX(),Enemy.getY()) <= (60 / 2) + (60 / 2)) {
@@ -240,7 +240,7 @@ for (EnemyMob boss : Bosses) {
   }
   if (Player1.isAlive() == true) {
     //Player1.move(movement);
-    if (gamePaused == false) {
+    if (gamePaused == false && playerdied == false) {
     Player1.move(movement);
     }
     Player1.draw();
@@ -542,7 +542,7 @@ for (EnemyMob boss : Bosses) {
       healTextLabels[0][0][1].draw();
       image(healButtonIcons[0],base1X+60,base1Y+5,100,100);
     }else {
-     damageButtons[0].draw();
+     healButtons[0].draw();
     }
     
     if (!(healSkillsE[1].getType() == 0)){
@@ -554,7 +554,7 @@ for (EnemyMob boss : Bosses) {
       healTextLabels[0][0][2].draw();
       image(healButtonIcons[1],base1X+60,base1Y+5,100,100);
     }else {
-     damageButtons[1].draw();
+     healButtons[1].draw();
     }
     
     if (!(healSkillsE[2].getType() == 0)){
@@ -566,7 +566,7 @@ for (EnemyMob boss : Bosses) {
       healTextLabels[0][0][3].draw();
       image(healButtonIcons[2],base1X+60,base1Y+5,100,100);
     }else {
-     damageButtons[2].draw();
+     healButtons[2].draw();
     }
     
     if (!(healSkillsE[3].getType() == 0)){
@@ -578,7 +578,7 @@ for (EnemyMob boss : Bosses) {
       healTextLabels[0][0][4].draw();
       image(healButtonIcons[3],base1X+60,base1Y+5,100,100);
     }else {
-     damageButtons[3].draw();
+     healButtons[3].draw();
     }
     
   }
@@ -638,6 +638,16 @@ public void questionUI() {
     answers[3] = new TextLabels(""+currentQ.getOption4(),80,(int)(height/1.12),width,height/7,#FFFFFF,20);
     submitAnswer = new ButtonUI((int)(width/2.2),(int)(height/1.08),100,50,"Submit",#808080,1,#FF0000);
   }
+}
+
+public void refreshStats() {
+  Pstat = new ButtonUI(0,0,300,100,"Player "+"Lvl: "+Player1.getLvl()+"\n\n\n",#00b300,3,#000000);
+  Estat = new ButtonUI(width-350,0,350,100,currentEnemy.getName()+" "+"Lvl: "+currentEnemy.getLvl()+"\n\n\n",#e60000,2,#000000);
+  PlayerXP = new progressBar("XP: "+Player1.getCXP()+"/"+Player1.getMXP(),1,new int[] {Player1.getCXP(),Player1.getMXP()},75,25,225,25,#FFFF00);
+  PlayerHP = new progressBar("Health: "+Player1.getCHP()+"/"+Player1.getMHP(),1,new int[] {Player1.getCHP(),Player1.getMHP()},75,50,225,25,#FF0000);
+  PlayerStamina = new progressBar("Stamina: "+Player1.getStamC()+"/"+Player1.getStamM(),1,new int[] {Player1.getStamC(),Player1.getStamM()},15,75,285,25,#00FF00);
+  EnemyXP = new progressBar("XP: "+currentEnemy.getCXP()+"/"+currentEnemy.getMXP(),2,new int[] {currentEnemy.getCXP(),currentEnemy.getMXP()},width-300,25,225,25,#FFFF00);
+  EnemyHP = new progressBar("Health: "+currentEnemy.getCHP()+"/"+currentEnemy.getMHP(),2,new int[] {currentEnemy.getCHP(),currentEnemy.getMHP()},width-300,50,225,25,#FF0000);
 }
 
 public void combatUI(EnemyMob enemy) {
@@ -1013,7 +1023,7 @@ public void mouseReleased() {
       }
   }
   if (pauseButton.isClicked() && foundEnemy == false) {
-    if (gamePaused == false) {
+    if (gamePaused == false && playerdied == false) {
       pauseText = "Unpause Game";
       gamePaused = true;
     } else {
@@ -1155,39 +1165,85 @@ public void mouseReleased() {
    selectedX[1] = "";
    selectedX[2] = "";
    selectedX[3] = "";
-   currentSelected = 1;
+   currentSelected = 0;
   }
   if (attackinProgress == true && options[1].isClicked() == true) {
    selectedX[0] = "";
    selectedX[1] = "X";
    selectedX[2] = "";
    selectedX[3] = "";
-   currentSelected = 2;
+   currentSelected = 1;
   }
   if (attackinProgress == true && options[2].isClicked() == true) {
    selectedX[0] = "";
    selectedX[1] = "";
    selectedX[2] = "X";
    selectedX[3] = "";
-   currentSelected = 3;
+   currentSelected = 2;
   }
   if (attackinProgress == true && options[3].isClicked() == true) {
    selectedX[0] = "";
    selectedX[1] = "";
    selectedX[2] = "";
    selectedX[3] = "X";
-   currentSelected = 4;
+   currentSelected = 3;
   }
   if (attackinProgress == true && submitAnswer.isClicked()) {
     if (currentSelected == correctAnswer) {
       attackinProgress = false;
+      Player1.damageEnemy(currentEnemy,damageSkillsE[currentDSkill]);
+      refreshStats();
+      damageSkillsE[currentDSkill].giveXP(skillCategories);
+      skillCategories[damageSkillsE[currentDSkill].getskillType()].levelUp();
+      if (currentEnemy.getCHP() <= 0) {
+        foundEnemy = false;
+        healSkills = false;
+        attackSkills = false;
+        currentEnemy.setAlive(false);
+        currentEnemy.setDeathTime(minute());
+        battleUILoaded = false;
+        Player1.setXP(10);
+      }
     }else {
       attackinProgress = false;
+      Player1.damageplayer(damageSkillsE[currentDSkill]);
+      refreshStats();
+      damageSkillsE[currentDSkill].giveXP(skillCategories);
+      skillCategories[damageSkillsE[currentDSkill].getskillType()].levelUp();
+     if (Player1.getCHP() <= 0) {
+        foundEnemy = false;
+        healSkills = false;
+        attackSkills = false;
+        currentEnemy.setAlive(false);
+        currentEnemy.setDeathTime(minute());
+        //Player1.setAlive(false);
+        //Player1.setDeathTime(minute());
+        battleUILoaded = false;
+        playerdied = true;
+     }
     }
   }
   
   if (attackinProgress == false && attackSkills == true && battleUILoaded == true && !(damageSkillsE[0].getType() == 0) && damageButtons[0].isClicked()) {
     currentDSkill = 0;
+    healSkill = false;
+    getQuestionStatistics();
+    attackinProgress = true;
+  }
+  if (attackinProgress == false && attackSkills == true && battleUILoaded == true && !(damageSkillsE[1].getType() == 0) && damageButtons[1].isClicked()) {
+    currentDSkill = 1;
+    healSkill = false;
+    getQuestionStatistics();
+    attackinProgress = true;
+  }
+  if (attackinProgress == false && attackSkills == true && battleUILoaded == true && !(damageSkillsE[2].getType() == 0) && damageButtons[2].isClicked()) {
+    currentDSkill = 2;
+    healSkill = false;
+    getQuestionStatistics();
+    attackinProgress = true;
+  }
+  if (attackinProgress == false && attackSkills == true && battleUILoaded == true && !(damageSkillsE[3].getType() == 0) && damageButtons[3].isClicked()) {
+    currentDSkill = 3;
     healSkill = false;
     getQuestionStatistics();
     attackinProgress = true;

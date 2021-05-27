@@ -10,6 +10,32 @@ public class equippedSkills {
     this.damage = damage;
   }
   
+  public void giveXP(skillTypes[] currentSkill) {
+    if (this.skillIcon == "MathLogo.png") {
+     currentSkill[0].setXP();
+    }else if (this.skillIcon == "ScienceLogo.png") {
+     currentSkill[1].setXP();
+    }else if (this.skillIcon == "socialStudiesLogo.png") {
+      currentSkill[2].setXP();
+    }else if (this.skillIcon == "EnglishIcon.png") {
+      currentSkill[3].setXP();
+    }
+  }
+  
+  public int getskillType() {
+    int test = 0;
+    if (this.skillIcon == "MathLogo.png") {
+     return 0;
+    }else if (this.skillIcon == "ScienceLogo.png") {
+     return 1;
+    }else if (this.skillIcon == "socialStudiesLogo.png") {
+      return 2;
+    }else if (this.skillIcon == "EnglishIcon.png") {
+      return 3;
+    }
+    return test;
+  }
+  
   public boolean hasStamina(Player p1) {
   boolean result = false;
   if (p1.getStamC() >= this.staminaCost) {
