@@ -139,7 +139,7 @@ public void setup() {
   Bosses[7].changeHP((int) random(4000,5000));
   //bosses
   for (int i = 0; i<Enemies.length; i++) {
-    Enemies[i] = new EnemyMob("Spider","EnemySprite.png",1,new int[] {0,10},new int[] {80,100},(int) random(-width,width)*10,(int) random(-height,height)*10);
+    Enemies[i] = new EnemyMob("Spider","EnemySprite.png",1,new int[] {0,10},new int[] {100,100},(int) random(-width,width)*10,(int) random(-height,height)*10);
   }
   //fullScreen();
 }
