@@ -7,4 +7,9 @@ After they collide they have to also answer the questions based on their chosen 
 
 
 <img src="https://github.com/Jeremiah3254/LearningRPG/blob/main/Images/attributes.PNG">
-<img src="https://github.com/Jeremiah3254/LearningRPG/blob/main/Images/attacks%20(4).PNG">
+<img src="https://github.com/Jeremiah3254/LearningRPG/blob/main/Images/attacks.PNG">
+<img src="https://github.com/Jeremiah3254/LearningRPG/blob/main/Images/answerQuestions.PNG">
+<img src="https://github.com/Jeremiah3254/LearningRPG/blob/main/Images/biomes.PNG">
+<img src="https://github.com/Jeremiah3254/LearningRPG/blob/main/Images/bossfighting.PNG">
+<img src="https://github.com/Jeremiah3254/LearningRPG/blob/main/Images/mobfound.PNG">
+<img src="https://github.com/Jeremiah3254/LearningRPG/blob/main/Images/skilltypes.PNG">
