@@ -21,5 +21,12 @@ public class TextLabels {
     text(textTitle,x+w/2,y+h/2);
   }
   
+  public void drawLeft() {
+    //rect(x,y,w,h);
+    textAlign(LEFT,CENTER);
+    textSize(scale);
+    fill(c);
+    text(textTitle,x,y);
+  }
   
 }

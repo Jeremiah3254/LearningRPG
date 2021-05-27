@@ -12,8 +12,4 @@ this.stamCost = stamCost;
 this.difficultyLvl = difficultyLvl;
 this.lvlRequirement = lvlRequirement;
 }
-
-
-
-
 }

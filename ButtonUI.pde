@@ -3,12 +3,12 @@ import java.awt.Rectangle;
 public class ButtonUI {
   public int x, y, w, h,align;
   public int strokeA = 153;
-  public color c,old;
+  public color c,old,TC;
   public boolean hovered;
   public String title = " ", text = "";
   public Rectangle clickArea;
   
-  public ButtonUI(int x, int y, int w, int h, String title, color c, int align) {
+  public ButtonUI(int x, int y, int w, int h, String title, color c, int align,color TC) {
     this.align = align;
     this.x = x;
     this.y = y;
@@ -16,6 +16,7 @@ public class ButtonUI {
     this.h = h;
     this.title = title;
     this.c = c;
+    this.TC = TC;
     this.clickArea = new Rectangle(x,y,w,h);
   }
   
@@ -40,6 +41,7 @@ public class ButtonUI {
     textAlign(CENTER,CENTER);
     }
     textSize(15);
+    fill(TC);
     text(title,x+w/2,y+h/2);
   }
   
