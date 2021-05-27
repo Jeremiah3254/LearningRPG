@@ -214,6 +214,47 @@ public class QuestionPool {
       }     
     } else if (this.topic == "socialStudiesLogo.png") {
       if (this.tier == 0) {
+        int questionLA = (int) random(0, 6);
+        String[] QList = new String[7];
+        String[] AList = new String[7];
+        QList[0] = "Who was the first president?";
+        QList[1] = "Which president abolished slavery?";
+        QList[2] = "Who was the youngest president?";
+        QList[3] = "Who was the oldest president?";
+        QList[4] = "How many presidents served three terms?";
+        QList[5] = "Who was the last president that served three terms?";
+        QList[6] = "who was the second president?";
+
+        AList[0] = "George Washington";
+        AList[1] = "Abraham Lincoln";
+        AList[2] = "Theodore Roosevelt";
+        AList[3] = "Joe Biden";
+        AList[4] = "To Whom it may Concern";
+        AList[5] = "Used for omission of letters";
+        AList[6] = "Used for separation";
+        this.question = QList[questionLA];
+        for (int i = 0; i<4; i++) {
+          int[] randomS = new int[4];
+          randomS[0] = (int) random(0, 6);
+          randomS[1] = (int) random(0, 6);
+          randomS[2] = (int) random(0, 6);
+          randomS[3] = (int) random(0, 6);
+          for (int q = 0; q<4; q++) {
+             while (randomS[q] == questionLA) {
+              randomS[q] = (int) random(0, 6);
+            }
+          }
+
+          this.options[i] = AList[randomS[i]];
+        }
+        this.options[correctAnswer] = AList[questionLA];
+      }
+      }else if (this.tier == 5) {
+      
+      }else if (this.tier == 10) {
+      
+      }else if (this.tier == 15) {
+      
       }
       
     } else if (this.topic == "EnglishIcon.png") {
