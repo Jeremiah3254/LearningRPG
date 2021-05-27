@@ -68,10 +68,154 @@ public class QuestionPool {
       }
     } else if (this.topic == "ScienceLogo.png") {
       if (this.tier == 0) {
+        int questionLA = (int) random(0, 6);
+        String[] QList = new String[7];
+        String[] AList = new String[7];
+        QList[0] = "What is a cell?";
+        QList[1] = "What is a nucleus?";
+        QList[2] = "What is an organelle?";
+        QList[3] = "What do lysosomes do?";
+        QList[4] = "What does a vesicle do?";
+        QList[5] = "What does the pili do?";
+        QList[6] = "What is the powerhouse of the cell?";
+
+        AList[0] = "are the basic building blocks of all living things.";
+        AList[1] = "membrane-bound organelle that contains the cell's chromosomes.";
+        AList[2] = "any of a number of organized or specialized structures within a living cell.";
+        AList[3] = "break down macromolecules into their constituent parts, which are then recycled.";
+        AList[4] = "metabolism, transport, buoyancy control, and temporary storage of food and enzymes.";
+        AList[5] = "adherence to surfaces, which facilitates infection";
+        AList[6] = "Mitochondria";
+        this.question = QList[questionLA];
+        for (int i = 0; i<4; i++) {
+          int[] randomS = new int[4];
+          randomS[0] = (int) random(0, 6);
+          randomS[1] = (int) random(0, 6);
+          randomS[2] = (int) random(0, 6);
+          randomS[3] = (int) random(0, 6);
+          for (int q = 0; q<4; q++) {
+             while (randomS[q] == questionLA) {
+              randomS[q] = (int) random(0, 6);
+            }
+          }
+
+          this.options[i] = AList[randomS[i]];
+        }
+        this.options[correctAnswer] = AList[questionLA];
       }
+      }else if (this.tier == 5) {
+        int questionLA = (int) random(0, 6);
+        String[] QList = new String[7];
+        String[] AList = new String[7];
+        QList[0] = "What does DNA stand for?";
+        QList[1] = "What type of helix is DNA?";
+        QList[2] = "What is a sequence?";
+        QList[3] = "What is a ribose?";
+        QList[4] = "What is translation?";
+        QList[5] = "What does an amino acid do?";
+        QList[6] = "What is mutation?";
+
+        AList[0] = "Dioxyribonucleicacid.";
+        AList[1] = "Double.";
+        AList[2] = "covalently linked within a biopolymer.";
+        AList[3] = "kind of sugar that is produced by the body.";
+        AList[4] = "a cell “reads” the information in a messenger RNA (mRNA) and uses it to build a protein.";
+        AList[5] = "They are needed for vital processes like the cell building.";
+        AList[6] = "the changing of the structure of a gene.";
+        this.question = QList[questionLA];
+        for (int i = 0; i<4; i++) {
+          int[] randomS = new int[4];
+          randomS[0] = (int) random(0, 6);
+          randomS[1] = (int) random(0, 6);
+          randomS[2] = (int) random(0, 6);
+          randomS[3] = (int) random(0, 6);
+          for (int q = 0; q<4; q++) {
+             while (randomS[q] == questionLA) {
+              randomS[q] = (int) random(0, 6);
+            }
+          }
+
+          this.options[i] = AList[randomS[i]];
+        }
+        this.options[correctAnswer] = AList[questionLA];
+      }
+      }else if (this.tier == 10) {
+        int questionLA = (int) random(0, 6);
+        String[] QList = new String[7];
+        String[] AList = new String[7];
+        QList[0] = "Which planet do we orbit?";
+        QList[1] = "What is the smallest planet in our solar system?";
+        QList[2] = "How many planets are in our solar system?";
+        QList[3] = "Which planet is closest to the sun?";
+        QList[4] = "Which planet is furthest from the sun?";
+        QList[5] = "What does the moon do to earth?";
+        QList[6] = "What is the mass of the sun?";
+
+        AList[0] = "The sun.";
+        AList[1] = "Pluto.";
+        AList[2] = "Eight.";
+        AList[3] = "Mercury.";
+        AList[4] = "Pluto.";
+        AList[5] = "Causes tides.";
+        AList[6] = "19.989 x 10^30 kg";
+        this.question = QList[questionLA];
+        for (int i = 0; i<4; i++) {
+          int[] randomS = new int[4];
+          randomS[0] = (int) random(0, 6);
+          randomS[1] = (int) random(0, 6);
+          randomS[2] = (int) random(0, 6);
+          randomS[3] = (int) random(0, 6);
+          for (int q = 0; q<4; q++) {
+             while (randomS[q] == questionLA) {
+              randomS[q] = (int) random(0, 6);
+            }
+          }
+
+          this.options[i] = AList[randomS[i]];
+        }
+        this.options[correctAnswer] = AList[questionLA];
+      }
+      }else if (this.tier == 15) {
+      int questionLA = (int) random(0, 6);
+        String[] QList = new String[7];
+        String[] AList = new String[7];
+        QList[0] = "What does H stand for?";
+        QList[1] = "What does Si stand for?";
+        QList[2] = "What does Ne stand for?";
+        QList[3] = "What does P stand for?";
+        QList[4] = "What does Ca stand for?";
+        QList[5] = "What does Sc stand for?";
+        QList[6] = "What does Cr stand for?";
+
+        AList[0] = "Hydrogen.";
+        AList[1] = "Silicon.";
+        AList[2] = "Neon.";
+        AList[3] = "Phosphorous.";
+        AList[4] = "Calcium.";
+        AList[5] = "Scandium.";
+        AList[6] = "Chronium.";
+        this.question = QList[questionLA];
+        for (int i = 0; i<4; i++) {
+          int[] randomS = new int[4];
+          randomS[0] = (int) random(0, 6);
+          randomS[1] = (int) random(0, 6);
+          randomS[2] = (int) random(0, 6);
+          randomS[3] = (int) random(0, 6);
+          for (int q = 0; q<4; q++) {
+             while (randomS[q] == questionLA) {
+              randomS[q] = (int) random(0, 6);
+            }
+          }
+
+          this.options[i] = AList[randomS[i]];
+        }
+        this.options[correctAnswer] = AList[questionLA];
+      }
+      }     
     } else if (this.topic == "socialStudiesLogo.png") {
       if (this.tier == 0) {
       }
+      
     } else if (this.topic == "EnglishIcon.png") {
       if (this.tier == 0) {
         int questionLA = (int) random(0, 6);
