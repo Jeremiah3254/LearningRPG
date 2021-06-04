@@ -11,6 +11,7 @@ public class QuestionPool {
     this.tier = tier;
   }
 
+   
 
   public void questionAnswer(int correctAnswer) {
     //this.InitializeVariables();
@@ -94,7 +95,7 @@ public class QuestionPool {
           randomS[2] = (int) random(0, 6);
           randomS[3] = (int) random(0, 6);
           for (int q = 0; q<4; q++) {
-             while (randomS[q] == questionLA) {
+            while (randomS[q] == questionLA) {
               randomS[q] = (int) random(0, 6);
             }
           }
@@ -103,115 +104,111 @@ public class QuestionPool {
         }
         this.options[correctAnswer] = AList[questionLA];
       }
-      }else if (this.tier == 5) {
-        int questionLA = (int) random(0, 6);
-        String[] QList = new String[7];
-        String[] AList = new String[7];
-        QList[0] = "What does DNA stand for?";
-        QList[1] = "What type of helix is DNA?";
-        QList[2] = "What is a sequence?";
-        QList[3] = "What is a ribose?";
-        QList[4] = "What is translation?";
-        QList[5] = "What does an amino acid do?";
-        QList[6] = "What is mutation?";
-
-        AList[0] = "Dioxyribonucleicacid.";
-        AList[1] = "Double.";
-        AList[2] = "covalently linked within a biopolymer.";
-        AList[3] = "kind of sugar that is produced by the body.";
-        AList[4] = "a cell “reads” the information in a messenger RNA (mRNA) and uses it to build a protein.";
-        AList[5] = "They are needed for vital processes like the cell building.";
-        AList[6] = "the changing of the structure of a gene.";
-        this.question = QList[questionLA];
-        for (int i = 0; i<4; i++) {
-          int[] randomS = new int[4];
-          randomS[0] = (int) random(0, 6);
-          randomS[1] = (int) random(0, 6);
-          randomS[2] = (int) random(0, 6);
-          randomS[3] = (int) random(0, 6);
-          for (int q = 0; q<4; q++) {
-             while (randomS[q] == questionLA) {
-              randomS[q] = (int) random(0, 6);
-            }
-          }
-
-          this.options[i] = AList[randomS[i]];
-        }
-        this.options[correctAnswer] = AList[questionLA];
-      }
-      }else if (this.tier == 10) {
-        int questionLA = (int) random(0, 6);
-        String[] QList = new String[7];
-        String[] AList = new String[7];
-        QList[0] = "Which planet do we orbit?";
-        QList[1] = "What is the smallest planet in our solar system?";
-        QList[2] = "How many planets are in our solar system?";
-        QList[3] = "Which planet is closest to the sun?";
-        QList[4] = "Which planet is furthest from the sun?";
-        QList[5] = "What does the moon do to earth?";
-        QList[6] = "What is the mass of the sun?";
-
-        AList[0] = "The sun.";
-        AList[1] = "Pluto.";
-        AList[2] = "Eight.";
-        AList[3] = "Mercury.";
-        AList[4] = "Pluto.";
-        AList[5] = "Causes tides.";
-        AList[6] = "19.989 x 10^30 kg";
-        this.question = QList[questionLA];
-        for (int i = 0; i<4; i++) {
-          int[] randomS = new int[4];
-          randomS[0] = (int) random(0, 6);
-          randomS[1] = (int) random(0, 6);
-          randomS[2] = (int) random(0, 6);
-          randomS[3] = (int) random(0, 6);
-          for (int q = 0; q<4; q++) {
-             while (randomS[q] == questionLA) {
-              randomS[q] = (int) random(0, 6);
-            }
-          }
-
-          this.options[i] = AList[randomS[i]];
-        }
-        this.options[correctAnswer] = AList[questionLA];
-      }
-      }else if (this.tier == 15) {
+    } else if (this.tier == 5) {
       int questionLA = (int) random(0, 6);
-        String[] QList = new String[7];
-        String[] AList = new String[7];
-        QList[0] = "What does H stand for?";
-        QList[1] = "What does Si stand for?";
-        QList[2] = "What does Ne stand for?";
-        QList[3] = "What does P stand for?";
-        QList[4] = "What does Ca stand for?";
-        QList[5] = "What does Sc stand for?";
-        QList[6] = "What does Cr stand for?";
+      String[] QList = new String[7];
+      String[] AList = new String[7];
+      QList[0] = "What does DNA stand for?";
+      QList[1] = "What type of helix is DNA?";
+      QList[2] = "What is a sequence?";
+      QList[3] = "What is a ribose?";
+      QList[4] = "What is translation?";
+      QList[5] = "What does an amino acid do?";
+      QList[6] = "What is mutation?";
 
-        AList[0] = "Hydrogen.";
-        AList[1] = "Silicon.";
-        AList[2] = "Neon.";
-        AList[3] = "Phosphorous.";
-        AList[4] = "Calcium.";
-        AList[5] = "Scandium.";
-        AList[6] = "Chronium.";
-        this.question = QList[questionLA];
-        for (int i = 0; i<4; i++) {
-          int[] randomS = new int[4];
-          randomS[0] = (int) random(0, 6);
-          randomS[1] = (int) random(0, 6);
-          randomS[2] = (int) random(0, 6);
-          randomS[3] = (int) random(0, 6);
-          for (int q = 0; q<4; q++) {
-             while (randomS[q] == questionLA) {
-              randomS[q] = (int) random(0, 6);
-            }
+      AList[0] = "Dioxyribonucleicacid.";
+      AList[1] = "Double.";
+      AList[2] = "covalently linked within a biopolymer.";
+      AList[3] = "kind of sugar that is produced by the body.";
+      AList[4] = "a cell “reads” the information in a messenger RNA (mRNA) and uses it to build a protein.";
+      AList[5] = "They are needed for vital processes like the cell building.";
+      AList[6] = "the changing of the structure of a gene.";
+      this.question = QList[questionLA];
+      for (int i = 0; i<4; i++) {
+        int[] randomS = new int[4];
+        randomS[0] = (int) random(0, 6);
+        randomS[1] = (int) random(0, 6);
+        randomS[2] = (int) random(0, 6);
+        randomS[3] = (int) random(0, 6);
+        for (int q = 0; q<4; q++) {
+          while (randomS[q] == questionLA) {
+            randomS[q] = (int) random(0, 6);
           }
-
-          this.options[i] = AList[randomS[i]];
         }
-        this.options[correctAnswer] = AList[questionLA];
+
+        this.options[i] = AList[randomS[i]];
       }
-      }     
+      this.options[correctAnswer] = AList[questionLA];
+    } else if (this.tier == 10) {
+      int questionLA = (int) random(0, 6);
+      String[] QList = new String[7];
+      String[] AList = new String[7];
+      QList[0] = "Which planet do we orbit?";
+      QList[1] = "What is the smallest planet in our solar system?";
+      QList[2] = "How many planets are in our solar system?";
+      QList[3] = "Which planet is closest to the sun?";
+      QList[4] = "Which planet is furthest from the sun?";
+      QList[5] = "What does the moon do to earth?";
+      QList[6] = "What is the mass of the sun?";
+
+      AList[0] = "The sun.";
+      AList[1] = "Pluto.";
+      AList[2] = "Eight.";
+      AList[3] = "Mercury.";
+      AList[4] = "Pluto.";
+      AList[5] = "Causes tides.";
+      AList[6] = "19.989 x 10^30 kg";
+      this.question = QList[questionLA];
+      for (int i = 0; i<4; i++) {
+        int[] randomS = new int[4];
+        randomS[0] = (int) random(0, 6);
+        randomS[1] = (int) random(0, 6);
+        randomS[2] = (int) random(0, 6);
+        randomS[3] = (int) random(0, 6);
+        for (int q = 0; q<4; q++) {
+          while (randomS[q] == questionLA) {
+            randomS[q] = (int) random(0, 6);
+          }
+        }
+
+        this.options[i] = AList[randomS[i]];
+      }
+      this.options[correctAnswer] = AList[questionLA];
+    } else if (this.tier == 15) {
+      int questionLA = (int) random(0, 6);
+      String[] QList = new String[7];
+      String[] AList = new String[7];
+      QList[0] = "What does H stand for?";
+      QList[1] = "What does Si stand for?";
+      QList[2] = "What does Ne stand for?";
+      QList[3] = "What does P stand for?";
+      QList[4] = "What does Ca stand for?";
+      QList[5] = "What does Sc stand for?";
+      QList[6] = "What does Cr stand for?";
+
+      AList[0] = "Hydrogen.";
+      AList[1] = "Silicon.";
+      AList[2] = "Neon.";
+      AList[3] = "Phosphorous.";
+      AList[4] = "Calcium.";
+      AList[5] = "Scandium.";
+      AList[6] = "Chronium.";
+      this.question = QList[questionLA];
+      for (int i = 0; i<4; i++) {
+        int[] randomS = new int[4];
+        randomS[0] = (int) random(0, 6);
+        randomS[1] = (int) random(0, 6);
+        randomS[2] = (int) random(0, 6);
+        randomS[3] = (int) random(0, 6);
+        for (int q = 0; q<4; q++) {
+          while (randomS[q] == questionLA) {
+            randomS[q] = (int) random(0, 6);
+          }
+        }
+
+        this.options[i] = AList[randomS[i]];
+      }
+      this.options[correctAnswer] = AList[questionLA];
     } else if (this.topic == "socialStudiesLogo.png") {
       if (this.tier == 0) {
         int questionLA = (int) random(0, 6);
@@ -240,7 +237,7 @@ public class QuestionPool {
           randomS[2] = (int) random(0, 6);
           randomS[3] = (int) random(0, 6);
           for (int q = 0; q<4; q++) {
-             while (randomS[q] == questionLA) {
+            while (randomS[q] == questionLA) {
               randomS[q] = (int) random(0, 6);
             }
           }
@@ -249,14 +246,9 @@ public class QuestionPool {
         }
         this.options[correctAnswer] = AList[questionLA];
       }
-      }else if (this.tier == 5) {
-      
-      }else if (this.tier == 10) {
-      
-      }else if (this.tier == 15) {
-      
-      }
-      
+    } else if (this.tier == 5) {
+    } else if (this.tier == 10) {
+    } else if (this.tier == 15) {
     } else if (this.topic == "EnglishIcon.png") {
       if (this.tier == 0) {
         int questionLA = (int) random(0, 6);
@@ -285,7 +277,7 @@ public class QuestionPool {
           randomS[2] = (int) random(0, 6);
           randomS[3] = (int) random(0, 6);
           for (int q = 0; q<4; q++) {
-             while (randomS[q] == questionLA) {
+            while (randomS[q] == questionLA) {
               randomS[q] = (int) random(0, 6);
             }
           }
@@ -329,122 +321,97 @@ public class QuestionPool {
         this.options[i] = AList[randomS[i]];
       }
       this.options[correctAnswer] = AList[questionLA];
-    
-  } else if (this.tier == 10) {
-  int questionLA = (int) random(0, 6);
-  String[] QList = new String[7];
-  String[] AList = new String[7];
-  QList[0] = "What is a simile?";
-  QList[1] = "What is a metaphor?";
-  QList[2] = "What is a hyperbole?";
-  QList[3] = "What is alliteration?";
-  QList[4] = "What is dramatic irony?";
-  QList[5] = "What is diction?";
-  QList[6] = "What is onomatopoeia?";
+    } else if (this.tier == 10) {
+      int questionLA = (int) random(0, 6);
+      String[] QList = new String[7];
+      String[] AList = new String[7];
+      QList[0] = "What is a simile?";
+      QList[1] = "What is a metaphor?";
+      QList[2] = "What is a hyperbole?";
+      QList[3] = "What is alliteration?";
+      QList[4] = "What is dramatic irony?";
+      QList[5] = "What is diction?";
+      QList[6] = "What is onomatopoeia?";
 
-  AList[0] = "comparison of one thing with another thing of a different kind.";
-  AList[1] = "word or phrase is applied to an object or action to which it is not literally applicable.";
-  AList[2] = "exaggerated statements or claims not meant to be taken literally.";
-  AList[3] = "the occurrence of the same letter or sound at the beginning.";
-  AList[4] = "the full significance of a character's words or actions are clear to the audience or reader although unknown to the character.";
-  AList[5] = "the choice and use of words and phrases in speech or writing.";
-  AList[6] = "the formation of a word from a sound associated with what is named (e.g. cuckoo, sizzle ).";
-  this.question = QList[questionLA];
-  for (int i = 0; i<4; i++) {
-    int[] randomS = new int[4];
-    randomS[0] = (int) random(0, 6);
-    randomS[1] = (int) random(0, 6);
-    randomS[2] = (int) random(0, 6);
-    randomS[3] = (int) random(0, 6);
-    for (int q = 0; q<4; q++) {
-      while (randomS[q] == questionLA) {
-        randomS[q] = (int) random(0, 6);
+      AList[0] = "comparison of one thing with another thing of a different kind.";
+      AList[1] = "word or phrase is applied to an object or action to which it is not literally applicable.";
+      AList[2] = "exaggerated statements or claims not meant to be taken literally.";
+      AList[3] = "the occurrence of the same letter or sound at the beginning.";
+      AList[4] = "the full significance of a character's words or actions are clear to the audience or reader although unknown to the character.";
+      AList[5] = "the choice and use of words and phrases in speech or writing.";
+      AList[6] = "the formation of a word from a sound associated with what is named (e.g. cuckoo, sizzle ).";
+      this.question = QList[questionLA];
+      for (int i = 0; i<4; i++) {
+        int[] randomS = new int[4];
+        randomS[0] = (int) random(0, 6);
+        randomS[1] = (int) random(0, 6);
+        randomS[2] = (int) random(0, 6);
+        randomS[3] = (int) random(0, 6);
+        for (int q = 0; q<4; q++) {
+          while (randomS[q] == questionLA) {
+            randomS[q] = (int) random(0, 6);
+          }
+        }
+
+        this.options[i] = AList[randomS[i]];
       }
-    }
 
-    this.options[i] = AList[randomS[i]];
+      this.options[correctAnswer] = AList[questionLA];
+    } else if (this.tier == 15) {
+      int questionLA = (int) random(0, 6);
+      String[] QList = new String[7];
+      String[] AList = new String[7];
+      QList[0] = "Who is Tom’s enemy? (Tom & Jerry Show)";
+      QList[1] = "Who is the most religious person in The Things They Carried?";
+      QList[2] = "Who is the main character of the Cat in the Hat?";
+      QList[3] = "Who dies first in The Things They Carried.";
+      QList[4] = "Who is the narrator of the Great Gatsby?";
+      QList[5] = "Who wins the Hunger Games?";
+      QList[6] = "Which character dies first in the Hunger Games?";
+
+      AList[0] = "Jerry";
+      AList[1] = "Kiowa";
+      AList[2] = "The Cat";
+      AList[3] = "Ted Lavender";
+      AList[4] = "Nick Carraway";
+      AList[5] = "Katniss and Peeta";
+      AList[6] = "Amber";
+      this.question = QList[questionLA];
+      for (int i = 0; i<4; i++) {
+        int[] randomS = new int[4];
+        randomS[0] = (int) random(0, 6);
+        randomS[1] = (int) random(0, 6);
+        randomS[2] = (int) random(0, 6);
+        randomS[3] = (int) random(0, 6);
+        for (int q = 0; q<4; q++) {
+          while (randomS[q] == questionLA) {
+            randomS[q] = (int) random(0, 6);
+          }
+        }
+
+        this.options[i] = AList[randomS[i]];
+      }
+      this.options[correctAnswer] = AList[questionLA];
+    }
   }
   
-  this.options[correctAnswer] = AList[questionLA];
-
-} else if (this.tier == 15) {
-  int questionLA = (int) random(0, 6);
-  String[] QList = new String[7];
-  String[] AList = new String[7];
-  QList[0] = "Who is Tom’s enemy? (Tom & Jerry Show)";
-  QList[1] = "Who is the most religious person in The Things They Carried?";
-  QList[2] = "Who is the main character of the Cat in the Hat?";
-  QList[3] = "Who dies first in The Things They Carried.";
-  QList[4] = "Who is the narrator of the Great Gatsby?";
-  QList[5] = "Who wins the Hunger Games?";
-  QList[6] = "Which character dies first in the Hunger Games?";
-
-  AList[0] = "Jerry";
-  AList[1] = "Kiowa";
-  AList[2] = "The Cat";
-  AList[3] = "Ted Lavender";
-  AList[4] = "Nick Carraway";
-  AList[5] = "Katniss and Peeta";
-  AList[6] = "Amber";
-  this.question = QList[questionLA];
-  for (int i = 0; i<4; i++) {
-    int[] randomS = new int[4];
-    randomS[0] = (int) random(0, 6);
-    randomS[1] = (int) random(0, 6);
-    randomS[2] = (int) random(0, 6);
-    randomS[3] = (int) random(0, 6);
-    for (int q = 0; q<4; q++) {
-      while (randomS[q] == questionLA) {
-        randomS[q] = (int) random(0, 6);
-      }
+  public String getQuestion() {
+      return this.question;
     }
 
-    this.options[i] = AList[randomS[i]];
-  }
-  this.options[correctAnswer] = AList[questionLA];
-}
-}
-
-
-public void solveLongProblem(int length, int[] num, String[] sign) {
-
-  for (int i = 0; i < num.length; i++) {
-    for (int q = 0; q<sign.length; q++) {
-      if (sign[q] == "*" || sign[q] == "/") {
-        /*if ()
-         } else {
-         
-         }*/
-      }
+    public String getOption1() {
+      return this.options[0];
     }
-  }
-}
 
-public String getQuestion() {
-  return this.question;
-}
+    public String getOption2() {
+      return this.options[1];
+    }
 
-public String getOption1() {
-  return this.options[0];
-}
+    public String getOption3() {
+      return this.options[2];
+    }
 
-public String getOption2() {
-  return this.options[1];
-}
-
-public String getOption3() {
-  return this.options[2];
-}
-
-public String getOption4() {
-  return this.options[3];
-}
-//public void InitializeVariables() {
-// <Topic> ~Math
-
-//Questions
-
-// <Topic> ~Science
-//}
-
+    public String getOption4() {
+      return this.options[3];
+    }
 }
