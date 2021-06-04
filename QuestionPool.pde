@@ -103,7 +103,7 @@ public class QuestionPool {
           this.options[i] = AList[randomS[i]];
         }
         this.options[correctAnswer] = AList[questionLA];
-      }
+      
     } else if (this.tier == 5) {
       int questionLA = (int) random(0, 6);
       String[] QList = new String[7];
@@ -209,7 +209,8 @@ public class QuestionPool {
         this.options[i] = AList[randomS[i]];
       }
       this.options[correctAnswer] = AList[questionLA];
-    } else if (this.topic == "socialStudiesLogo.png") {
+    } 
+    }else if (this.topic == "socialStudiesLogo.png") {
       if (this.tier == 0) {
         int questionLA = (int) random(0, 6);
         String[] QList = new String[7];
@@ -245,10 +246,116 @@ public class QuestionPool {
           this.options[i] = AList[randomS[i]];
         }
         this.options[correctAnswer] = AList[questionLA];
-      }
+      
     } else if (this.tier == 5) {
+        int questionLA = (int) random(0, 6);
+        String[] QList = new String[7];
+        String[] AList = new String[7];
+        QList[0] = "What is the capital of Oklahoma?";
+        QList[1] = "What is the capital of New York?";
+        QList[2] = "What is the capital of Oregon?";
+        QList[3] = "What is the capital of Montana?";
+        QList[4] = "What is the capital of Michigan?";
+        QList[5] = "What is the capital of California?";
+        QList[6] = "Which state is the largest State?";
+
+        AList[0] = "Oklahoma City";
+        AList[1] = "Albany";
+        AList[2] = "Salem";
+        AList[3] = "Helena";
+        AList[4] = "Lansing";
+        AList[5] = "Sacramento";
+        AList[6] = "Texas";
+        this.question = QList[questionLA];
+        for (int i = 0; i<4; i++) {
+          int[] randomS = new int[4];
+          randomS[0] = (int) random(0, 6);
+          randomS[1] = (int) random(0, 6);
+          randomS[2] = (int) random(0, 6);
+          randomS[3] = (int) random(0, 6);
+          for (int q = 0; q<4; q++) {
+            while (randomS[q] == questionLA) {
+              randomS[q] = (int) random(0, 6);
+            }
+          }
+
+          this.options[i] = AList[randomS[i]];
+        }
+        this.options[correctAnswer] = AList[questionLA];
+        
     } else if (this.tier == 10) {
+        int questionLA = (int) random(0, 6);
+        String[] QList = new String[7];
+        String[] AList = new String[7];
+        QList[0] = "When was the declaration of independence signed?";
+        QList[1] = "When was Linolcn Assassinated?";
+        QList[2] = "When was the “I have a Dream” Speech given?";
+        QList[3] = "When did WW2 end?";
+        QList[4] = "When did WWI end?";
+        QList[5] = "When was Sputnik launched?";
+        QList[6] = "When was NASA established?";
+
+        AList[0] = "August 2, 1776";
+        AList[1] = "April 15, 1865";
+        AList[2] = "August 28, 1963";
+        AList[3] = "September 2, 1945";
+        AList[4] = "November 11, 1918";
+        AList[5] = "October 4, 1957";
+        AList[6] = "July 29, 1958";
+        this.question = QList[questionLA];
+        for (int i = 0; i<4; i++) {
+          int[] randomS = new int[4];
+          randomS[0] = (int) random(0, 6);
+          randomS[1] = (int) random(0, 6);
+          randomS[2] = (int) random(0, 6);
+          randomS[3] = (int) random(0, 6);
+          for (int q = 0; q<4; q++) {
+            while (randomS[q] == questionLA) {
+              randomS[q] = (int) random(0, 6);
+            }
+          }
+
+          this.options[i] = AList[randomS[i]];
+        }
+        this.options[correctAnswer] = AList[questionLA];
+      
     } else if (this.tier == 15) {
+        int questionLA = (int) random(0, 6);
+        String[] QList = new String[7];
+        String[] AList = new String[7];
+        QList[0] = "Who was the German leader that lead the Nazi regime?";
+        QList[1] = "Who was the dictator of Russia who was against Hitler?";
+        QList[2] = "Who was the fascist dictator of Italy from 1922-1943?";
+        QList[3] = "Which leader led 9/11?";
+        QList[4] = "Who’s forces began a campaign of guerrilla warfare which led to the overthrow of Cuban dictator Fulgencio Batista?";
+        QList[5] = "Who reportedly executed or removed many senior officials that he had inherited from his father’s regime. Among those purged was his own uncle, Jang Song-thaek?";
+        QList[6] = "Who was known as the universal ruler?";
+
+        AList[0] = "Hitler";
+        AList[1] = "Stalin";
+        AList[2] = "Mussolini";
+        AList[3] = "Osama bin Laden";
+        AList[4] = "Fidel Castro";
+        AList[5] = "Kim Jong-Un";
+        AList[6] = "Genghis Khan";
+        this.question = QList[questionLA];
+        for (int i = 0; i<4; i++) {
+          int[] randomS = new int[4];
+          randomS[0] = (int) random(0, 6);
+          randomS[1] = (int) random(0, 6);
+          randomS[2] = (int) random(0, 6);
+          randomS[3] = (int) random(0, 6);
+          for (int q = 0; q<4; q++) {
+            while (randomS[q] == questionLA) {
+              randomS[q] = (int) random(0, 6);
+            }
+          }
+
+          this.options[i] = AList[randomS[i]];
+        }
+        this.options[correctAnswer] = AList[questionLA];
+      
+    }
     } else if (this.topic == "EnglishIcon.png") {
       if (this.tier == 0) {
         int questionLA = (int) random(0, 6);
